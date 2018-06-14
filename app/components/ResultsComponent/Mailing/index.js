@@ -15,6 +15,7 @@ function Mailing() {
         <h5>...ou envie diretamente aos fornecedores</h5>
       </div>
       <form>
+      </form>
     </div>
   );
 }

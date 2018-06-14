@@ -1,0 +1,6 @@
+:local .demo {
+  background-color: pink
+}
+:global .demo2 {
+  color: white
+}

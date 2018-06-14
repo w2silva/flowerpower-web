@@ -12,8 +12,11 @@ import Footer from 'components/Footer'
 import Profile from 'components/Profile'
 import Questions from './Questions'
 
+import styles from './styles.css'
+
 function QuizComponent(props) {
   const isNew = true
+  
   return (
     <div>
       <Helmet>
@@ -22,7 +25,7 @@ function QuizComponent(props) {
       </Helmet>
       <Header/>
       <Profile isNew={isNew}/>
-      <Questions submitTherapy={props.submitTherapy}/>
+      <Questions submitTherapy={props.submitTherapy} className={styles.demo}/>
       <Footer/>
     </div>
   );

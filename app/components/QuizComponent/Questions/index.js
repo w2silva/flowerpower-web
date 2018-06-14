@@ -12,7 +12,7 @@ import { compose } from 'redux';
 
 function Questions (props) {
   return (
-    <div>
+    <div className={props.className}>
       <div>
         <h5>Agora vamos começar a terapia</h5>
         <span>Abaixo você encontra uma série de perguntas específicas, por favor escolha sempre a alternativa com a qual o perfil selecionado mais se identifica</span>
