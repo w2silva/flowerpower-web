@@ -5,14 +5,14 @@
 */
 
 import React from 'react';
-// import styled from 'styled-components';
+import Wrapper from './Wrapper';
 
 
 function Logo() {
   return (
-    <div>
+    <Wrapper>
       <img></img>
-    </div>
+    </Wrapper>
   );
 }
 

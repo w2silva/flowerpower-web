@@ -5,11 +5,12 @@
 */
 
 import React from 'react';
-// import styled from 'styled-components';
 import { Link } from 'react-router-dom'
+import Wrapper from './Wrapper'
+
 function HeaderMenu(props) {
   return (
-    <div>
+    <Wrapper>
       {props.titles.map((t, idx) => (
         <Link to={props.to[idx]}>
           <span>{t}</span>
@@ -20,7 +21,7 @@ function HeaderMenu(props) {
           }
         </Link>
       ))}
-    </div>
+    </Wrapper>
   );
 }
 
