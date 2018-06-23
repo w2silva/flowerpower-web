@@ -13,21 +13,42 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
+import { ThemeProvider } from 'styled-components'
 import HomePage from 'containers/HomePage/Loadable';
 import Quiz from 'containers/Quiz';
 import Results from 'containers/Results';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
+const theme = {
+  flexboxgrid: {
+    // Defaults
+    gridSize: 12, // columns
+    gutterWidth: 1, // rem
+    outerMargin: 2, // rem
+    mediaQuery: 'only screen',
+    container: {
+      sm: 46, // rem
+      md: 61, // rem
+      lg: 76  // rem
+    },
+    breakpoints: {
+      xs: 0,  // em
+      sm: 48, // em
+      md: 64, // em
+      lg: 75  // em
+    }
+  }
+};
+
 export default function App() {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <Switch>
         <Route exact path="/results" component={Results} />
         <Route exact path="/quiz" component={Quiz} />
         <Route exact path="/" component={HomePage} />
         <Route component={NotFoundPage} />
       </Switch>
-    </div>
+    </ThemeProvider>
   );
 }

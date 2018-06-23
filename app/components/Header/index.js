@@ -13,7 +13,6 @@ import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import Logo from './Logo'
 import HeaderMenu from './HeaderMenu'
 import Info from './Info'
-import SeparatorBottom from './SeparatorBottom'
 
 // Create a <Title> react component that renders an <h1> which is
 // centered, palevioletred and sized at 1.5em
@@ -22,12 +21,18 @@ const HeaderStyled = styled.div`
   width: 100%;
   font-size: 1em;
   padding: 20px 0px 30px 0px;
-  background: #718394;
+  margin-bottom: 4em;
+  overflow: hidden;
+`;
+  
+const HeaderEllipsis = styled.div`  
+  position: absolute;
   color: white;
   border-bottom-left-radius: 50% 100%;
   border-bottom-right-radius: 50% 100%;
-
   width: 150%;
+  height: 100%;
+  top: 0;
   left: -100%;
   transform: translateX(50%);
   background-image: url(http://ellipsis.themewich.com/wp-content/themes/ellipsis/images/skins/galaxy/default/background.jpg);
@@ -40,6 +45,7 @@ const HeaderStyled = styled.div`
 function Header(props) {
   return (
     <HeaderStyled>
+      <HeaderEllipsis />
       <Grid>
         <Row middle="xs">
           <Col xs={3}>

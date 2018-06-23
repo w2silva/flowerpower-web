@@ -5,8 +5,16 @@
 */
 
 import React from 'react';
-import Wrapper from './Wrapper';
 
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  text-align: center;
+  max-width: 70px;
+  height: 70px;
+  background-color: white;
+  border-radius: 100%;
+`;
 
 function Logo() {
   return (
