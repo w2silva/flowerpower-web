@@ -32,67 +32,77 @@ const ProfilePicture = styled.div`
   }
 `;
 
+const ProfileContainer = styled.div`
+  margin-bottom: 6em;
+
+  h5 {
+    margin-bottom: 2em;
+  }
+`;
+
 function Profile(props) {
   return (
     <Grid>
-      <H5>Cadastro de Perfil (Pessoa)</H5>
-      <Form>        
-        <Row middle="xs">
-          <Col>
-            <ProfilePicture>
-              {props.isNew ?
-                <div>
-                  <span>Upload de Foto</span>
-                </div>
-                :
-                <img/>
-              }
-            </ProfilePicture>
-          </Col>
-          <Col md={5}>
-            <Row>
-              <Col md={12}>
-              <div className="group">
-                  <label>Nome Completo</label>
-                  <input disabled={!props.isNew} type='text' name='name'></input>
-                </div>
-              </Col>
-              <Col md={6}>
-              <div className="group">
-                  <label>Data de Nascimento</label>
-                  <input disabled={!props.isNew} type='date' name='birthday'></input>
-                </div>
-              </Col>
-              <Col md={6}>
+      <ProfileContainer>
+        <H5>Cadastro de Perfil (Pessoa)</H5>
+        <Form>        
+          <Row middle="xs">
+            <Col>
+              <ProfilePicture>
+                {props.isNew ?
+                  <div>
+                    <span>Upload de Foto</span>
+                  </div>
+                  :
+                  <img/>
+                }
+              </ProfilePicture>
+            </Col>
+            <Col md={5}>
+              <Row>
+                <Col md={12}>
                 <div className="group">
-                  <label>Relacionamento</label>
-                  <select disabled={!props.isNew}>
-                    <option value=''></option>
-                    <option value='human'>Amigo ou parente</option>
-                    <option value='pet'>Gato ou cachorro</option>
-                    <option value='main'>Meu perfil</option>
-                  </select>
-                </div>
-              </Col>
-            </Row>
-          </Col>
-          <Col md={4}>
-            <div className="group">
-              <label>Sexo</label>
-              <select disabled={!props.isNew}>
-                <option value=''></option>
-                <option value='female'>Feminino</option>
-                <option value='male'>Masculino</option>
-                <option value='other'>Outro</option>
-              </select>
-            </div>
-            <div className="group">
-              <label>E-mail</label>
-              <input disabled={!props.isNew} type='text' name='email'></input>
-            </div>
-          </Col>
-        </Row>
-      </Form>
+                    <label>Nome Completo</label>
+                    <input disabled={!props.isNew} type='text' name='name'></input>
+                  </div>
+                </Col>
+                <Col md={6}>
+                <div className="group">
+                    <label>Data de Nascimento</label>
+                    <input disabled={!props.isNew} type='text' name='birthday'></input>
+                  </div>
+                </Col>
+                <Col md={6}>
+                  <div className="group">
+                    <label>Relacionamento</label>
+                    <select disabled={!props.isNew}>
+                      <option value=''></option>
+                      <option value='human' selected="selected">Amigo ou parente</option>
+                      <option value='pet'>Gato ou cachorro</option>
+                      <option value='main'>Meu perfil</option>
+                    </select>
+                  </div>
+                </Col>
+              </Row>
+            </Col>
+            <Col md={4}>
+              <div className="group">
+                <label>Sexo</label>
+                <select disabled={!props.isNew}>
+                  <option value=''></option>
+                  <option value='female'>Feminino</option>
+                  <option value='male' selected="selected">Masculino</option>
+                  <option value='other'>Outro</option>
+                </select>
+              </div>
+              <div className="group">
+                <label>E-mail</label>
+                <input disabled={!props.isNew} type='text' name='email'></input>
+              </div>
+            </Col>
+          </Row>
+        </Form>
+      </ProfileContainer>
     </Grid>
   );
 }

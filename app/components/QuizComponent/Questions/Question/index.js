@@ -18,16 +18,32 @@ const Wrapper = styled.div`
     margin: 0px 0px 10px 0px;
   }
 
+  span {
+    display: inline-block;
+    padding: 2px 8px;
+    margin: 0px 10px 0px 0px;
+    background-color: #779ccb;
+    color: white;
+    border-radius: 2px;
+  }
+
   label {
     cursor: pointer;
     position: relative;
     display: inline-block;
     background-color: #eee;
     border-radius: 30px;
-    padding: 8px 15px;
-    width: 120px;
-    font-size: 12px;
+    padding: 5px 8px;
+    width: 110px;
+    font-size: .7em;
     text-align: left;
+
+    &:active, 
+    &:focus, 
+    &:hover {
+      background-color: #779ccb;
+      color: white;
+    }
   }
 
   input {
@@ -40,7 +56,7 @@ const Wrapper = styled.div`
 function Question(props) {
   return (
     <Wrapper>
-      <p>{props.title}</p>
+      <p><span>1</span> {props.title}</p>
       <Row middle="xs" around="xs">
         <Col>
           <label><input type='checkbox'/> Nunca</label>

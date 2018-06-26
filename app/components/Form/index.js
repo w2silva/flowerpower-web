@@ -18,10 +18,23 @@ const Form = styled.form`
     display: block;
     width: 100%;
     padding: 7px 7px;
-    color: #000;
-    border: solid 1px #ccc8c8;
+    color: #999;
+    border: solid 1px #e6e6e6;
     background: white;
     box-sizing: border-box;
+
+    &:-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: #e6e6e6;
+    }
+    &:-moz-placeholder { /* Firefox 19+ */
+      color: #e6e6e6;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+      color: #e6e6e6;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      color: #e6e6e6;
+    }
   }
 
   label {

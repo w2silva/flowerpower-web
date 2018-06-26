@@ -12,15 +12,18 @@ const WrapperInfo = styled.div`
   padding-top: 3em;
 
   .info-title {
-    font-size: 2.2em;
+    font-size: 3em;
     font-style: italic;
     text-align: right;
   }
 
   .info-divider {
-    font-size: 2.2em;
-    font-style: italic;
-    text-align: center;
+    border-right: solid 1px #bdb8b8;
+    height: 65px;
+
+    -webkit-transform: rotate(15deg); /* Safari */
+        -ms-transform: rotate(15deg); /* IE 9 */
+            transform: rotate(15deg);
   }
 
   .info-desc {
@@ -32,14 +35,14 @@ const WrapperInfo = styled.div`
 function Info() {
   return (
     <WrapperInfo>
-      <Row middle="xs">
-        <Col xs={5}>
+      <Row middle="xs" center="xs">
+        <Col>
           <div className="info-title">Allevius Florais</div>
         </Col>
-        <Col xs={1}>
-          <div className="info-divider">/</div>
+        <Col>
+          <div className="info-divider">&nbsp;</div>
         </Col>
-        <Col xs={6}>
+        <Col>
           <div className="info-desc">Facilitando sua busca por<br /><b>bem-estar</b> e <b>autoconhecimento</b></div>
         </Col>
       </Row>

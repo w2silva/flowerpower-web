@@ -9,6 +9,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
+import bgBannerHome from 'images/bg-banner-home.png';
 
 import Logo from './Logo'
 import HeaderMenu from './HeaderMenu'
@@ -35,49 +36,58 @@ const HeaderEllipsis = styled.div`
   top: 0;
   left: -100%;
   transform: translateX(50%);
-  background-image: url(http://ellipsis.themewich.com/wp-content/themes/ellipsis/images/skins/galaxy/default/background.jpg);
+  background-image: url(${bgBannerHome});
   background-color: transparent;
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
 `;
 
+const HeaderNav = styled.div`
+  position: relative;
+  top: 0;
+  left: 0;
+  color: white;
+`;
+
 function Header(props) {
   return (
     <HeaderStyled>
       <HeaderEllipsis />
-      <Grid>
-        <Row middle="xs">
-          <Col xs={3}>
-            <Logo/>
-          </Col>
-          <Col xs={9}>
-            <HeaderMenu titles={['Cadastro', 'Minha Conta']} to={['/register', '/me']}/>
-            <HeaderMenu
-              titles={['Home', 'Sobre Florais', 'Faça sua Terapia', 'Quem é Patrícia?', 'Nossos Planos', 'Contato']}
-              to={['/', '/about', 'quiz', 'biography', 'bundles', 'contact']}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12}>
-            <Row center="xs">
-              <Col xs={8}>
-                <Info/>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-        { props.button ?
-          <div className='row'>
-            <div className='col-md-12'>
-              <Link to='/quiz'>Faça Agora Sua Terapia</Link>
+      <HeaderNav>
+        <Grid>
+          <Row middle="xs">
+            <Col xs={3}>
+              <Logo/>
+            </Col>
+            <Col xs={9}>
+              <HeaderMenu titles={['Cadastro', 'Minha Conta']} to={['/register', '/me']}/>
+              <HeaderMenu
+                titles={['Home', 'Sobre Florais', 'Faça sua Terapia', 'Quem é Patrícia?', 'Nossos Planos', 'Contato']}
+                to={['/', '/about', 'quiz', 'biography', 'bundles', 'contact']}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <Row center="xs">
+                <Col xs={10}>
+                  <Info/>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          { props.button ?
+            <div className='row'>
+              <div className='col-md-12'>
+                <Link to='/quiz'>Faça Agora Sua Terapia</Link>
+              </div>
             </div>
-          </div>
-          :
-          ''
-        }
-      </Grid>
+            :
+            ''
+          }
+        </Grid>
+      </HeaderNav>
     </HeaderStyled>
   );
 }

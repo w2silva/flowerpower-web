@@ -14,18 +14,18 @@ const Wrapper = styled.div`
   padding: 20px 0;
 
   h1 {
-    color: blue;
-    margin: 0px 0px 20px 0px;
-    font-weight: 400;
+    color: #779ccb;
+    margin: 0px 0px 10px 0px;
+    font-weight: 600;
   }
 
   .desc {
-    margin-bottom: 20px;
+    margin: 0px 0px 10px 0px;
   }
 
   .copyright {
     color: #716e6e;
-    margin-top: 30px;
+    margin: 50px 0px 10px 0px;
   }
 `;
 
