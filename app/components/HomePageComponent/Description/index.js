@@ -5,24 +5,36 @@
 */
 
 import React from 'react';
-// import styled from 'styled-components';
-import { Link } from 'react-router-dom'
+import styled from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
+import imgLavandaHome from 'images/img-lavanda-home.jpg';
+import H2 from 'components/H2';
+import Button from 'components/Button';
+
+const Img = styled.img.attrs({
+  src: 'src'
+})`
+  max-width: 100%;
+`;
 
 function Description() {
   return (
     <div>
       <Grid>
-        <Row>
-          <Col xs={6}></Col>
+        <Row middle="xs">
           <Col xs={6}>
-            <h1>O que são Florais?</h1>
-            <span>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in justo ullamcorper, sollicitudin turpis dapibus, hendrerit tortor. Morbi tincidunt non sapien nec pretium. Donec elementum tristique consequat. Cras ut orci at felis accumsan ullamcorper non quis risus. Ut at ex mi. Aenean ac varius elit, eu congue dolor. Praesent elit purus, elementum nec molestie nec, molestie ut sapien. Nulla consequat justo in volutpat tincidunt. Vestibulum vitae consequat tortor.
-              Mauris aliquam justo dolor, ut pulvinar nulla pellentesque nec. Praesent dapibus lorem eros, ut bibendum elit sagittis vel. Ut at magna placerat, bibendum quam sed, interdum metus. Praesent id risus luctus, viverra ex non, iaculis risus. Vestibulum mattis vitae arcu sollicitudin sollicitudin. Sed et purus tempor, fermentum felis sit amet, accumsan sem. Nam ornare eleifend commodo. Fusce fermentum tortor a urna tincidunt, et convallis magna rhoncus. Donec rhoncus vulputate enim id hendrerit. Suspendisse sagittis purus sed blandit hendrerit.
-              Duis justo odio, blandit quis augue ac, faucibus faucibus enim. Nulla facilisi. Aliquam tristique nulla non sapien egestas, in lobortis mi semper. In enim felis, blandit eu tincidunt in, aliquet ac velit. Ut cursus mattis leo sed commodo. Nulla lacinia, erat a gravida posuere, erat felis luctus orci, sed placerat turpis metus in elit. Praesent mattis nisl sed imperdiet sodales. Nullam non nulla vel mauris scelerisque commodo eget in nunc. Suspendisse sagittis libero eget vehicula convallis. Nulla nec tellus vehicula, mattis dolor id, maximus nunc. Maecenas non blandit urna. Aliquam erat urna, venenatis sit amet ex ut, pellentesque feugiat erat.
-            </span>
-            <Link to='/about'>SAIBA MAIS SOBRE FLORAIS</Link>
+            <Img src={imgLavandaHome} />
+          </Col>
+          <Col xs={6}>
+            <H2>O que são Florais?</H2>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in justo ullamcorper, sollicitudin turpis dapibus, hendrerit tortor. Morbi tincidunt non sapien nec pretium. Donec elementum tristique consequat. Cras ut orci at felis accumsan ullamcorper non quis risus. Ut at ex mi. Aenean ac varius elit, eu congue dolor. Praesent elit purus, elementum nec molestie nec, molestie ut sapien. Nulla consequat justo in volutpat tincidunt. Vestibulum vitae consequat tortor.</span>
+            <br />
+            <br />
+            <span>Mauris aliquam justo dolor, ut pulvinar nulla pellentesque nec. Praesent dapibus lorem eros, ut bibendum elit sagittis vel.</span>
+            <br />
+            <br />
+            <strong>Duis justo odio, blandit quis augue ac, faucibus faucibus enim. Nulla facilisi.</strong>
+            <Button to='/about'></Button>
           </Col>
         </Row>
       </Grid>

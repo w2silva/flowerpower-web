@@ -14,7 +14,7 @@ const H2 = styled.h2`
 `;
 
 H2.defaultProps = {
-  align: 'center'
+  align: 'left'
 };
 
 export default H2;

@@ -6,10 +6,10 @@
 
 import React from 'react';
 // import styled from 'styled-components';
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import bgBannerHome from 'images/bg-banner-home.png';
+import Button from 'components/Button';
 
 import Logo from './Logo'
 import HeaderMenu from './HeaderMenu'
@@ -78,11 +78,11 @@ function Header(props) {
             </Col>
           </Row>
           { props.button ?
-            <div className='row'>
-              <div className='col-md-12'>
-                <Link to='/quiz'>Faça Agora Sua Terapia</Link>
-              </div>
-            </div>
+            <Row center="xs" style={{ marginTop: `5em` }}>
+              <Col>
+                <Button to='/quiz'></Button>
+              </Col>
+            </Row>
             :
             ''
           }
