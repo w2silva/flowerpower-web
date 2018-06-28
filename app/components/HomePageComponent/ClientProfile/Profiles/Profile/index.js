@@ -9,32 +9,32 @@ import styled from 'styled-components';
 import { Row, Col } from 'react-styled-flexboxgrid'
 import { Link } from 'react-router-dom';
 
-const Wrapper = styled.div`
-  a {
-    color: white;
-  }
+const ProfileWrapper = styled.div`
+  padding: 0 30px;
+`;
 
-  img {
-    max-width: 160px;
-  }
+const ProfileImage = styled.img`
+  max-width: 160px;
+  padding: 10px 0;
+`;
 
-  span {
-    display: block;
-  }
+const ProfileTitle = styled.div`
+  color: white;
+  font-size: 1.1em;
 `;
 
 function Profile(props) {
   return (
-    <Wrapper>
+    <ProfileWrapper>
       <Row middle="xs" center="xs">
         <Col>
           <Link to='/quiz'>
-            <img src={props.src} />
-            <span>{props.title}</span>
+            <ProfileImage src={props.src} />
+            <ProfileTitle>{props.title}</ProfileTitle>
           </Link>
         </Col>
       </Row>      
-    </Wrapper>
+    </ProfileWrapper>
   );
 }
 

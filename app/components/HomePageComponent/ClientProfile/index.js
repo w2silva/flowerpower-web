@@ -11,7 +11,7 @@ import Profiles from './Profiles'
 import H2 from 'components/H2';
 import bgQuiz from 'images/bg-quiz.png';
 
-const Wrapper = styled.div`
+const ClientProfileWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 500px;
@@ -23,22 +23,42 @@ const Wrapper = styled.div`
   padding: 50px 0px;
   margin: 0px 0px 5em 0px;
   text-align: center;
+`;
+  
+const ClientProfileTitle = styled.h2`
+  margin: 0px 0px 20px 0px;
+  padding: 0px 0px;
+  color: white;
+  font-size: 2.8em;
+  font-weight: 400;
+`;
 
-  h2 {
-    color: white;
-  }
+const ClientProfileIntro = styled.div`
+  margin: 0px 0px 30px 0px;
+  padding: 0px 0px;
+  color: white;
+  font-size: 1.4em;
+  font-weight: 300;
+`;
+
+const ClientProfileSpan = styled.div`
+  margin: 30px 0px 0px 0px;
+  padding: 0px 0px;
+  color: white;
+  font-size: 1em;
+  font-weight: 300;
 `;
 
 function ClientProfile() {
   return (
-    <Wrapper>
+    <ClientProfileWrapper>
       <Grid>
-        <H2 align="center">Terapia Floral Allevius</H2>
-        <h4>Por favor, selecione para quem é esse floral:</h4>
+        <ClientProfileTitle>Terapia Floral Allevius</ClientProfileTitle>
+        <ClientProfileIntro>Por favor, selecione para quem é esse floral:</ClientProfileIntro>
         <Profiles/>
-        <span>Após selecionar a opção, você será direcionado ao nosso questionário, a fim de criar sua terapia exclusiva e instantânea</span>
+        <ClientProfileSpan>Após selecionar a opção, você será direcionado ao nosso questionário, a fim de criar sua terapia exclusiva e instantânea<br />terapia exclusiva, lorem ipsum dollor amet sit lorem ipsum.</ClientProfileSpan>
       </Grid>
-    </Wrapper>
+    </ClientProfileWrapper>
   );
 }
 

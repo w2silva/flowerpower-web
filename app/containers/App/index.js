@@ -17,6 +17,11 @@ import { ThemeProvider } from 'styled-components'
 import HomePage from 'containers/HomePage/Loadable';
 import Quiz from 'containers/Quiz';
 import Results from 'containers/Results';
+import Plans from 'containers/Plans';
+import Benefits from 'containers/Benefits';
+import SelectProfile from 'containers/SelectProfile';
+import Biography from 'containers/Biography';
+import Checkout from 'containers/Checkout';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 const theme = {
@@ -46,6 +51,12 @@ export default function App() {
       <Switch>
         <Route exact path="/results" component={Results} />
         <Route exact path="/quiz" component={Quiz} />
+        <Route exact path="/plans" component={Plans} />
+        <Route exact path="/benefits" component={Benefits} />
+        <Route exact path="/profile" component={SelectProfile} />
+        <Route exact path="/biography" component={Biography} />
+        <Route exact path="/register" component={Checkout} />
+        <Route exact path="/me" component={Checkout} />
         <Route exact path="/" component={HomePage} />
         <Route component={NotFoundPage} />
       </Switch>

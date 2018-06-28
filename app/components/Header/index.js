@@ -50,6 +50,23 @@ const HeaderNav = styled.div`
   color: white;
 `;
 
+const HeaderButton = styled.a`
+  display: inline-block;
+  background-image: linear-gradient(to right, #76558e, #b0336b);
+  color: white;
+  border-radius: 50px;
+  padding: 10px 35px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: .8em;
+  box-shadow: 4px 4px 20px 0px #0006;
+
+  &:hover {
+    color: white;
+  }
+`;
+
 function Header(props) {
   return (
     <HeaderStyled>
@@ -64,7 +81,7 @@ function Header(props) {
               <HeaderMenu titles={['Cadastro', 'Minha Conta']} to={['/register', '/me']}/>
               <HeaderMenu
                 titles={['Home', 'Sobre Florais', 'Faça sua Terapia', 'Quem é Patrícia?', 'Nossos Planos', 'Contato']}
-                to={['/', '/about', 'quiz', 'biography', 'bundles', 'contact']}
+                to={['/', '/', '/benefits', '/biography', '/plans', '/biography']}
               />
             </Col>
           </Row>
@@ -78,9 +95,9 @@ function Header(props) {
             </Col>
           </Row>
           { props.button ?
-            <Row center="xs" style={{ marginTop: `5em` }}>
+            <Row center="xs" style={{ margin: `3em 0 5em 0` }}>
               <Col>
-                <Button to='/quiz'></Button>
+                <HeaderButton href="/quiz">faça agora sua terapia</HeaderButton>
               </Col>
             </Row>
             :

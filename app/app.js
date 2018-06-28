@@ -13,6 +13,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
+import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
 
@@ -44,6 +45,17 @@ import { translationMessages } from './i18n';
 
 // Import CSS reset and Global Styles
 import './global-styles';
+
+// Observer loading of Open Sans
+var openSansObserver = new FontFaceObserver('Open Sans');
+
+// When open sans is loaded, add font-family to the body
+openSansObserver.load().then(() => {
+  console.log('Open Sans has loaded.');
+  document.body.classList.add('fontLoaded');
+}, () => {
+  console.log('Open Sans not available');
+});
 
 // Create redux store with history
 const initialState = {};

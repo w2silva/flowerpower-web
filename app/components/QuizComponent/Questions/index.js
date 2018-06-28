@@ -10,55 +10,42 @@ import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import Question from './Question'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import ImgBtnResultados from 'images/btn-resultados.png';
 
-import styles from './../styles.css'
+const QuestionWrapper = styled.div`
+  margin-bottom: 5em;
+`;
 
-const Button = ({ type, className, children }) => (
-  <button type={type} className={className}>
-    {children}
-  </button>
-);
+const QuestionsIntro = styled.div`
+  margin-bottom: 6em;
+  text-align: center;
+`;
 
-const QuestionSubmit = styled(Button)`
-  background: none;
-  background-image: url(${ImgBtnResultados});
-  background-color: transparent;
-  background-origin: content-box;
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: relative;
-  display: inline-block;
-  width: 294px;
-  height: 51px;
-  border: none;
+const QuestionSubmit = styled.a`
   cursor: pointer;
-
+  display: inline-block;
+  background-image: linear-gradient(to right, #76558e, #b0336b);
+  color: white !important;
+  border-radius: 50px;
+  padding: 10px 35px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: .8em;
+  box-shadow: 4px 4px 20px 0px #0006;
+  
   &:active, 
   &:focus, 
   &:hover {
-    outline: none;
+    color: white;
+    text-decoration: underline;
   }
-`;
-
-const QuestionStyled = styled.div`
-  .heading {
-    text-align: center;
-    margin-bottom: 3em;
-  }
-`;
-
-const MarginSubmit = styled.div`
-  margin-bottom: 6em;
-  text-align: center;
 `;
 
 function Questions (props) {
   return (
     <Grid>
-      <QuestionStyled>
-        <p className="heading">Abaixo você encontra uma série de perguntas específicas, por favor escolha sempre a alternativa<br /> com a qual o perfil selecionado mais se identifica</p>
+      <QuestionWrapper>
+        <QuestionsIntro>Abaixo você encontra uma série de perguntas específicas, por favor escolha sempre a alternativa<br /> com a qual o perfil selecionado mais se identifica</QuestionsIntro>
         <form onSubmit={props.submitTherapy}>
           <Question title='Eu fico ansioso sem saber o por quê'/>
           <Question title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
@@ -70,11 +57,11 @@ function Questions (props) {
           <Question title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
           <Question title='Eu fico ansioso sem saber o por quê'/>
           <Question title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
-          <MarginSubmit>
-            <QuestionSubmit type="submit"></QuestionSubmit>
-          </MarginSubmit>
+          <div className="text-center">
+            <QuestionSubmit>concluir e ver resultado</QuestionSubmit>
+          </div>
         </form>
-      </QuestionStyled>
+      </QuestionWrapper>
     </Grid>
   );
 }
