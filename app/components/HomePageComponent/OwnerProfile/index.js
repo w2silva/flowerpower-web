@@ -36,7 +36,7 @@ function OwnerProfile() {
   return (
     <div>
       <Grid>
-        <Row middle="xs">
+        <Row middle="xs" between="xs">
           <Col xs={6}>
             <H2>Quem é Patrícia ?</H2>
             <OwnerProfileWrapper>
@@ -50,7 +50,7 @@ function OwnerProfile() {
             </OwnerProfileWrapper>
             <OwnerProfileButton href="/about">conheça mais sobre min</OwnerProfileButton>
           </Col>
-          <Col xs={6}>
+          <Col>
             <Row center="xs">
               <Col xs={12}>
                 <Img />

@@ -73,11 +73,11 @@ function Header(props) {
       <HeaderEllipsis />
       <HeaderNav>
         <Grid>
-          <Row middle="xs">
-            <Col xs={3}>
+          <Row middle="xs" between="xs">
+            <Col>
               <Logo/>
             </Col>
-            <Col xs={9}>
+            <Col>
               <HeaderMenu titles={['Cadastro', 'Minha Conta']} to={['/register', '/me']}/>
               <HeaderMenu
                 titles={['Home', 'Sobre Florais', 'Faça sua Terapia', 'Quem é Patrícia?', 'Nossos Planos', 'Contato']}

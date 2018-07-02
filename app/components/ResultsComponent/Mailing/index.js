@@ -16,6 +16,7 @@ const MailingWrapper = styled.div`
 `;
 
 const MailingProvider = styled.div`
+  max-width: 130px;
   padding: 3em 0 5em 0;
 `;
 
@@ -55,7 +56,7 @@ function Mailing() {
           </div>
           <div>Foram enviados <strong>6 fornecedores</strong> para a cidade de <strong>MOGI DAS CRUZES.</strong></div>
         </Form>
-        <Row>
+        <Row middle="xs" around="xs">
           <Col>
             <MailingProvider>
               <ProviderTitle>Nome do fornecedor</ProviderTitle>

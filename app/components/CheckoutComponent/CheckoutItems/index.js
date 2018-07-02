@@ -122,6 +122,7 @@ const CouponInput = styled.input`
 
 const CouponSubmit = styled.button`
   display: inline-block;
+  border: none;
   background-color: #779ccb;
   color: white;
   border-radius: 50px;
@@ -191,15 +192,15 @@ function CheckoutItems() {
         </Tr>
       </CheckoutItemsTable>
       <CouponTitle>cupom de desconto</CouponTitle>
-      <Row middle="xs">
-        <Col xs={6}>
+      <Row middle="xs" between="xs">
+        <Col>
           <form>
             <CouponLabel>Digite seu vale presente ou cupom</CouponLabel>
             <CouponInput type="text" value="111111111111" />
             <CouponSubmit>Aplicar</CouponSubmit>
           </form>
         </Col>
-        <Col xs={6}>
+        <Col>
           <Row end="xs">
             <Col>
               <TotalDiv>

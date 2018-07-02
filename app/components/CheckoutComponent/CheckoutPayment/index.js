@@ -19,27 +19,81 @@ const CheckoutPaymentTitle = styled.div`
   margin-bottom: 10px;
 `;
 
+const CheckoutPaymentRadio = styled.input`
+  position: relative;
+
+  &:checked,
+  &:not(:checked) {
+    position: absolute;
+    left: -9999px;
+  }
+  &:checked + label,
+  &:not(:checked) + label {
+    position: relative;
+    display: inline-block;
+    padding-left: 23px;
+    cursor: pointer;
+    line-height: 20px;
+  }
+  &:checked + label:before,
+  &:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+  }
+  &:checked + label:after,
+  &:not(:checked) + label:after {
+    position: absolute;
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: #779ccb;
+    top: 3px;
+    left: 3px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+  }
+  &:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  &:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+`;
+
 function CheckoutPayment() {
   return (
     <Grid>
       <CheckoutPaymentWrapper>
         <CheckoutPaymentTitle>pagamento</CheckoutPaymentTitle>
-        <Row middle="xs">
-          <Col xs={3}>
-            <Row middle="xs">
-              <Col xs={2}>
-                <input type="radio" />
+        <Row middle="xs" between="xs">
+          <Col>
+            <Row middle="xs" center="xs">
+              <Col>
+                <CheckoutPaymentRadio type="radio" />
+                <label>&nbsp;</label>
               </Col>
-              <Col xs={10}>
+              <Col>
                 <div>Cartão de Crédito</div>
-                <strong>Juros de 1,99 A.M.</strong>
               </Col>
             </Row>
           </Col>
-          <Col xs={3}>
+          <Col>
             <Row middle="xs">
               <Col xs={2}>
-                <input type="radio" />
+                <CheckoutPaymentRadio type="radio" />
+                <label>&nbsp;</label>
               </Col>
               <Col xs={10}>
                 <div>Transferencia Online</div>
@@ -47,14 +101,14 @@ function CheckoutPayment() {
               </Col>
             </Row>
           </Col>
-          <Col xs={6}>
+          <Col>
             <Row middle="xs">
               <Col xs={2}>
-                <input type="radio" />
+                <CheckoutPaymentRadio type="radio" />
+                <label>&nbsp;</label>
               </Col>
               <Col xs={10}>
                 <div>Boleto Bancário</div>
-                <span>Siga o passo a passo. No final do processo de compra o Boleto estará disponível para impressão.</span>
               </Col>
             </Row>
           </Col>

@@ -11,7 +11,7 @@ injectGlobal`
     width: 100%;
     height: 100%;
 
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 300;
   }
 

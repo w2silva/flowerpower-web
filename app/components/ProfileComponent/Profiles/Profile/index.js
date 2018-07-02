@@ -10,11 +10,11 @@ import imageProfile from 'images/profile.jpg';
 
 const ProfileWrapper = styled.div`
   text-align: center;
-  padding: 0px 3em;
+  max-width: 90px;
 `;
 
 const ProfileImg = styled.img`
-  max-width: 80px;
+  max-width: 80%;
   border-radius: 100%;
   border: solid 1px #ccc;
 `;

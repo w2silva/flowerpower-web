@@ -47,16 +47,16 @@ function Questions (props) {
       <QuestionWrapper>
         <QuestionsIntro>Abaixo você encontra uma série de perguntas específicas, por favor escolha sempre a alternativa<br /> com a qual o perfil selecionado mais se identifica</QuestionsIntro>
         <form onSubmit={props.submitTherapy}>
-          <Question title='Eu fico ansioso sem saber o por quê'/>
-          <Question title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
-          <Question title='Eu fico ansioso sem saber o por quê'/>
-          <Question title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
-          <Question title='Eu fico ansioso sem saber o por quê'/>
-          <Question title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
-          <Question title='Eu fico ansioso sem saber o por quê'/>
-          <Question title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
-          <Question title='Eu fico ansioso sem saber o por quê'/>
-          <Question title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
+          <Question index={1} title='Eu fico ansioso sem saber o por quê'/>
+          <Question index={2} title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
+          <Question index={3} title='Eu fico ansioso sem saber o por quê'/>
+          <Question index={4} title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
+          <Question index={5} title='Eu fico ansioso sem saber o por quê'/>
+          <Question index={6} title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
+          <Question index={7} title='Eu fico ansioso sem saber o por quê'/>
+          <Question index={8} title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
+          <Question index={9} title='Eu fico ansioso sem saber o por quê'/>
+          <Question index={10} title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
           <div className="text-center">
             <QuestionSubmit>concluir e ver resultado</QuestionSubmit>
           </div>

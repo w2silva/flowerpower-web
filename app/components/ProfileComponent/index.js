@@ -1,6 +1,6 @@
 /**
 *
-* SelectProfileComponent
+* ProfileComponent
 *
 */
 
@@ -15,7 +15,7 @@ import ClientProfile from './ClientProfile'
 import Books from './Books'
 import Schedule from './Schedule'
 
-function SelectProfileComponent() {
+function ProfileComponent() {
   return (
     <div>
       <Helmet>
@@ -33,8 +33,8 @@ function SelectProfileComponent() {
   );
 }
 
-SelectProfileComponent.propTypes = {
+ProfileComponent.propTypes = {
 
 };
 
-export default SelectProfileComponent;
+export default ProfileComponent;

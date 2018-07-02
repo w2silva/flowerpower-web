@@ -58,7 +58,7 @@ const PackSubmit = styled.a`
 function Pack(props) {
   return (
     <PackWrapper shadow={props.active}>
-      <Row middle="xs">
+      <Row middle="xs" between="xs">
         <Col>
           <PackImage />
         </Col>

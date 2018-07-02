@@ -11,7 +11,7 @@ import imgLavandaHome from 'images/img-lavanda-home.jpg';
 import H2 from 'components/H2';
 
 const DescriptionImg = styled.img`
-  max-width: 600px;
+  max-width: 500px;
   margin-left: -260px;
 `;
 

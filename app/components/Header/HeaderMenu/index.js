@@ -10,7 +10,7 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
   text-align: right;
-  padding-bottom: 20px;
+  padding-bottom: 1em;
 
   a {
     text-decoration: none;

@@ -27,11 +27,11 @@ const theme = {
     // Defaults
     gridSize: 12, // columns
     gutterWidth: 1, // rem
-    outerMargin: 2, // rem
+    outerMargin: 1, // rem
     mediaQuery: 'only screen',
     container: {
       sm: 46, // rem
-      md: 61, // rem
+      md: 55, // rem
       lg: 60  // rem
     },
     breakpoints: {

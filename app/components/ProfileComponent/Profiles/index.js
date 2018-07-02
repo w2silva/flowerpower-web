@@ -19,9 +19,9 @@ const ProfilesIntro = styled.div`
 `;
 
 function Profiles() {
-  var profiles = [];
-  for (var i = 0; i < 6; i++) {
-    profiles.push(<Col><Profile /></Col>);
+  var columnsProfiles = [];
+  for (var i = 0; i < 5; i++) {
+    columnsProfiles.push(<Col><Profile /></Col>);
   }
 
   return (
@@ -29,8 +29,10 @@ function Profiles() {
       <Grid>
         <ProfilesIntro>This is an incomplete list of awesome things built with styled-components. If you have something to share, please add it to the awesome-styled-components repo on GitHub and it will automatically show up here!</ProfilesIntro>
       </Grid>
-      <Grid fluid={true}>
-        <Row middle="xs" center="xs">{profiles}</Row>
+      <Grid>
+        <Row middle="xs" between="xs">
+          {columnsProfiles}
+        </Row>
       </Grid>
     </ProfilesWrapper>
   );

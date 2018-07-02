@@ -16,7 +16,7 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectSelectProfile from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import SelectProfileComponent from 'components/SelectProfileComponent';
+import ProfileComponent from 'components/ProfileComponent';
 
 export class SelectProfile extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   submitTherapy = (e) => {
@@ -26,7 +26,7 @@ export class SelectProfile extends React.PureComponent { // eslint-disable-line 
   
   render() {
     return (
-      <SelectProfileComponent submitTherapy={this.submitTherapy}/>
+      <ProfileComponent submitTherapy={this.submitTherapy}/>
     );
   }
 }

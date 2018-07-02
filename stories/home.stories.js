@@ -11,6 +11,6 @@ import bench from './benchmark/pedro-home-v2.jpg'
 storiesOf('Home', module)
   .addDecorator(story => (<Provider story={story()}/>))
   .add('👍 benchmark', () => <img style={{height: '100%', width: '100%'}} src={bench}/>)
-  .add('with a new profile', () =>
+  .add('working', () =>
     <HomePageComponent />
   )

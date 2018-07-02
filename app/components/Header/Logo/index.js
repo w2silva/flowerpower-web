@@ -10,8 +10,8 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
   text-align: center;
-  max-width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   background-color: white;
   border-radius: 100%;
 `;

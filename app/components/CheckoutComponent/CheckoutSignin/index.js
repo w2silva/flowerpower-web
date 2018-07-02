@@ -16,6 +16,7 @@ const Title = styled.div`
 
 const FormSubmit = styled.button`
   display: inline-block;
+  border: none;
   background-color: #779ccb;
   color: white;
   border-radius: 50px;
