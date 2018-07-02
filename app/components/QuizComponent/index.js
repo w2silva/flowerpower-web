@@ -13,8 +13,6 @@ import Profile from 'components/Profile'
 import H2 from 'components/H2'
 import Questions from './Questions'
 
-import styles from './styles.css'
-
 function QuizComponent(props) {
   const isNew = true
   
