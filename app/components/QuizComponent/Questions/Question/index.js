@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import { Row, Col } from 'react-styled-flexboxgrid'
 
 const QuestionWrapper = styled.div`
-  margin: 0 0 4em 0;
+  margin: 0 0 3em 0;
 `;
 
 const QuestionTitle = styled.div`
@@ -35,6 +35,7 @@ const QuestionOption = styled.div`
   background-color: ${props => props.active ? '#779ccb' : '#eee'};
   border-radius: 30px;
   padding: 3px 0px 3px 5px;
+  margin-bottom: 1em;
   width: 100px;
   font-size: .8em;
   text-align: left;
@@ -120,31 +121,31 @@ function Question(props) {
         <QuestionNumber>{props.index}</QuestionNumber> {props.title}
       </QuestionTitle>
       <Row middle="xs" around="xs">
-        <Col>
+        <Col xs={12} sm={12} md lg>
           <QuestionOption>
             <QuestionRadio type="radio" name={inputName} />
             <QuestionLabel>Nunca</QuestionLabel>
           </QuestionOption>
         </Col>
-        <Col>
+        <Col xs={12} sm={12} md lg>
           <QuestionOption active={true}>
             <QuestionRadio type="radio" name={inputName} checked />
             <QuestionLabel>Poucas Vezes</QuestionLabel>
           </QuestionOption>
         </Col>
-        <Col>
+        <Col xs={12} sm={12} md lg>
           <QuestionOption>
             <QuestionRadio type="radio" name={inputName} />
             <QuestionLabel>Algumas Vezes</QuestionLabel>
           </QuestionOption>
         </Col>
-        <Col>
+        <Col xs={12} sm={12} md lg>
           <QuestionOption>
             <QuestionRadio type="radio" name={inputName} />
             <QuestionLabel>Frequentemente</QuestionLabel>
           </QuestionOption>
         </Col>
-        <Col>
+        <Col xs={12} sm={12} md lg>
           <QuestionOption>
             <QuestionRadio type="radio" name={inputName} />
             <QuestionLabel>Sempre</QuestionLabel>

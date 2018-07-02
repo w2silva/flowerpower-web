@@ -37,7 +37,7 @@ function OwnerProfile() {
     <div>
       <Grid>
         <Row middle="xs" between="xs">
-          <Col xs={6}>
+          <Col xs={12} sm={12} md={6} lg={6}>
             <H2>Quem é Patrícia ?</H2>
             <OwnerProfileWrapper>
               <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in justo ullamcorper, sollicitudin turpis dapibus, hendrerit tortor. Morbi tincidunt non sapien nec pretium. Donec elementum tristique consequat. Cras ut orci at felis accumsan ullamcorper non quis risus. Ut at ex mi. Aenean ac varius elit, eu congue dolor.</span>
@@ -50,7 +50,7 @@ function OwnerProfile() {
             </OwnerProfileWrapper>
             <OwnerProfileButton href="/about">conheça mais sobre min</OwnerProfileButton>
           </Col>
-          <Col>
+          <Col xs={12} sm={12} md={6} lg={6}>
             <Row center="xs">
               <Col xs={12}>
                 <Img />

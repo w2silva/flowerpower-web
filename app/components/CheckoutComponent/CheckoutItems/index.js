@@ -98,8 +98,8 @@ const CouponLabel = styled.label`
 `;
 
 const CouponInput = styled.input`
-  display: inline-block;
-  width: 220px;
+  display: block;
+  width: 100%;
   padding: 7px 7px;
   color: #999;
   border: solid 1px #e6e6e6;
@@ -193,14 +193,21 @@ function CheckoutItems() {
       </CheckoutItemsTable>
       <CouponTitle>cupom de desconto</CouponTitle>
       <Row middle="xs" between="xs">
-        <Col>
+        <Col xs={12} sm={12} md lg>
           <form>
-            <CouponLabel>Digite seu vale presente ou cupom</CouponLabel>
-            <CouponInput type="text" value="111111111111" />
-            <CouponSubmit>Aplicar</CouponSubmit>
+            <Row middle="xs">
+              <Col xs={12} sm={12} md lg>
+                <CouponLabel>Digite seu vale presente ou cupom</CouponLabel>
+                <CouponInput type="text" value="111111111111" />
+              </Col>
+              <Col>
+                <span>&nbsp;</span><br />
+                <CouponSubmit>Aplicar</CouponSubmit>
+              </Col>
+            </Row>
           </form>
         </Col>
-        <Col>
+        <Col xs={12} sm={12} md lg>
           <Row end="xs">
             <Col>
               <TotalDiv>

@@ -78,18 +78,19 @@ function CheckoutPayment() {
       <CheckoutPaymentWrapper>
         <CheckoutPaymentTitle>pagamento</CheckoutPaymentTitle>
         <Row middle="xs" between="xs">
-          <Col>
-            <Row middle="xs" center="xs">
-              <Col>
+          <Col xs={12} sm={12} md={4} lg={4}>
+            <Row middle="xs">
+              <Col xs={2}>
                 <CheckoutPaymentRadio type="radio" />
                 <label>&nbsp;</label>
               </Col>
-              <Col>
+              <Col xs={10}>
                 <div>Cartão de Crédito</div>
+                <div>&nbsp;</div>
               </Col>
             </Row>
           </Col>
-          <Col>
+          <Col xs={12} sm={12} md={4} lg={4}>
             <Row middle="xs">
               <Col xs={2}>
                 <CheckoutPaymentRadio type="radio" />
@@ -101,7 +102,7 @@ function CheckoutPayment() {
               </Col>
             </Row>
           </Col>
-          <Col>
+          <Col xs={12} sm={12} md={4} lg={4}>
             <Row middle="xs">
               <Col xs={2}>
                 <CheckoutPaymentRadio type="radio" />
@@ -109,6 +110,7 @@ function CheckoutPayment() {
               </Col>
               <Col xs={10}>
                 <div>Boleto Bancário</div>
+                <div>&nbsp;</div>
               </Col>
             </Row>
           </Col>

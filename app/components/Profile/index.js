@@ -58,21 +58,21 @@ function Profile(props) {
                 }
               </ProfilePicture>
             </Col>
-            <Col md={5}>
+            <Col xs={12} sm={12} md={5} lg={5}>
               <Row>
-                <Col md={12}>
-                <div className="group">
+                <Col xs={12} sm={12} md={12} lg={12}>
+                  <div className="group">
                     <label>Nome Completo</label>
                     <input disabled={!props.isNew} type='text' name='name'></input>
                   </div>
                 </Col>
-                <Col md={6}>
-                <div className="group">
+                <Col xs={12} sm={12} md={6} lg={6}>
+                  <div className="group">
                     <label>Data de Nascimento</label>
                     <input disabled={!props.isNew} type='text' name='birthday'></input>
                   </div>
                 </Col>
-                <Col md={6}>
+                <Col xs={12} sm={12} md={6} lg={6}>
                   <div className="group">
                     <label>Relacionamento</label>
                     <select disabled={!props.isNew}>
@@ -85,7 +85,7 @@ function Profile(props) {
                 </Col>
               </Row>
             </Col>
-            <Col md={4}>
+            <Col xs={12} sm={12} md={4} lg={4}>
               <div className="group">
                 <label>Sexo</label>
                 <select disabled={!props.isNew}>

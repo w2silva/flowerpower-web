@@ -41,6 +41,11 @@ const HeaderEllipsis = styled.div`
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
+
+  @media (max-width: 780px) {
+    border-bottom-left-radius: 150% 100%;
+    border-bottom-right-radius: 150% 100%;
+  }
 `;
 
 const HeaderNav = styled.div`

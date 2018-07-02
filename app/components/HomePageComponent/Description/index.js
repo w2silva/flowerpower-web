@@ -36,10 +36,10 @@ function Description() {
   return (
     <Grid>
       <Row middle="xs">
-        <Col xs={6}>
+        <Col xs={12} sm={12} md={6} lg={6}>
           <DescriptionImg src={imgLavandaHome} />
         </Col>
-        <Col xs={6}>
+        <Col xs={12} sm={12} md={6} lg={6}>
           <H2>O que são florais?</H2>
           <DescriptionWrapper>
             <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in justo ullamcorper, sollicitudin turpis dapibus, hendrerit tortor. Morbi tincidunt non sapien nec pretium. Donec elementum tristique consequat. Cras ut orci at felis accumsan ullamcorper non quis risus. Ut at ex mi. Aenean ac varius elit, eu congue dolor. Praesent elit purus, elementum nec molestie nec, molestie ut sapien. Nulla consequat justo in volutpat tincidunt. Vestibulum vitae consequat tortor.</span>

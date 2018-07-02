@@ -15,7 +15,7 @@ const ScheduleWrapper = styled.div`
   margin: 0px auto 5em auto;
   background-color: #efefef;
   border-radius: 3px;
-  padding: 40px 10px;
+  padding: 40px 20px;
 `;
 
 const ScheduleIntro = styled.div`
@@ -24,8 +24,9 @@ const ScheduleIntro = styled.div`
 `;
 
 const ScheduleButton = styled.a`
-  width: 100%;
+  width: 160px;
   display: block;
+  margin: 0px auto;
   background-color: #779ccb;
   color: white !important;
   border-radius: 50px;
@@ -42,10 +43,10 @@ function Schedule() {
     <Grid fluid={true}>
       <ScheduleWrapper>
         <Row middle="xs" around="xs">
-          <Col xs={4}>
+          <Col xs={12} sm={12} md={4} lg={4}>
             <ScheduleIntro>Agende sua consultoria online ao vivo, selecione a melhor data e horário</ScheduleIntro>
           </Col>
-          <Col xs={4}>
+          <Col xs={12} sm={12} md={4} lg={4}>
             <Form>
               <Row>
                 <Col xs={6}>
@@ -63,7 +64,7 @@ function Schedule() {
               </Row>
             </Form>
           </Col>
-          <Col xs={2}>
+          <Col xs={12} sm={12} md lg>
             <ScheduleButton>agendar</ScheduleButton>
           </Col>
         </Row>

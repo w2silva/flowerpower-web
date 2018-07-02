@@ -63,10 +63,10 @@ function Schedule() {
         <ScheduleContent>
           <ScheduleTitle>Agende uma Consulta</ScheduleTitle>
           <Row middle="xs">
-            <Col xs={8}>
+            <Col xs={12} sm={12} md={8} lg={8}>
               Nosso sistema foi desenvolvido com extrema expertise da área de conhecimentos de casos práticos, mas se houver maiores dúvidas, pergunte a um terapeuta floral e <ScheduleLink href="/quiz">agende sua consulta hoje mesmo, clicando no botão</ScheduleLink>
             </Col>
-            <Col xs={4}>
+            <Col xs={12} sm={12} md={4} lg={4}>
               <ScheduleButton href="/quiz">agendar uma consulta</ScheduleButton>
             </Col>
           </Row>
