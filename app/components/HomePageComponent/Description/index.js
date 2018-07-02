@@ -13,6 +13,11 @@ import H2 from 'components/H2';
 const DescriptionImg = styled.img`
   max-width: 500px;
   margin-left: -260px;
+
+  @media (max-width: 780px) {
+    max-width: 100%;
+    margin-left: 0px;
+  }  
 `;
 
 const DescriptionWrapper = styled.div`

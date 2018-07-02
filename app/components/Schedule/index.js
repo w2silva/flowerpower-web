@@ -20,11 +20,23 @@ const ScheduleWrapper = styled.div`
   margin: 0px -100px 100px 0px;
   height: 250px;
   font-weight: 300;
+
+  @media (max-width: 780px) {
+    background: none;
+    background-image: linear-gradient(to right, #5864a0, #715690);
+    border-radius: 7px;
+    margin: 30px 0px;
+    height: auto;
+  }
 `;
   
 const ScheduleContent = styled.div`
   color: white;
   padding: 100px 120px 10px 30px;
+
+  @media (max-width: 780px) {
+    padding: 30px 15px;
+  }
 `;
 
 const ScheduleTitle = styled.h2`

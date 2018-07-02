@@ -18,11 +18,11 @@ const ProfilesWrapper = styled.div`
 function Profiles() {
   return (
     <ProfilesWrapper>
-      <Row middle="xs" center="xs">
-        <Col>
+      <Row middle="xs" around="xs">
+        <Col xs={6} sm={6} md={6} lg={6}>
           <Profile src={iconeHumanos} title='Para mim ou parente'/>
         </Col>
-        <Col>
+        <Col xs={6} sm={6} md={6} lg={6}>
           <Profile src={iconeAnimals} title='Para meu cão ou gato'/>
         </Col>
       </Row>

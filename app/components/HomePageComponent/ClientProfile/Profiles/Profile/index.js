@@ -14,7 +14,7 @@ const ProfileWrapper = styled.div`
 `;
 
 const ProfileImage = styled.img`
-  max-width: 160px;
+  max-width: 140px;
   padding: 10px 0;
 `;
 

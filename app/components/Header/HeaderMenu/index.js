@@ -8,7 +8,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+const HeaderMenuWrapper = styled.div`
   text-align: right;
   padding-bottom: 1em;
 
@@ -20,23 +20,31 @@ const Wrapper = styled.div`
     span {
       padding: 0px 0px 0px 7px;
     }
+
+  }
+
+  @media (max-width: 780px) {
+    a {
+      display: block;
+      padding: 10px 0px;
+      
+      .divider {
+        display: none;
+      }
+    }
   }
 `;
 
 function HeaderMenu(props) {
   return (
-    <Wrapper>
+    <HeaderMenuWrapper>
       {props.titles.map((t, idx) => (
         <Link to={props.to[idx]}>
           <span>{t}</span>
-          {idx < props.titles.length - 1 ?
-            <span> / </span>
-            :
-            ''
-          }
+          {idx < props.titles.length - 1 ?<span className="divider">/</span>:''}
         </Link>
       ))}
-    </Wrapper>
+    </HeaderMenuWrapper>
   );
 }
 
