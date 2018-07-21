@@ -22,13 +22,13 @@ const PackImage = styled.img`
 `;
 
 const PackTitle = styled.h4`
-  font-size: .8em;
+  font-size: 1.0em;
   font-weight: 600;
   margin: 0px 0px 5px 0px;
   padding: 0px 0px 0px 10px;
   text-transform: uppercase;
 `;
-  
+
 const PackIntro = styled.div`
   font-size: .8em;
   padding: 0px 0px 0px 10px;

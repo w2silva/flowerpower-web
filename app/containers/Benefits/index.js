@@ -12,6 +12,7 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+import { requestLogout } from 'containers/Login/actions';
 import makeSelectBenefits from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -22,10 +23,14 @@ export class Benefits extends React.PureComponent { // eslint-disable-line react
     e.preventDefault();
     this.props.dispatch(push('/benefits'));
   }
-  
+
+  logOut = () => {
+    this.props.dispatch(requestLogout());
+  }
+
   render() {
     return (
-      <BenefitsComponent submitTherapy={this.submitTherapy}/>
+      <BenefitsComponent submitTherapy={this.submitTherapy} logOut={this.logOut}/>
     );
   }
 }

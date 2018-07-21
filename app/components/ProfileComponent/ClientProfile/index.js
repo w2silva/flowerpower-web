@@ -30,7 +30,7 @@ const ProfilesWrapper = styled.div`
   margin: 10px 0 0 0;
 `;
 
-function ClientProfile() {
+function ClientProfile(props) {
   return (
     <ClientProfileWrapper>
       <Grid>
@@ -38,10 +38,10 @@ function ClientProfile() {
         <ProfilesWrapper>
           <Row middle="xs" center="xs">
             <Col>
-              <Profile src={iconeHumanos} title='Para mim ou parente'/>
+              <Profile src={iconeHumanos} getQuizzes={props.getQuizzes} title='Para mim ou parente' profileType='human'/>
             </Col>
             <Col>
-              <Profile src={iconeAnimals} title='Para meu cão ou gato'/>
+              <Profile src={iconeAnimals} getQuizzes={props.getQuizzes} title='Para meu cão ou gato' profileType='pet'/>
             </Col>
           </Row>
         </ProfilesWrapper>

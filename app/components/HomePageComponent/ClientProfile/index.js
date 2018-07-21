@@ -7,7 +7,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
-import Profiles from './Profiles'
+import NewProfiles from 'components/NewProfiles'
 import H2 from 'components/H2';
 import bgQuiz from 'images/bg-quiz.png';
 
@@ -24,7 +24,7 @@ const ClientProfileWrapper = styled.div`
   margin: 0px 0px 5em 0px;
   text-align: center;
 `;
-  
+
 const ClientProfileTitle = styled.h2`
   margin: 0px 0px 20px 0px;
   padding: 0px 0px;
@@ -51,11 +51,11 @@ const ClientProfileSpan = styled.div`
 
 function ClientProfile() {
   return (
-    <ClientProfileWrapper>
+    <ClientProfileWrapper id="therapy">
       <Grid>
         <ClientProfileTitle>Terapia Floral Allevius</ClientProfileTitle>
         <ClientProfileIntro>Por favor, selecione para quem é esse floral:</ClientProfileIntro>
-        <Profiles/>
+        <NewProfiles color={'white'} to={'/quiz'}/>
         <ClientProfileSpan>Após selecionar a opção, você será direcionado ao nosso questionário, a fim de criar sua terapia exclusiva e instantânea<br />terapia exclusiva, lorem ipsum dollor amet sit lorem ipsum.</ClientProfileSpan>
       </Grid>
     </ClientProfileWrapper>

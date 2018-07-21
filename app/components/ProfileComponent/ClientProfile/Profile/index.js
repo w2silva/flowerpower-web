@@ -8,8 +8,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Row, Col } from 'react-styled-flexboxgrid'
 
-const ProfileWrapper = styled.div`
+const ProfileWrapper = styled.button`
   padding: 0 30px;
+  cursor:pointer;
 `;
 
 const ProfileImage = styled.img`
@@ -23,13 +24,13 @@ const ProfileTitle = styled.div`
 
 function Profile(props) {
   return (
-    <ProfileWrapper>
+    <ProfileWrapper onClick={props.getQuizzes(props.profileType)}>
       <Row middle="xs" center="xs">
         <Col>
           <ProfileImage src={props.src} />
           <ProfileTitle>{props.title}</ProfileTitle>
         </Col>
-      </Row>      
+      </Row>
     </ProfileWrapper>
   );
 }

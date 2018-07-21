@@ -6,10 +6,13 @@
 
 import React from 'react';
 // import styled from 'styled-components';
-import styled from 'styled-components'
+import { Link } from 'react-router-dom';
+import styled, {ThemeProvider} from 'styled-components'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import bgBannerHome from 'images/bg-banner-home.png';
 import Button from 'components/Button';
+import Arrow from 'react-icons/lib/io/android-arrow-forward';
+import { AwesomeButton } from 'react-awesome-button';
 
 import Logo from './Logo'
 import HeaderMenu from './HeaderMenu'
@@ -24,21 +27,22 @@ const HeaderStyled = styled.div`
   padding: 20px 0px 30px 0px;
   margin-bottom: 4em;
   overflow: hidden;
+  height: ${props => props.button ? '500px' : '300px'}
 `;
-  
-const HeaderEllipsis = styled.div`  
+
+const HeaderEllipsis = styled.div`
   position: absolute;
   color: white;
-  border-bottom-left-radius: 50% 100%;
-  border-bottom-right-radius: 50% 100%;
-  width: 150%;
-  height: 100%;
-  top: 0;
-  left: -100%;
+  border-bottom-left-radius: 100% 100%;
+  border-bottom-right-radius: 100% 100%;
+  width: 120%;
+  height: ${props => props.button ? '850px' : '650px'};
+  top: -350px;
+  left: -70%;
   transform: translateX(50%);
   background-image: url(${bgBannerHome});
   background-color: transparent;
-  background-position: top;
+  background-position-y: 300px;
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -55,58 +59,66 @@ const HeaderNav = styled.div`
   color: white;
 `;
 
-const HeaderButton = styled.a`
-  display: inline-block;
-  background-image: linear-gradient(to right, #76558e, #b0336b);
-  color: white;
-  border-radius: 50px;
-  padding: 10px 35px;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: .8em;
-  box-shadow: 4px 4px 20px 0px #0006;
-
-  &:hover {
-    color: white;
-  }
-`;
+// const HeaderButton = styled.div`
+//   display: inline-block;
+//   background-image: linear-gradient(to right, #76558e, #b0336b);
+//   color: white;
+//   border-radius: 50px;
+//   padding: 10px 35px;
+//   text-align: center;
+//   text-transform: uppercase;
+//   font-weight: 600;
+//   font-size: 1.0em;
+//   box-shadow: 4px 4px 20px 0px #0006;
+//
+//   &:hover {
+//     color: white;
+//   }
+// `;
 
 function Header(props) {
   return (
-    <HeaderStyled>
-      <HeaderEllipsis />
+    <HeaderStyled button={props.button}>
+      <HeaderEllipsis button={props.button}/>
       <HeaderNav>
         <Grid>
-          <Row top="xs" top="sm" middle="md" middle="lg" between="xs">
-            <Col xs={3} sm={3} md={2} lg={2}>
-              <Logo/>
-            </Col>
-            <Col xs={9} sm={9} md={10} lg={10}>
-              <HeaderMenu titles={['Cadastro', 'Minha Conta']} to={['/register', '/me']}/>
-              <HeaderMenu
-                titles={['Home', 'Sobre Florais', 'Faça sua Terapia', 'Quem é Patrícia?', 'Nossos Planos', 'Contato']}
-                to={['/', '/', '/benefits', '/biography', '/plans', '/biography']}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <Row center="xs">
-                <Col xs={10}>
-                  <Info/>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-          { props.button ?
-            <Row center="xs" style={{ margin: `3em 0 5em 0` }}>
-              <Col>
-                <HeaderButton href="/quiz">faça agora sua terapia</HeaderButton>
+            <Row top="xs" top="sm" middle="md" middle="lg" between="xs">
+              <Col xs={3} sm={3} md={2} lg={2}>
+                <Logo/>
+              </Col>
+              <Col xs={9} sm={9} md={10} lg={10}>
+                <HeaderMenu
+                  handleClick={props.handleClick}
+                  titles={['Faça sua Terapia']}
+                  to={['/quiz']}/>
+                <HeaderMenu
+                  handleClick={props.handleClick}
+                  titles={['Home', 'Sobre Florais', 'Quem é Patrícia?', 'Nossos Planos', 'Contato', 'Minha Conta']}
+                  scroll={['top', 'description']}
+                  to={['/biography', '/plans', '/contact', '/me']}
+                />
               </Col>
             </Row>
-            :
-            ''
+            <Row>
+              <Col xs={12}>
+                <Row center="xs">
+                  <Col xs={10}>
+                    <Info button={props.button}/>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+            { props.button ?
+              <Row center="xs" style={{ margin: `6em 0 5em 0` }}>
+                <Col>
+                  <Link to="/therapy">
+                    {/*<HeaderButton>faça agora sua terapia <Arrow/></HeaderButton>*/}
+                    <AwesomeButton>FAÇA AGORA SUA TERAPIA <Arrow/></AwesomeButton>
+                  </Link>
+                </Col>
+              </Row>
+              :
+              ''
           }
         </Grid>
       </HeaderNav>

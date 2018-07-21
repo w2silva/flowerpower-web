@@ -7,6 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -23,10 +24,15 @@ export class Plans extends React.PureComponent { // eslint-disable-line react/pr
     e.preventDefault();
     this.props.dispatch(push('/plans'));
   }
-  
+
+  goTo = (location) => {
+    console.log('im here', location);
+    this.props.dispatch(push(`${location}`));
+  }
+
   render() {
     return (
-      <PlansComponent submitTherapy={this.submitTherapy}/>
+      <PlansComponent submitTherapy={this.submitTherapy} goTo={this.goTo}/>
     );
   }
 }

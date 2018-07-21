@@ -9,13 +9,35 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import Profile from 'components/Profile'
-import H2 from 'components/H2'
-import Questions from './Questions'
+import RegisterMe from './RegisterMe'
+import LoginMe from './LoginMe'
+import styled from 'styled-components';
+import Therapy from './Therapy';
+import ProfileSelect from './ProfileSelect';
+
+const StartButton = styled.a`
+  cursor: pointer;
+  display: inline-block;
+  background-image: linear-gradient(to right, #76558e, #b0336b);
+  color: white !important;
+  border-radius: 50px;
+  padding: 10px 35px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: .8em;
+  box-shadow: 4px 4px 20px 0px #0006;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: white;
+    text-decoration: underline;
+  }
+`;
 
 function QuizComponent(props) {
-  const isNew = true
-  
+  const active = props.active
   return (
     <div>
       <Helmet>
@@ -23,10 +45,38 @@ function QuizComponent(props) {
         <meta name="description" content="Description of Quiz" />
       </Helmet>
       <Header/>
-      <H2 align="center">Terapia</H2>
-      <Profile isNew={isNew}/>
-      <H2 align="center">Agora vamos começar a terapia</H2>
-      <Questions submitTherapy={props.submitTherapy}/>
+      {!props.loginSuccess && !props.activeLogin &&
+        <RegisterMe
+          updateRegister={props.updateRegister}
+          submitRegister={props.submitRegister}
+          register={props.register}
+          showLogin={props.showLogin}
+        />
+      }
+      {!props.loginSuccess && props.activeLogin &&
+        <LoginMe
+          updateLogin={props.updateLogin}
+          login={props.login}
+          submitLogin={props.submitLogin}
+        />
+      }
+      {props.loginSuccess && !props.diagnosis &&
+        <ProfileSelect
+          me={props.me}
+          selectProfile={props.selectProfile}
+          selectedProfile={props.selectedProfile}
+          selectedProfileMessage={props.selectedProfileMessage}
+          startTherapy={props.startTherapy}
+        />
+      }
+      <Therapy
+        me={props.me}
+        emotions={props.emotions}
+        submitEmotion={props.submitEmotion}
+        finishEmotionPreselection={props.finishEmotionPreselection}
+        flowers={props.flowers}
+        diagnosis={props.diagnosis}
+      />
       <Footer/>
     </div>
   );

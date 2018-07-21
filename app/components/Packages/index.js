@@ -5,12 +5,12 @@
 */
 
 import React from 'react';
-import styled from 'styled-components';
+import styled, {ThemeProvider} from 'styled-components';
 import { Grid } from 'react-styled-flexboxgrid';
 import Pack from './Pack';
 
 const PackagesWrapper = styled.div`
-  margin: 20px 0 10em 0;
+  margin: 50px 0 10em 0;
 `;
 
 const ToggleProfile = styled.div`
@@ -48,14 +48,14 @@ class Packages extends React.Component { // eslint-disable-line react/prefer-sta
     return (
       <Grid>
         <PackagesWrapper>
-          <ToggleProfile>
+          {/*<ToggleProfile>
             <label className="active">
               <input type="radio" /> indivíduo
             </label>
             <label>
               <input type="radio" /> animal
             </label>
-          </ToggleProfile>
+          </ToggleProfile>*/}
           <Pack />
           <Pack />
           <Pack />

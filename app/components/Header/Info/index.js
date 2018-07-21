@@ -9,16 +9,19 @@ import styled from 'styled-components'
 import { Row, Col } from 'react-styled-flexboxgrid'
 
 const WrapperInfo = styled.div`
-  padding-top: 3em;
+  padding-top: ${props => props.button ? '7em' : '3em'};
 
   .info-title {
-    font-size: 3em;
+    font-size: 4.5em;
     font-style: italic;
     text-align: right;
+    font-weight: 390;
+    letter-spacing: 1px;
   }
 
   .info-divider {
-    border-right: solid 1px #bdb8b8;
+    border-right: solid 0.5px #bdb8b8;
+    opacity: 0.5;
     height: 65px;
 
     -webkit-transform: rotate(15deg); /* Safari */
@@ -27,14 +30,15 @@ const WrapperInfo = styled.div`
   }
 
   .info-desc {
-    font-size: 1.2em;
+    font-size: 1.8em;
+    font-weight: 100;
     text-align: left;
   }
 `;
 
-function Info() {
+function Info(props) {
   return (
-    <WrapperInfo>
+    <WrapperInfo button={props.button}>
       <Row middle="xs" center="xs">
         <Col>
           <div className="info-title">Allevius Florais</div>
@@ -43,7 +47,7 @@ function Info() {
           <div className="info-divider">&nbsp;</div>
         </Col>
         <Col>
-          <div className="info-desc">Facilitando sua busca por<br /><b>bem-estar</b> e <b>autoconhecimento</b></div>
+          <div className="info-desc">Facilitando sua busca por<br /><b >bem-estar</b> e <b>autoconhecimento</b></div>
         </Col>
       </Row>
     </WrapperInfo>

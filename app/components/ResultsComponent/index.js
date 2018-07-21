@@ -9,7 +9,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import Profile from 'components/Profile'
+// import Profile from 'components/Profile'
 import Download from './Download'
 import Mailing from './Mailing'
 
@@ -21,7 +21,7 @@ function ResultsComponent() {
         <meta name="description" content="Description of Results" />
       </Helmet>
       <Header/>
-      <Profile/>
+      {/* <Profile/> */}
       <Download/>
       <Mailing/>
       <Footer/>

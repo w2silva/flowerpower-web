@@ -7,45 +7,76 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import scrollToComponent from 'react-scroll-to-component';
+import { HashLink } from 'react-router-hash-link';
 
-const HeaderMenuWrapper = styled.div`
-  text-align: right;
-  padding-bottom: 1em;
+export class HeaderMenu extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  render () {
+    const HeaderMenuWrapper = styled.div`
+      text-align: right;
+      padding-bottom: 2em;
+      a {
+        text-decoration: none;
+        font-size: 1.2em;
+        color: inherit;
 
-  a {
-    text-decoration: none;
-    font-size: .9em;
-    color: inherit;
+        span {
+          padding: 0px 0px 0px 7px;
+        }
 
-    span {
-      padding: 0px 0px 0px 7px;
-    }
-
-  }
-
-  @media (max-width: 780px) {
-    a {
-      display: block;
-      padding: 10px 0px;
-      
-      .divider {
-        display: none;
       }
-    }
-  }
-`;
+      button {
+        background-color: transparent;
+        border: 0;
+        text-decoration: none;
+        font-size: 1.2em;
+        color: inherit;
+        cursor:pointer;
+        font-weight: 300;
 
-function HeaderMenu(props) {
-  return (
-    <HeaderMenuWrapper>
-      {props.titles.map((t, idx) => (
-        <Link to={props.to[idx]}>
-          <span>{t}</span>
-          {idx < props.titles.length - 1 ?<span className="divider">/</span>:''}
-        </Link>
-      ))}
-    </HeaderMenuWrapper>
-  );
+        span {
+          padding: 0px 0px 0px 7px;
+        }
+
+      }
+
+      @media (max-width: 780px) {
+        a {
+          display: block;
+          padding: 10px 0px;
+
+          .divider {
+            display: none;
+          }
+        }
+      }
+    `;
+
+    let idxSub = 0
+    return (
+      <HeaderMenuWrapper>
+        {this.props.titles.map((t, idx) => {
+          if(this.props.scroll && idx <= 1) {
+            idxSub = 2
+            return (
+              <HashLink to={`/#${this.props.scroll[idx]}`} key={t}>
+                <span>{t}</span>
+                {idx < this.props.titles.length - 1 ?<span className="divider">/</span>:''}
+              </HashLink>
+            )
+          } else {
+            return (
+              <Link key={t} to={this.props.to[idx-idxSub]}>
+                <span>{t}</span>
+                {idx < this.props.titles.length - 1 ?<span className="divider">/</span>:''}
+              </Link>
+            )
+          }
+
+        })}
+      </HeaderMenuWrapper>
+    );
+  }
 }
 
 HeaderMenu.propTypes = {

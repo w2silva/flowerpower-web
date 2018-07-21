@@ -5,72 +5,45 @@
 */
 
 import React from 'react';
-import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import H2 from 'components/H2'
-import Packages from 'components/Packages'
-import sideLeftImage from 'images/img-lateral-esquerda-planos.jpg';
-import sideRightImage from 'images/img-lateral-direita-planos.jpg';
 
-const Intro = styled.div`
-  width: 60em;
-  max-width: 100%;
-  margin: 10px auto;
-  text-align: center;
-`;
+import scrollToComponent from 'react-scroll-to-component';
+import MainContainer from './MainContainer'
 
-const SideLeftImage = styled.div`
-  position: absolute;
-  top: 100%;
-  -webit-transform: translateY(-50%);
-         transform: translateY(-50%);
-  left: 0;
-  width: 160px;
+export class PlansComponent extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
-  @media (max-width: 780px) {
-    display: none;
+  handleClick = (title) => () => {
+    let to;
+    if (title === 'Description') {
+      to = this.Description
+    } else if (title === 'Top') {
+      to = this.Top
+    } else if (title === 'Therapy') {
+      to = this.Therapy
+    } else if (title === 'Biography') {
+      to = this.Biography
+    }
+
+    this.props.goTo('/');
+    scrollToComponent(to, { offset: 0, align: 'top', duration: 800, ease:'inExpo'})
   }
-`;
 
-const SideRightImage = styled.div`
-  position: absolute;
-  top: 120%;
-  -webit-transform: translateY(-50%);
-         transform: translateY(-50%);
-  right: 0;
-  width: 200px;
-
-  @media (max-width: 780px) {
-    display: none;
+  render () {
+    return (
+      <div>
+        <Helmet>
+          <title>Plans</title>
+          <meta name="description" content="Description of Plans" />
+        </Helmet>
+        <Header button={false} handleClick={this.handleClick}/>
+        <MainContainer/>
+        <Footer/>
+      </div>
+    );
   }
-`;
 
-const Img = styled.img`
-  max-width: 100%;
-`;
-
-function PlansComponent() {
-  return (
-    <div>
-      <Helmet>
-        <title>Plans</title>
-        <meta name="description" content="Description of Plans" />
-      </Helmet>
-      <Header/>
-      <SideLeftImage>
-        <Img src={sideLeftImage} />
-      </SideLeftImage>
-      <SideRightImage>
-        <Img src={sideRightImage} />
-      </SideRightImage>
-      <H2 align="center">Escolha seu plano</H2>
-      <Intro>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in justo ullamcorper, sollicitudin turpis dapibus, hendrerit tortor. Morbi tincidunt non sapien nec pretium. Donec elementum tristique consequat.</Intro>
-      <Packages/>
-      <Footer/>
-    </div>
-  );
 }
 
 PlansComponent.propTypes = {

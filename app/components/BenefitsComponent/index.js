@@ -10,11 +10,13 @@ import { Helmet } from 'react-helmet';
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import H2 from 'components/H2'
-import SlideBenefits from 'components/SlideBenefits'
+import SlideBenefits from './SlideBenefits'
 import Packages from 'components/Packages'
+import LogOut from 'components/LogOut'
+
 
 const Intro = styled.div`
-  width: 60em;
+  width: 70em;
   margin: 10px auto;
   text-align: center;
 `;
@@ -23,11 +25,11 @@ const IntroCredits = styled.div`
   margin: 20px auto;
   text-align: center;
   font-weight: 500;
-  font-size: 1.2em;
+  font-size: 1.6em;
   color: black;
 `;
 
-function BenefitsComponent() {
+function BenefitsComponent(props) {
   return (
     <div>
       <Helmet>
@@ -40,6 +42,7 @@ function BenefitsComponent() {
       <SlideBenefits />
       <IntroCredits>Vocẽ não possue mais créditos para realizar X terapias<br />selecione um novo pacote ou clique aqui para ver os perfis salvos.</IntroCredits>
       <Packages/>
+      <LogOut logOut={props.logOut}/>
       <Footer/>
     </div>
   );
