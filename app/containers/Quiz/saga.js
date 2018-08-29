@@ -10,7 +10,11 @@ import {
   RUN_DIAGNOSIS,
   REQUEST_DIAGNOSIS,
   REQUEST_EMOTION_PRESELECTION_FINISH,
-  UPDATE_EMOTION
+  UPDATE_EMOTION,
+  REQUEST_QUIZ_FINISH,
+  UPDATE_QUIZ_ANSWER,
+  REQUEST_FLOWER_FINISH,
+  UPDATE_FLOWER
 } from './constants';
 
 import {
@@ -94,6 +98,80 @@ export function* finishEmotionPreselectionSaga(action) {
   }
 }
 
+export function* updateQuizAnswerSaga(action) {
+  // 1. enviar os dados para o servidor
+  try {
+    const accessToken = yield select(makeSelectToken());
+    const diagnosis = yield request(`/diagnoses/${action.diagnosisId}`, { method: 'GET', accessToken }); // eslint-disable-line no-underscore-dangle
+
+    const diagnosisId = action.diagnosisId
+    const quizId = action.quizId
+    const questionId = action.questionId
+    const rating = action.rating
+
+    const body = {
+      question: questionId,
+      rating
+    }
+
+    const newDiagnosis = yield request(`/diagnoses/${action.diagnosisId}/quizzes/${quizId}/answers`, { body, method: 'POST', accessToken }); // eslint-disable-line no-underscore-dangle
+
+    yield put(diagnosisSuccess(newDiagnosis));
+
+    // yield put(push(`/quiz/${diagnosis.id}`));
+  } catch (err) {
+    // 4. se der erro, despachar ação de erro
+    yield put(emotionFailure(err.toString()));
+  }
+}
+
+export function* finishQuizSaga(action) {
+  try {
+    const accessToken = yield select(makeSelectToken());
+    const diagnosis = yield request(`/diagnoses/${action.diagnosisId}/quizzes/${action.quizId}/finish`, { method: 'POST', accessToken }); // eslint-disable-line no-underscore-dangle
+    yield put(diagnosisSuccess(diagnosis));
+  } catch (err) {
+    yield put(diagnosisFailure(`${err.toString()} ${err.stack ? err.stack : ''}`));
+  }
+}
+
+export function* updateFlowerSaga(action) {
+  // 1. enviar os dados para o servidor
+  try {
+    const accessToken = yield select(makeSelectToken());
+    const diagnosis = yield request(`/diagnoses/${action.diagnosisId}`, { method: 'GET', accessToken }); // eslint-disable-line no-underscore-dangle
+
+    const diagnosisId = action.diagnosisId
+    const flowerPostselectionId = action.flowerPostselectionId
+    const flowerId = action.flowerId
+
+    const body = {
+      flower: flowerId,
+    }
+
+    const method = action.selection ? 'PUT' : 'DELETE'
+
+    const newDiagnosis = yield request(`/diagnoses/${action.diagnosisId}/flower-postselected/${flowerPostselectionId}/flowers`, { body, method, accessToken }); // eslint-disable-line no-underscore-dangle
+
+    yield put(diagnosisSuccess(newDiagnosis));
+
+    // yield put(push(`/quiz/${diagnosis.id}`));
+  } catch (err) {
+    // 4. se der erro, despachar ação de erro
+    yield put(emotionFailure(err.toString()));
+  }
+}
+
+export function* finishFlowerSaga(action) {
+  try {
+    const accessToken = yield select(makeSelectToken());
+    const diagnosis = yield request(`/diagnoses/${action.diagnosisId}/flower-postselected/${action.flowerPostselectionId}/finish`, { method: 'POST', accessToken }); // eslint-disable-line no-underscore-dangle
+    yield put(diagnosisSuccess(diagnosis));
+  } catch (err) {
+    yield put(diagnosisFailure(`${err.toString()} ${err.stack ? err.stack : ''}`));
+  }
+}
+
 export function* runDiagnosisSaga(action) {
   // 1. enviar os dados para o servidor
 
@@ -148,6 +226,10 @@ export default function* defaultSaga() {
   yield takeLatest(REQUEST_ALL, requestAllSaga);
   yield takeLatest(RUN_DIAGNOSIS, runDiagnosisSaga);
   yield takeLatest(REQUEST_DIAGNOSIS, requestDiagnosisSaga);
-  yield takeLatest(REQUEST_EMOTION_PRESELECTION_FINISH, finishEmotionPreselectionSaga);
   yield takeLatest(UPDATE_EMOTION, updateEmotionSaga);
+  yield takeLatest(REQUEST_EMOTION_PRESELECTION_FINISH, finishEmotionPreselectionSaga);
+  yield takeLatest(UPDATE_QUIZ_ANSWER, updateQuizAnswerSaga);
+  yield takeLatest(REQUEST_QUIZ_FINISH, finishQuizSaga);
+  yield takeLatest(UPDATE_FLOWER, updateFlowerSaga);
+  yield takeLatest(REQUEST_FLOWER_FINISH, finishFlowerSaga);
 }

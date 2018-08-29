@@ -12,8 +12,12 @@ import {
   DIAGNOSIS_SUCCESS,
   DIAGNOSIS_FAILURE,
   REQUEST_DIAGNOSIS,
-  REQUEST_EMOTION_PRESELECTION_FINISH,
   UPDATE_EMOTION,
+  REQUEST_EMOTION_PRESELECTION_FINISH,
+  UPDATE_QUIZ_ANSWER,
+  REQUEST_QUIZ_FINISH,
+  UPDATE_FLOWER,
+  REQUEST_FLOWER_FINISH,
   EMOTION_SUCCESS,
   EMOTION_FAILURE
 } from './constants';
@@ -75,6 +79,42 @@ export function finishEmotionPreselection(diagnosisId, emotionPreselectionId) {
     type: REQUEST_EMOTION_PRESELECTION_FINISH,
     diagnosisId,
     emotionPreselectionId
+  };
+}
+
+export function updateQuizAnswer(diagnosisId, quizId, questionId, rating) {
+  return {
+    type: UPDATE_QUIZ_ANSWER,
+    diagnosisId,
+    quizId,
+    questionId,
+    rating
+  };
+}
+
+export function finishQuiz(diagnosisId, quizId) {
+  return {
+    type: REQUEST_QUIZ_FINISH,
+    diagnosisId,
+    quizId
+  };
+}
+
+export function updateFlower(diagnosisId, flowerPostselectionId, flowerId, selection) {
+  return {
+    type: UPDATE_FLOWER,
+    diagnosisId,
+    flowerPostselectionId,
+    flowerId,
+    selection
+  };
+}
+
+export function finishFlowers(diagnosisId, flowerPostselectionId) {
+  return {
+    type: REQUEST_FLOWER_FINISH,
+    diagnosisId,
+    flowerPostselectionId
   };
 }
 

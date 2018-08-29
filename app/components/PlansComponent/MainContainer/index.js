@@ -50,7 +50,7 @@ const Img = styled.img`
   max-width: 100%;
 `;
 
-function MainContainer() {
+function MainContainer(props) {
   return (
     <div>
       <SideLeftImage>
@@ -61,7 +61,9 @@ function MainContainer() {
       </SideRightImage>
       <H2 align="center">Escolha seu plano</H2>
       <Intro>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in justo ullamcorper, sollicitudin turpis dapibus, hendrerit tortor. Morbi tincidunt non sapien nec pretium. Donec elementum tristique consequat.</Intro>
-      <Packages/>
+      <Packages
+        bundles={props.bundles}
+        bundleCheckout={props.bundleCheckout}/>
     </div>
   );
 }

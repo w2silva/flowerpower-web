@@ -7,9 +7,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
-import Question from './Question'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { AwesomeButton } from 'react-awesome-button';
+
+import Question from './Question'
 
 const QuestionWrapper = styled.div`
   margin-bottom: 5em;
@@ -32,9 +34,9 @@ const QuestionSubmit = styled.a`
   font-weight: 600;
   font-size: .8em;
   box-shadow: 4px 4px 20px 0px #0006;
-  
-  &:active, 
-  &:focus, 
+
+  &:active,
+  &:focus,
   &:hover {
     color: white;
     text-decoration: underline;
@@ -42,23 +44,36 @@ const QuestionSubmit = styled.a`
 `;
 
 function Questions (props) {
+
+  const submitAnswer = (questionId) => (rating) => () => props.submitAnswer(props.quiz._id, questionId, rating)
+  const isAnswering = ['started', 'answering'].indexOf(props.answers.state) >= 0
+
+  console.log('props.quiz', props.quiz)
+
+  let idx = 1
+
   return (
     <Grid>
       <QuestionWrapper>
         <QuestionsIntro>Abaixo você encontra uma série de perguntas específicas, por favor escolha sempre a alternativa<br /> com a qual o perfil selecionado mais se identifica</QuestionsIntro>
         <form onSubmit={props.submitTherapy}>
-          <Question index={1} title='Eu fico ansioso sem saber o por quê'/>
-          <Question index={2} title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
-          <Question index={3} title='Eu fico ansioso sem saber o por quê'/>
-          <Question index={4} title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
-          <Question index={5} title='Eu fico ansioso sem saber o por quê'/>
-          <Question index={6} title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
-          <Question index={7} title='Eu fico ansioso sem saber o por quê'/>
-          <Question index={8} title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
-          <Question index={9} title='Eu fico ansioso sem saber o por quê'/>
-          <Question index={10} title='Eu tenho medo secreto que alguma coisa negativa vai acontecer'/>
+          { props.quiz.questions.map((q) => {
+            const answer = props.answers.answers.filter((a) => a.question === q._id)[0];
+            if (!answer.selected) {
+              return
+            }
+            return (
+              <Question
+                key={q._id}
+                index={idx++}
+                title={q.statement}
+                answer={answer}
+                submitAnswer={submitAnswer(q._id)}
+              />
+            )
+          })}
           <div className="text-center">
-            <QuestionSubmit>concluir e ver resultado</QuestionSubmit>
+            <AwesomeButton disabled={isAnswering} action={props.finalizeQuestions}>concluir e ver resultado</AwesomeButton>
           </div>
         </form>
       </QuestionWrapper>

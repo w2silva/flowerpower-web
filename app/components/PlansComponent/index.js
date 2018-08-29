@@ -38,7 +38,9 @@ export class PlansComponent extends React.PureComponent { // eslint-disable-line
           <meta name="description" content="Description of Plans" />
         </Helmet>
         <Header button={false} handleClick={this.handleClick}/>
-        <MainContainer/>
+        <MainContainer
+          bundles={this.props.bundles}
+          bundleCheckout={this.props.bundleCheckout}/>
         <Footer/>
       </div>
     );

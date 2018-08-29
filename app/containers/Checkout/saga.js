@@ -1,6 +1,16 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { takeLatest, put } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 
-// Individual exports for testing
+import request from 'utils/request';
+
+import {
+  BUNDLE_CHECKOUT
+} from './constants';
+
+export function* bundleCheckoutSaga() {
+  yield put(push('/checkout'))
+}
+
 export default function* defaultSaga() {
-  // See example in containers/HomePage/saga.js
+  yield takeLatest(BUNDLE_CHECKOUT, bundleCheckoutSaga);
 }

@@ -4,4 +4,4 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/Checkout/DEFAULT_ACTION';
+export const BUNDLE_CHECKOUT = 'app/Checkout/BUNDLE_CHECKOUT';

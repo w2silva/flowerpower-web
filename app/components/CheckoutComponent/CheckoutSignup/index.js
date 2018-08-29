@@ -14,27 +14,7 @@ const Title = styled.div`
   margin-bottom: 10px;
 `;
 
-const FormSubmit = styled.button`
-  display: inline-block;
-  border: none;
-  background-color: #779ccb;
-  color: white;
-  border-radius: 50px;
-  padding: 10px 25px;
-  margin: 0px 10px;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: .8em;
-  box-shadow: 4px 4px 20px 0px #3336;
-`;
-
-const MarginFooter = styled.div`
-  margin: 1em 0px 5em 0;
-  text-align: center;
-`;
-
-function CheckoutSignin() {
+function CheckoutSignup() {
   return (
     <Grid>
       <Title>dados pessoais</Title>
@@ -120,16 +100,13 @@ function CheckoutSignin() {
             </div>
           </Col>
         </Row>
-        <MarginFooter>
-          <FormSubmit>concluir compra e prosseguir com terapia</FormSubmit>
-        </MarginFooter>
       </Form>
     </Grid>
   );
 }
 
-CheckoutSignin.propTypes = {
+CheckoutSignup.propTypes = {
 
 };
 
-export default CheckoutSignin;
+export default CheckoutSignup;

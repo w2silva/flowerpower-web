@@ -13,7 +13,7 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectCheckout from './selectors';
+import { makeSelectCheckoutBundle } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import CheckoutComponent from 'components/CheckoutComponent';
@@ -26,7 +26,10 @@ export class Checkout extends React.PureComponent { // eslint-disable-line react
 
   render() {
     return (
-      <CheckoutComponent submitTherapy={this.submitTherapy}/>
+      <CheckoutComponent
+        submitTherapy={this.submitTherapy}
+        bundle={this.props.bundle}
+      />
     );
   }
 }
@@ -36,7 +39,7 @@ Checkout.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  checkout: makeSelectCheckout(),
+  bundle: makeSelectCheckoutBundle(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -47,11 +50,6 @@ function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'checkout', reducer });
-const withSaga = injectSaga({ key: 'checkout', saga });
-
 export default compose(
-  withReducer,
-  withSaga,
   withConnect,
 )(Checkout);

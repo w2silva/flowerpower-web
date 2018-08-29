@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 /**
  * Direct selector to the plans state domain
  */
-const selectPlansDomain = (state) => state.get('plans');
+const selectPlansDomain = (state) => state.get('plans').toJS();
 
 /**
  * Other specific selectors
@@ -14,12 +14,12 @@ const selectPlansDomain = (state) => state.get('plans');
  * Default selector used by Plans
  */
 
-const makeSelectPlans = () => createSelector(
+const makeSelectBundles = () => createSelector(
   selectPlansDomain,
-  (substate) => substate.toJS()
+  (substate) => substate.bundles
 );
 
-export default makeSelectPlans;
 export {
   selectPlansDomain,
+  makeSelectBundles
 };

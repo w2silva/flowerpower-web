@@ -69,14 +69,24 @@ function QuizComponent(props) {
           startTherapy={props.startTherapy}
         />
       }
-      <Therapy
-        me={props.me}
-        emotions={props.emotions}
-        submitEmotion={props.submitEmotion}
-        finishEmotionPreselection={props.finishEmotionPreselection}
-        flowers={props.flowers}
-        diagnosis={props.diagnosis}
-      />
+      { props.diagnosis && ['started', 'answering'].indexOf(props.diagnosis.state) >= 0 &&
+        <Therapy
+          me={props.me}
+          emotions={props.emotions}
+          submitEmotion={props.submitEmotion}
+          finishEmotionPreselection={props.finishEmotionPreselection}
+          submitQuizAnswer={props.submitQuizAnswer}
+          finishQuiz={props.finishQuiz}
+          submitFlower={props.submitFlower}
+          finishFlowers={props.finishFlowers}
+          flowers={props.flowers}
+          diagnosis={props.diagnosis}
+        />}
+      { props.diagnosis && props.diagnosis.state === 'waiting' &&
+        <div style={{marginBottom: '50px'}}>
+          Checkout
+        </div>
+      }
       <Footer/>
     </div>
   );

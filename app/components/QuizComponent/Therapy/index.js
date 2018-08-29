@@ -23,17 +23,21 @@ function Therapy(props) {
   const questionsStateArray = props.diagnosis && props.diagnosis.quizzes.map((q) => q.state === 'finished')
   const questionsIdx = props.diagnosis && questionsStateArray.indexOf(false)
   const questionsFinished = questionsIdx < 0
+  const finalizeQuestions = (id) => props.finishQuiz(id)
 
   const flowersStateArray = props.diagnosis && props.diagnosis.flowers_postselected.map((f) => f.state === 'finished')
   const flowersIdx = props.diagnosis && flowersStateArray.indexOf(false)
   const flowersFinished = flowersIdx < 0
+  const finalizeFlowers = (id) => props.finishFlowers(id)
+
+  console.log(`${emotionsFinished} | ${questionsFinished} | ${flowersFinished}`)
+
   return (
     <div>
       {props.me.me && props.diagnosis &&
         <TherapyWrapper>
           <H2 align="center">Agora vamos começar a terapia</H2>
-          {
-            !emotionsFinished ?
+          { !emotionsFinished &&
             <EmotionsPreselection
               diagnosis={props.diagnosis}
               idx={emotionsIdx}
@@ -43,26 +47,25 @@ function Therapy(props) {
               finalizeEmotions={props.finishEmotionPreselection}
               flowers={props.flowers}
             />
-            :
-            ''
           }
-          {
-            emotionsFinished && !questionsFinished ?
+          { emotionsFinished && !questionsFinished &&
             <Questions
               submitQuestion={props.submitQuestion}
+              quiz={props.diagnosis.therapy.quizzes[questionsIdx]}
+              answers={props.diagnosis.quizzes[questionsIdx]}
+              submitAnswer={props.submitQuizAnswer}
+              finalizeQuestions={finalizeQuestions(props.diagnosis.quizzes[questionsIdx]._id)}
               idx={questionsIdx}
             />
-            :
-            ''
           }
-          {
-            emotionsFinished && questionsFinished && !flowersFinished ?
+          { emotionsFinished && questionsFinished && !flowersFinished &&
             <FlowersPostselection
-              FlowersPostselection={props.FlowersPostselection}
-              idx={flowersIdx}
+              postselection={props.diagnosis.therapy.flowers_postselection[flowersIdx]}
+              postselected={props.diagnosis.flowers_postselected[flowersIdx]}
+              submitFlower={props.submitFlower}
+              finalizeFlowers={finalizeFlowers(props.diagnosis.flowers_postselected[flowersIdx]._id)}
+              flowers={props.flowers}
             />
-            :
-            ''
           }
         </TherapyWrapper>
       }

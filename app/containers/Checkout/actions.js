@@ -5,11 +5,12 @@
  */
 
 import {
-  DEFAULT_ACTION,
+  BUNDLE_CHECKOUT,
 } from './constants';
 
-export function defaultAction() {
+export function bundleCheckout(bundle) {
   return {
-    type: DEFAULT_ACTION,
+    type: BUNDLE_CHECKOUT,
+    bundle
   };
 }

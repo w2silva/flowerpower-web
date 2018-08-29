@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 /**
  * Direct selector to the checkout state domain
  */
-const selectCheckoutDomain = (state) => state.get('checkout');
+const selectCheckoutDomain = (state) => state.get('checkout').toJS();
 
 /**
  * Other specific selectors
@@ -14,12 +14,12 @@ const selectCheckoutDomain = (state) => state.get('checkout');
  * Default selector used by Checkout
  */
 
-const makeSelectCheckout = () => createSelector(
+const makeSelectCheckoutBundle = () => createSelector(
   selectCheckoutDomain,
-  (substate) => substate.toJS()
+  (substate) => substate.bundle
 );
 
-export default makeSelectCheckout;
 export {
   selectCheckoutDomain,
+  makeSelectCheckoutBundle
 };

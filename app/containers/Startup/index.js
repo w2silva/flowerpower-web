@@ -13,6 +13,7 @@ import injectSaga from 'utils/injectSaga';
 import registerSaga from 'containers/Register/saga';
 import loginSaga from 'containers/Login/saga';
 import meSaga from 'containers/Me/saga';
+import checkoutSaga from 'containers/Checkout/saga';
 import { tokenSuccess, requestLoginToken } from 'containers/Login/actions';
 
 export class Startup extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -55,10 +56,12 @@ const withConnect = connect(null, mapDispatchToProps);
 const withRegisterSaga = injectSaga({ key: 'register', saga: registerSaga });
 const withLoginSaga = injectSaga({ key: 'login', saga: loginSaga });
 const withMeSaga = injectSaga({ key: 'me', saga: meSaga });
+const withCheckoutSaga = injectSaga({ key: 'checkout', saga: checkoutSaga });
 
 export default compose(
   withConnect,
   withRegisterSaga,
   withLoginSaga,
   withMeSaga,
+  withCheckoutSaga,
 )(Startup);

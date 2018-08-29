@@ -7,32 +7,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectPlans from './selectors';
-import reducer from './reducer';
-import saga from './saga';
+
 import PlansComponent from 'components/PlansComponent';
 
+import { bundleCheckout } from 'containers/Checkout/actions';
+import { makeSelectBundles } from './selectors';
+import reducer from './reducer';
+import saga from './saga';
+import { requestBundles } from './actions'
+
 export class Plans extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  submitTherapy = (e) => {
-    e.preventDefault();
-    this.props.dispatch(push('/plans'));
+
+  componentDidMount() {
+    this.props.dispatch(requestBundles())
   }
 
-  goTo = (location) => {
-    console.log('im here', location);
-    this.props.dispatch(push(`${location}`));
+  bundleCheckout = (bundle) => {
+    this.props.dispatch(bundleCheckout(bundle))
   }
 
   render() {
     return (
-      <PlansComponent submitTherapy={this.submitTherapy} goTo={this.goTo}/>
+      <PlansComponent
+        bundles={this.props.bundles}
+        bundleCheckout={this.bundleCheckout}
+      />
     );
   }
 }
@@ -42,7 +46,7 @@ Plans.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  plans: makeSelectPlans(),
+  bundles: makeSelectBundles(),
 });
 
 function mapDispatchToProps(dispatch) {

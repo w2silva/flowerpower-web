@@ -56,12 +56,11 @@ class Packages extends React.Component { // eslint-disable-line react/prefer-sta
               <input type="radio" /> animal
             </label>
           </ToggleProfile>*/}
-          <Pack />
-          <Pack />
-          <Pack />
-          <Pack />
-          <Pack />
-          <Pack />
+          { this.props.bundles && this.props.bundles.map((b) =>
+            <Pack
+              bundle={b}
+              bundleCheckout={this.props.bundleCheckout}/>
+          )}
         </PackagesWrapper>
       </Grid>
     );

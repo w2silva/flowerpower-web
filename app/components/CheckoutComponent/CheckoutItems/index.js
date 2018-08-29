@@ -105,7 +105,7 @@ const CouponInput = styled.input`
   border: solid 1px #e6e6e6;
   background: white;
   box-sizing: border-box;
-  
+
   &:-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: #e6e6e6;
   }
@@ -135,61 +135,35 @@ const CouponSubmit = styled.button`
   box-shadow: 4px 4px 20px 0px #3336;
 `;
 
-function CheckoutItems() {
+function CheckoutItems(props) {
   return (
     <Grid>
       <CheckoutItemsTable>
-        <Tr>
-          <th width="10%">item</th>
-          <th>descrição</th>
-          <th width="15%">valores</th>
-          <th width="5%"></th>
-        </Tr>
-        <Tr>
-          <td>
-            <Img />
-          </td>
-          <td>
-            <ItemTitle>coacing particular (10 sessões)</ItemTitle>
-            <ItemIntro>Pacote particular de coacing com patricia (10 sessões) + 4 florais online +  ebooks</ItemIntro>
-          </td>
-          <td>
-            <ItemCost>R$ 2.100,00</ItemCost>
-          </td>
-          <td>
-            <ButtonRemove>x</ButtonRemove>
-          </td>
-        </Tr>
-        <Tr>
-          <td>
-            <Img />
-          </td>
-          <td>
-            <ItemTitle>coacing particular (10 sessões)</ItemTitle>
-            <ItemIntro>Pacote particular de coacing com patricia (10 sessões) + 4 florais online +  ebooks</ItemIntro>
-          </td>
-          <td>
-            <ItemCost>R$ 2.100,00</ItemCost>
-          </td>
-          <td>
-            <ButtonRemove>x</ButtonRemove>
-          </td>
-        </Tr>
-        <Tr>
-          <td>
-            <Img />
-          </td>
-          <td>
-            <ItemTitle>coacing particular (10 sessões)</ItemTitle>
-            <ItemIntro>Pacote particular de coacing com patricia (10 sessões) + 4 florais online +  ebooks</ItemIntro>
-          </td>
-          <td>
-            <ItemCost>R$ 2.100,00</ItemCost>
-          </td>
-          <td>
-            <ButtonRemove>x</ButtonRemove>
-          </td>
-        </Tr>
+        <thead>
+          <Tr>
+            <th width="10%">item</th>
+            <th>descrição</th>
+            <th width="15%">valores</th>
+            <th width="5%"></th>
+          </Tr>
+        </thead>
+        <tbody>
+          <Tr>
+            <td>
+              <Img />
+            </td>
+            <td>
+              <ItemTitle>{props.bundle.name}</ItemTitle>
+              <ItemIntro>{props.bundle.statement}</ItemIntro>
+            </td>
+            <td>
+              <ItemCost>R$ {props.bundle.price.amount.toFixed(2).replace('.', ',')}</ItemCost>
+            </td>
+            {/* <td>
+              <ButtonRemove>x</ButtonRemove>
+            </td> */}
+          </Tr>
+        </tbody>
       </CheckoutItemsTable>
       <CouponTitle>cupom de desconto</CouponTitle>
       <Row middle="xs" between="xs">
@@ -211,7 +185,7 @@ function CheckoutItems() {
           <Row end="xs">
             <Col>
               <TotalDiv>
-                <TotalAmountSpam>Total:</TotalAmountSpam><TotalAmountValue>R$ 172,50</TotalAmountValue>
+                <TotalAmountSpam>Total:</TotalAmountSpam><TotalAmountValue>R$ {props.bundle.price.amount.toFixed(2).replace('.', ',')}</TotalAmountValue>
               </TotalDiv>
               <IntroSafe>
                 <SafeSpan>compra segura</SafeSpan><SafeSpan>satisfação 100% garantida</SafeSpan>

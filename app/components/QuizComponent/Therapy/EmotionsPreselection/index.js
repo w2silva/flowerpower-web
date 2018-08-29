@@ -53,7 +53,7 @@ export class EmotionsPreselection extends React.PureComponent { // eslint-disabl
     if (!this.props.diagnosis) {
       return (<div/>)
     }
-    const isAnswering = (this.props.diagnosis.emotions_preselected[this.props.idx].state === 'answering')
+    const isAnswering = ['started', 'answering'].indexOf(this.props.diagnosis.emotions_preselected[this.props.idx].state) >= 0
 
     return (
       <Grid>

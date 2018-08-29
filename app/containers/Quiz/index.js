@@ -12,6 +12,8 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+import { push } from 'react-router-redux';
+
 import makeSelectQuiz from './selectors';
 import makeSelectMe from '../Me/selectors'
 import makeSelectLogin from '../Login/selectors'
@@ -19,10 +21,19 @@ import { makeSelectRegisterSuccess, makeSelectRegisterFailure } from '../Registe
 import { makeSelectLoginSuccess, makeSelectLoginFailure } from '../Login/selectors'
 import reducer from './reducer';
 import saga from './saga';
-import { requestAll, updateEmotion, runDiagnosis, requestDiagnosis, finishEmotionPreselection } from './actions'
+import {
+  requestAll,
+  updateEmotion,
+  runDiagnosis,
+  requestDiagnosis,
+  finishEmotionPreselection,
+  updateQuizAnswer,
+  finishQuiz,
+  updateFlower,
+  finishFlowers
+} from './actions'
 import { registerMe } from '../Register/actions'
 import { requestLogin } from '../Login/actions'
-import { push } from 'react-router-redux';
 
 import QuizComponent from 'components/QuizComponent'
 import { makeSelectEmotions, makeSelectFlowers, makeSelectDiagnosis } from './selectors';
@@ -219,6 +230,30 @@ export class Quiz extends React.PureComponent { // eslint-disable-line react/pre
     this.props.dispatch(updateEmotion(diagnosisId, emotionId, phaseIdx));
   }
 
+  finishEmotionPreselection = (emotionPreselectionId) => () => {
+    this.props.dispatch(finishEmotionPreselection(this.props.diagnosis.id, emotionPreselectionId))
+  }
+
+  submitQuizAnswer = (quizId, questionId, rating) => {
+    const diagnosisId = this.props.match.params.id
+    this.props.dispatch(updateQuizAnswer(diagnosisId, quizId, questionId, rating));
+  }
+
+  finishQuiz = (quizId) => () => {
+    const diagnosisId = this.props.match.params.id
+    this.props.dispatch(finishQuiz(diagnosisId, quizId))
+  }
+
+  submitFlower = (flowerPostselectionId, flowerId, selection) => {
+    const diagnosisId = this.props.match.params.id
+    this.props.dispatch(updateFlower(diagnosisId, flowerPostselectionId, flowerId, selection));
+  }
+
+  finishFlowers = (flowerPostselectionId) => () => {
+    const diagnosisId = this.props.match.params.id
+    this.props.dispatch(finishFlowers(diagnosisId, flowerPostselectionId))
+  }
+
   showLogin = () => {
     this.setState({
       activeLogin: true
@@ -237,12 +272,7 @@ export class Quiz extends React.PureComponent { // eslint-disable-line react/pre
     console.log(target);
   }
 
-  finishEmotionPreselection = (emotionPreselectionId) => () => {
-    this.props.dispatch(finishEmotionPreselection(this.props.diagnosis.id, emotionPreselectionId))
-  }
-
   render() {
-    console.log(this.props.diagnosis);
     return (
       <QuizComponent
         diagnosis={this.props.diagnosis}
@@ -264,6 +294,10 @@ export class Quiz extends React.PureComponent { // eslint-disable-line react/pre
         flowers={this.props.flowers}
         submitEmotion={this.submitEmotion}
         finishEmotionPreselection={this.finishEmotionPreselection}
+        submitQuizAnswer={this.submitQuizAnswer}
+        finishQuiz={this.finishQuiz}
+        submitFlower={this.submitFlower}
+        finishFlowers={this.finishFlowers}
         me={this.props.me}
         startTherapy={this.startTherapy}
       />

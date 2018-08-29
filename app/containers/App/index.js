@@ -62,6 +62,7 @@ export default function App() {
           <Route exact path="/quiz" component={Quiz} />
           <Route exact path="/quiz/:id" component={Quiz} />
           <Route exact path="/plans" component={Plans} />
+          <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/(benefits|me)" component={Benefits} />
           <Route exact path="/therapy" component={SelectProfile} />
           <Route exact path="/(biography|contact)" component={Biography} />

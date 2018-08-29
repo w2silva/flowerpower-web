@@ -59,6 +59,10 @@ const PackSubmit = styled.a`
 `;
 
 function Pack(props) {
+  function bundleCheckout() {
+    props.bundleCheckout(props.bundle)
+  }
+
   return (
     <PackWrapper shadow={props.active}>
       <Row middle="xs" between="xs">
@@ -66,15 +70,15 @@ function Pack(props) {
           <PackImage />
         </Col>
         <Col xs={10} sm={6} md={6} lg={6}>
-          <PackTitle>coach particular com patrícia (1o seções) + 4 florais online</PackTitle>
-          <PackIntro>Pacote particular de coaching com patricia (10 seções) + 4 florais online + 4 ebooks</PackIntro>
+          <PackTitle>{props.bundle.name}</PackTitle>
+          <PackIntro>{props.bundle.statement}</PackIntro>
         </Col>
         <Col xs={6} sm={2} md={3} lg={3}>
-          <PackCost><strong>R$ 2.100,00</strong> em 10x s/juros</PackCost>
-          <PackLinkDetails>ver mais detalhes do plano</PackLinkDetails>
+          <PackCost><strong>R$ {props.bundle.price.amount.toFixed(2).replace('.', ',')}</strong> em 10x s/juros</PackCost>
+          {/* <PackLinkDetails>ver mais detalhes do plano</PackLinkDetails> */}
         </Col>
         <Col xs={6} sm={2} md={2} lg={2}>
-          <PackSubmit>Continuar</PackSubmit>
+          <PackSubmit onClick={bundleCheckout}>Continuar</PackSubmit>
         </Col>
       </Row>
     </PackWrapper>

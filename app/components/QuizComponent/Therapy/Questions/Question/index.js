@@ -27,7 +27,7 @@ const QuestionNumber = styled.span`
   color: white;
   border-radius: 2px;
 `;
-  
+
 const QuestionOption = styled.div`
   cursor: pointer;
   position: relative;
@@ -39,13 +39,13 @@ const QuestionOption = styled.div`
   width: 100px;
   font-size: .8em;
   text-align: left;
-  
+
   label {
     color: ${props => props.active ? 'white' : '#666'};
   }
 
-  &:active, 
-  &:focus, 
+  &:active,
+  &:focus,
   &:hover {
     background-color: #779ccb;
 
@@ -54,7 +54,7 @@ const QuestionOption = styled.div`
     }
   }
 `;
-  
+
 const QuestionRadio = styled.input`
   position: relative;
 
@@ -122,32 +122,32 @@ function Question(props) {
       </QuestionTitle>
       <Row middle="xs" around="xs">
         <Col xs={12} sm={12} md lg>
-          <QuestionOption>
-            <QuestionRadio type="radio" name={inputName} />
+          <QuestionOption active={props.answer && props.answer.rating === 0} onClick={props.submitAnswer(0)}>
+            <QuestionRadio type="radio" name={inputName} checked={props.answer && props.answer.rating === 0} />
             <QuestionLabel>Nunca</QuestionLabel>
           </QuestionOption>
         </Col>
         <Col xs={12} sm={12} md lg>
-          <QuestionOption active={true}>
-            <QuestionRadio type="radio" name={inputName} checked />
+          <QuestionOption active={props.answer && props.answer.rating === 1} onClick={props.submitAnswer(1)}>
+            <QuestionRadio type="radio" name={inputName} checked={props.answer && props.answer.rating === 1} />
             <QuestionLabel>Poucas Vezes</QuestionLabel>
           </QuestionOption>
         </Col>
         <Col xs={12} sm={12} md lg>
-          <QuestionOption>
-            <QuestionRadio type="radio" name={inputName} />
+          <QuestionOption active={props.answer && props.answer.rating === 2} onClick={props.submitAnswer(2)}>
+            <QuestionRadio type="radio" name={inputName} checked={props.answer && props.answer.rating === 2} />
             <QuestionLabel>Algumas Vezes</QuestionLabel>
           </QuestionOption>
         </Col>
         <Col xs={12} sm={12} md lg>
-          <QuestionOption>
-            <QuestionRadio type="radio" name={inputName} />
+          <QuestionOption active={props.answer && props.answer.rating === 3} onClick={props.submitAnswer(3)}>
+            <QuestionRadio type="radio" name={inputName} checked={props.answer && props.answer.rating === 3} />
             <QuestionLabel>Frequentemente</QuestionLabel>
           </QuestionOption>
         </Col>
         <Col xs={12} sm={12} md lg>
-          <QuestionOption>
-            <QuestionRadio type="radio" name={inputName} />
+          <QuestionOption active={props.answer && props.answer.rating === 4} onClick={props.submitAnswer(4)}>
+            <QuestionRadio type="radio" name={inputName} checked={props.answer && props.answer.rating === 4} />
             <QuestionLabel>Sempre</QuestionLabel>
           </QuestionOption>
         </Col>
