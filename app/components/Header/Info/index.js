@@ -25,7 +25,7 @@ const WrapperInfo = styled.div`
       height: 0 !important;
     }
     .info-desc {
-      font-size: 0.8em;
+      font-size: 1.4em;
       font-weight: 100;
       text-align: center;
     }
@@ -55,21 +55,6 @@ const WrapperInfo = styled.div`
     }
   }
 
-  .info-divider {
-    border-right: solid 0.5px #bdb8b8;
-    opacity: 0.5;
-    height: 65px;
-
-    -webkit-transform: rotate(15deg); /* Safari */
-        -ms-transform: rotate(15deg); /* IE 9 */
-            transform: rotate(15deg);
-  }
-
-  .info-desc {
-    font-size: 1.8em;
-    font-weight: 100;
-    text-align: left;
-  }
 `;
 
 function Info(props) {

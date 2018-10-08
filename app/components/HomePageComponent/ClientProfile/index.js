@@ -15,14 +15,8 @@ const ClientProfileWrapper = styled.div`
   position: relative;
   width: 100%;
   background-image: url(${bgQuiz});
-  @media (min-width: 780px) {
-    height: 500px;
-    background-size: 100% 100%;
-  }
-  @media (max-width: 780px) {
-    background-size: 100% 100%;
-    height: 400px;
-  }
+  height: 500px;
+  background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
   color: white;

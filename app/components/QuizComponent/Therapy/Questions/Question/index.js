@@ -15,7 +15,8 @@ const QuestionWrapper = styled.div`
 const QuestionTitle = styled.div`
   text-transform: uppercase;
   color: black;
-  font-weight: 600;
+  font-weight: 400;
+  font-size: 1.3em;
   margin: 0px 0px 10px 0px;
 `;
 
@@ -25,7 +26,7 @@ const QuestionNumber = styled.span`
   margin: 0px 10px 0px 0px;
   background-color: #779ccb;
   color: white;
-  border-radius: 2px;
+  border-radius: 20px;
 `;
 
 const QuestionOption = styled.div`
@@ -36,8 +37,10 @@ const QuestionOption = styled.div`
   border-radius: 30px;
   padding: 3px 0px 3px 5px;
   margin-bottom: 1em;
-  width: 100px;
-  font-size: .8em;
+  width: 150px;
+  height: 30px;
+  font-size: 1.2em;
+  padding-top: 5px;
   text-align: left;
 
   label {
@@ -121,31 +124,31 @@ function Question(props) {
         <QuestionNumber>{props.index}</QuestionNumber> {props.title}
       </QuestionTitle>
       <Row middle="xs" around="xs">
-        <Col xs={12} sm={12} md lg>
+        <Col xs={12} sm={12} md lg style={{textAlign: 'center'}}>
           <QuestionOption active={props.answer && props.answer.rating === 0} onClick={props.submitAnswer(0)}>
             <QuestionRadio type="radio" name={inputName} checked={props.answer && props.answer.rating === 0} />
             <QuestionLabel>Nunca</QuestionLabel>
           </QuestionOption>
         </Col>
-        <Col xs={12} sm={12} md lg>
+        <Col xs={12} sm={12} md lg style={{textAlign: 'center'}}>
           <QuestionOption active={props.answer && props.answer.rating === 1} onClick={props.submitAnswer(1)}>
             <QuestionRadio type="radio" name={inputName} checked={props.answer && props.answer.rating === 1} />
             <QuestionLabel>Poucas Vezes</QuestionLabel>
           </QuestionOption>
         </Col>
-        <Col xs={12} sm={12} md lg>
+        <Col xs={12} sm={12} md lg style={{textAlign: 'center'}}>
           <QuestionOption active={props.answer && props.answer.rating === 2} onClick={props.submitAnswer(2)}>
             <QuestionRadio type="radio" name={inputName} checked={props.answer && props.answer.rating === 2} />
             <QuestionLabel>Algumas Vezes</QuestionLabel>
           </QuestionOption>
         </Col>
-        <Col xs={12} sm={12} md lg>
+        <Col xs={12} sm={12} md lg style={{textAlign: 'center'}}>
           <QuestionOption active={props.answer && props.answer.rating === 3} onClick={props.submitAnswer(3)}>
             <QuestionRadio type="radio" name={inputName} checked={props.answer && props.answer.rating === 3} />
             <QuestionLabel>Frequentemente</QuestionLabel>
           </QuestionOption>
         </Col>
-        <Col xs={12} sm={12} md lg>
+        <Col xs={12} sm={12} md lg style={{textAlign: 'center'}}>
           <QuestionOption active={props.answer && props.answer.rating === 4} onClick={props.submitAnswer(4)}>
             <QuestionRadio type="radio" name={inputName} checked={props.answer && props.answer.rating === 4} />
             <QuestionLabel>Sempre</QuestionLabel>

@@ -20,14 +20,14 @@ const ProfileMessage = styled.div`
 
 function ProfileSelect(props) {
   return (
-    <div>
-      <H2 align="center">Para quem é essa terapia?</H2>
+    <div style={{ margin: '0 10px' }}>
+      <H2 align="center">Selecione para quem é essa terapia...</H2>
       <Profiles
         selectProfile={props.selectProfile}
         me={props.me}
         selectedProfile={props.selectedProfile}
       />
-      <H2 align="center">Crie um novo perfil</H2>
+      <H2 align="center">...ou crie um novo perfil</H2>
       <NewProfiles
         color={'black'}
         selectProfile={props.selectProfile}

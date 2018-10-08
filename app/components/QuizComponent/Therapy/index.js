@@ -6,7 +6,6 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import H2 from 'components/H2'
 import EmotionsPreselection from './EmotionsPreselection'
 import Questions from './Questions'
 import FlowersPostselection from './FlowersPostselection'
@@ -36,7 +35,6 @@ function Therapy(props) {
     <div>
       {props.me.me && props.diagnosis &&
         <TherapyWrapper>
-          <H2 align="center">Agora vamos começar a terapia</H2>
           { !emotionsFinished &&
             <EmotionsPreselection
               diagnosis={props.diagnosis}

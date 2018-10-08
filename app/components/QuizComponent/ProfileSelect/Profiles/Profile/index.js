@@ -20,7 +20,7 @@ const ProfileWrapper = styled.div`
 const ProfileImg = styled.img`
   max-width: 100px;
   border-radius: 100%;
-  box-shadow: ${props => props.selected ? '0 3px 30px rgba(0,0,0,.8);' : ''}
+  box-shadow: ${props => props.selected ? '0 3px 30px rgba(65,116,177,.6);' : ''}
 `;
 
 const Name = styled.div`

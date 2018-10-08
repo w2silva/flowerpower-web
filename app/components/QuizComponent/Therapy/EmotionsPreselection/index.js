@@ -11,6 +11,7 @@ import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import Emotion from './Emotion';
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/themes/theme-blue.css';
+import H2 from 'components/H2'
 
 const QuestionWrapper = styled.div`
   margin-bottom: 5em;
@@ -19,7 +20,7 @@ const QuestionWrapper = styled.div`
 const QuestionsIntro = styled.div`
   margin-bottom: 6em;
   text-align: center;
-  font-size: 14px
+  font-size: 20px
 `;
 
 const QuestionSubmit = styled.a`
@@ -57,6 +58,7 @@ export class EmotionsPreselection extends React.PureComponent { // eslint-disabl
 
     return (
       <Grid>
+        <H2 align="center">Agora vamos começar a terapia</H2>
         <QuestionWrapper>
           <QuestionsIntro>{this.props.diagnosis.therapy.emotions_preselection[this.props.idx].statement}</QuestionsIntro>
             <form>
@@ -77,6 +79,12 @@ export class EmotionsPreselection extends React.PureComponent { // eslint-disabl
           </form>
         </QuestionWrapper>
         <div className="text-center">
+          {isAnswering?
+            <div style={{fontSize: '15px', marginBottom: '10px'}}>Por favor selecione mais opções acima antes de continuar.
+            </div>
+            :
+            ''
+          }
           <AwesomeButton disabled={isAnswering} action={this.props.finalizeEmotions(this.props.preselection._id)}>Continuar</AwesomeButton>
         </div>
       </Grid>

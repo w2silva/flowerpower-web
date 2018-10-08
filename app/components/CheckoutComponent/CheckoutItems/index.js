@@ -136,6 +136,9 @@ const CouponSubmit = styled.button`
 `;
 
 function CheckoutItems(props) {
+  if (!props.bundle) {
+    return null
+  }
   return (
     <Grid>
       <CheckoutItemsTable>

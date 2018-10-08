@@ -11,23 +11,57 @@ import styled from 'styled-components';
 import picture from './check.png';
 
 const BoxWrapper = styled.div`
-  background-color: ${props => props.colors[props.random]};
-  height: 150px;
+  background-image: url(${props => props.url});
+  background-size: cover;
   margin-top: 0px;
-  padding-top: 60px;
-  font-size: 20px;
+  padding-top: 35px;
+  font-size: 16px;
   text-align: center;
-  width: 200px;
+  @media (min-width: 780px) {
+    width: 200px;
+    height: 200px;
+  }
+  @media (max-width: 780px) {
+    width: 150px;
+    height: 150px;
+  }
+  border-radius: 100px;
 `;
 
-const Button = styled.button`
+const Overlay = styled.div`
+  @media (max-width: 780px) {
+    width: 150px;
+    height: 150px;
+  }
+  @media (min-width: 780px) {
+    width: 200px;
+    height: 200px;
+  }
+  background-color: rgba(255, 255, 255,0.5);
+  position: absolute !important;
+  z-index: 100;
+  border-radius: 100px;
+`
+
+const Button = styled.a`
   font-size: 16px;
+  border-radius: 30px;
   padding: 0
 `
 
 const Img = styled.img`
-  height: 20px;
+  height: 50px;
   min-height: 20px !important;
+  position: absolute !important;
+  z-index: 1000;
+  @media (max-width: 780px) {
+    top: 50px;
+    left: 50px;
+  }
+  @media (min-width: 780px) {
+    top: 80px;
+    left: 80px;
+  }
   display:block;
   margin:auto;
 `
@@ -47,18 +81,20 @@ export class Flower extends React.PureComponent { // eslint-disable-line react/p
 
   render () {
     const colors = [
-      '#CFA4BF',
-      '#FCC5CB',
-      '#FEFAA3',
-      '#E7DFD2',
-      '#ADEAEB',
-      '#76DADA',
-      '#B4EDD2',
-      '#A9D7F2',
-      '#BEC3DB',
-      '#A1B0B7',
+      '#DEE6F0',
+      '#BBCCE2',
+      '#9AB3D4',
+      '#7E9DC7',
+      '#4C74AC',
+      '#E3DFEB',
+      '#CAC1D8',
+      '#AEA1C4',
+      '#9181AF',
+      '#6D598C',
+      '#D9D9D9',
+      '#A6A6A6'
     ]
-
+    console.log('flower', this.props.flower);
     return (
       <Col xs={6} sm={6} md={3} lg={3}>
         <div className="thumbs text-center">
@@ -67,26 +103,27 @@ export class Flower extends React.PureComponent { // eslint-disable-line react/p
               <div className="container effect">
                 <figure className="effect-steve">
                   <Button onClick={this.handleClick}>
-                    <BoxWrapper colors={colors} random={this.state.random}>
-                      {this.props.flower.name}
-                      <br/>
-                      {this.props.selected ?
-                        <Img src={picture}/>
-                        :
-                        ''
-                      }
+                    {this.props.selected ?
+                      <Img src={picture}/>
+                      :
+                      ''
+                    }
+                    {this.props.selected ?
+                      <Overlay/>
+                      :
+                      ''
+                    }
+                    <BoxWrapper url={this.props.flower.picture} random={this.state.random}>
                     </BoxWrapper>
                   </Button>
                 </figure>
               </div>
-              {/*<div className="title">
+              {<div className="title">
                 <a
                 >
-                  <h5 className="mb0" style={{ fontWeight: 'bold' }}>oie</h5>
-                  <h5 className="mb0" style={{ fontSize: '14px' }}>ddd</h5>
-                  <h5 className="mb0" style={{ fontSize: '13px' }}>sss</h5>
+                  <h5 className="mb0" style={{}}>{this.props.flower.name}</h5>
                 </a>
-              </div>*/}
+              </div>}
             </div>
           </div>
         </div>

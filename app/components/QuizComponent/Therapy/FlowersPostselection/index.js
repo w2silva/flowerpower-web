@@ -10,6 +10,8 @@ import styled from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/themes/theme-blue.css';
+import H2 from 'components/H2'
+import H5 from 'components/H5'
 
 import Flower from './Flower'
 
@@ -18,13 +20,17 @@ const FlowerWrapper = styled.div`
 `;
 
 const FlowersIntro = styled.div`
-  margin-bottom: 6em;
   text-align: center;
-  font-size: 14px
+  font-size: 20px;
+  @media (max-width: 780px) {
+    margin-bottom: 2em;
+  }
+  @media (min-width: 780px) {
+    margin-bottom: 6em;
+  }
 `;
 
 function FlowersPostselection(props) {
-  console.log(props)
   if (!props.flowers) {
     return (
       <div></div>
@@ -33,9 +39,10 @@ function FlowersPostselection(props) {
   const isAnswering = ['started', 'answering'].indexOf(props.postselected.state) >= 0
 
   const submitFlower = (flowerId, selection) => () => props.submitFlower(props.postselected._id, flowerId, selection)
-
+  console.log(props.postselection);
   return (
     <Grid>
+      <H2 align="center">Continuando...</H2>
       <FlowerWrapper>
         <FlowersIntro>{props.postselection.statement}</FlowersIntro>
         <form>
@@ -51,7 +58,12 @@ function FlowersPostselection(props) {
         </form>
       </FlowerWrapper>
       <div className="text-center">
-        <AwesomeButton disabled={isAnswering} action={props.finalizeFlowers}>Continuar</AwesomeButton>
+        {props.postselection.maximum_selection > 0 && props.postselected.flowers.length > props.postselection.maximum_selection ?
+          <H5 align="center">Selecione apenas {props.postselection.maximum_selection} opções</H5>
+          :
+          ""
+        }
+        <AwesomeButton disabled={isAnswering} disabled={props.postselection.maximum_selection > 0 && props.postselected.flowers.length > props.postselection.maximum_selection} action={props.finalizeFlowers}>Continuar</AwesomeButton>
       </div>
     </Grid>
   );

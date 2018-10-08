@@ -12,16 +12,23 @@ import picture from './check.png';
 
 const BoxWrapper = styled.div`
   background-color: ${props => props.colors[props.random]};
-  height: 150px;
+  height: 100px;
   margin-top: 0px;
-  padding-top: 60px;
-  font-size: 20px;
+  padding-top: 35px;
+  font-size: 16px;
   text-align: center;
-  width: 200px;
+  @media (min-width: 780px) {
+    width: 200px;
+  }
+  @media (max-width: 780px) {
+    width: 150px;
+  }
+  border-radius: 30px;
 `;
 
-const Button = styled.button`
+const Button = styled.a`
   font-size: 16px;
+  border-radius: 30px;
   padding: 0
 `
 
@@ -50,16 +57,18 @@ export class Emotion extends React.PureComponent { // eslint-disable-line react/
 
   render () {
     const colors = [
-      '#CFA4BF',
-      '#FCC5CB',
-      '#FEFAA3',
-      '#E7DFD2',
-      '#ADEAEB',
-      '#76DADA',
-      '#B4EDD2',
-      '#A9D7F2',
-      '#BEC3DB',
-      '#A1B0B7',
+      '#DEE6F0',
+      '#BBCCE2',
+      '#9AB3D4',
+      '#7E9DC7',
+      '#4C74AC',
+      '#E3DFEB',
+      '#CAC1D8',
+      '#AEA1C4',
+      '#9181AF',
+      '#6D598C',
+      '#D9D9D9',
+      '#A6A6A6'
     ]
     const isActive = this.props.diagnosis ? this.props.diagnosis.emotions_preselected[this.props.idx].emotions.filter((e) => e.toString() === this.props.emotion.id.toString())[0] : false
     console.log(this.props.diagnosis);

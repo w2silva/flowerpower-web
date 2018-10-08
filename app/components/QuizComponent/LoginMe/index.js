@@ -12,7 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Form from 'components/Form'
 import TextField from '@material-ui/core/TextField'
 import { AwesomeButton } from 'react-awesome-button';
-import H2 from 'components/H2'
+import H5 from 'components/H5'
 
 
 const LoginContainer = styled.div`
@@ -24,10 +24,9 @@ const LoginContainer = styled.div`
 `;
 
 const LoginWrapper = styled.div`
-  border: 1px solid #ccc;
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 3px 30px rgba(0,0,0,.8);
+  background-color: #F2F2F2;
 `;
 
 const styles = theme => ({
@@ -81,11 +80,11 @@ function LoginMe(props) {
         <LoginContainer>
           <Row middle="xs">
             <Form className={classes.container}>
-              <Col xs={10} xsOffset={2} sm={8} smOffset={2} md={4} mdOffset={4}>
+              <Col xs={10} xsOffset={1} sm={8} smOffset={2} md={4} mdOffset={4}>
                 <LoginWrapper>
                   <Row>
                     <Col xs={12} sm={12} md={12} lg={12}>
-                      <H2 align="center">Faça seu Login</H2>
+                      <H5 align="center">Faça seu Login</H5>
                     </Col>
                     <Col xs={12} sm={12} md={12} lg={12}>
                       <div className="group">

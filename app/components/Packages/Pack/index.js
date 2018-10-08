@@ -20,8 +20,12 @@ const PackWrapper = styled.div`
 
 const PackImage = styled.img`
   display: block;
-  padding: 25px;
-  width: 100px;
+  width: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  @media (max-width: 780px) {
+    padding-bottom: 20px;
+  }
 `;
 
 const PackTitle = styled.h4`
@@ -30,16 +34,23 @@ const PackTitle = styled.h4`
   margin: 0px 0px 5px 0px;
   padding: 0px 0px 0px 10px;
   text-transform: uppercase;
+  @media (max-width: 780px) {
+    text-align: center;
+  }
 `;
 
 const PackIntro = styled.div`
   font-size: 1.0em;
   padding: 0px 0px 0px 10px;
+  @media (max-width: 780px) {
+    text-align: center;
+  }
 `;
 
 const PackCost = styled.div`
   font-size: 1.3em;
   margin: 0px 0px 5px 0px;
+  text-align: center;
 `;
 
 const PackLinkDetails = styled.a`
@@ -103,18 +114,18 @@ function Pack(props) {
   return (
     <PackWrapper shadow={props.active}>
       <Row middle="xs" between="xs">
-        <Col xs={2} sm={2} md={1} lg={1}>
+        <Col xs={12} sm={2} md={1} lg={1}>
           <PackImage src={picture}/>
         </Col>
-        <Col xs={10} sm={6} md={6} lg={6}>
+        <Col xs={12} sm={6} md={6} lg={6}>
           <PackTitle>{props.bundle.name}</PackTitle>
           <PackIntro>{props.bundle.statement}</PackIntro>
         </Col>
-        <Col xs={6} sm={2} md={3} lg={3}>
+        <Col xs={12} sm={2} md={3} lg={3}>
           <PackCost><strong>R$ {props.bundle.price.amount.toFixed(2).replace('.', ',')}</strong> em 10x s/juros</PackCost>
           {/* <PackLinkDetails>ver mais detalhes do plano</PackLinkDetails> */}
         </Col>
-        <Col xs={6} sm={2} md={2} lg={2}>
+        <Col xs={12} sm={2} md={2} lg={2}>
           <PackSubmit onClick={bundleCheckout}>
             <AwesomeButton type="secondary">Continuar</AwesomeButton>
           </PackSubmit>

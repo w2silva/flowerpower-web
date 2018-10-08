@@ -10,6 +10,7 @@ import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import Profile from './Profile'
 import iconeHumanos from 'images/icone-humanos.png';
 import iconeAnimals from 'images/icone-animais.png';
+import NewProfiles from 'components/NewProfiles'
 
 const ClientProfileWrapper = styled.div`
   position: relative;
@@ -35,7 +36,8 @@ function ClientProfile(props) {
     <ClientProfileWrapper>
       <Grid>
         <ClientProfileIntro>Você ainda possui créditos para realizar <strong style={{ color: `purple` }}>X terapias</strong><br />selecione o novo perfil</ClientProfileIntro>
-        <ProfilesWrapper>
+        <NewProfiles color={'black'} to={'/quiz'}/>
+        {/*<ProfilesWrapper>
           <Row middle="xs" center="xs">
             <Col>
               <Profile src={iconeHumanos} getQuizzes={props.getQuizzes} title='Para mim ou parente' profileType='human'/>
@@ -44,7 +46,7 @@ function ClientProfile(props) {
               <Profile src={iconeAnimals} getQuizzes={props.getQuizzes} title='Para meu cão ou gato' profileType='pet'/>
             </Col>
           </Row>
-        </ProfilesWrapper>
+        </ProfilesWrapper>*/}
       </Grid>
     </ClientProfileWrapper>
   );

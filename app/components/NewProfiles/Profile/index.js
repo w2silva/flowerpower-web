@@ -20,12 +20,12 @@ const Button = styled.a`
 
 const ProfileImage = styled.img`
   @media (max-width: 780px) {
-    max-width: 70px;
+    max-width: 100px;
   }
   @media (min-width: 780px) {
     max-width: 140px;
   }
-  box-shadow: ${props => props.selected ? '0 3px 30px rgba(0,0,0,.8);' : ''}
+  box-shadow: ${props => props.selected ? '0 3px 30px rgba(65,116,177,.6);' : ''}
   padding: 0px 0;
   border-radius: 50%;
 `;

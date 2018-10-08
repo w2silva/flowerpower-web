@@ -28,12 +28,22 @@ const HeaderStyled = styled.div`
   font-size: 1em;
   padding: 20px 0px 30px 0px;
   overflow: hidden;
-  height: ${props => props.button ? '500px' : '300px'} !important;
   margin-bottom: 4em;
+  @media (min-width: 780px) {
+    height: ${props => props.button ? '500px' : '400px'} !important;
+  }
+  @media (max-width: 780px) {
+    height: ${props => props.button ? '500px' : '300px'} !important;
+  }
 `;
 
 const BurgerWrapper = styled.a `
-  font-size: 4em;
+  @media (max-width: 780px) {
+    font-size: 4em;
+  }
+  @media (min-width: 780px) {
+    visibility: hidden
+  }
 `;
 
 const HeaderEllipsis = styled.div`
@@ -59,7 +69,7 @@ const HeaderEllipsis = styled.div`
   @media (min-width: 780px) {
     border-bottom-left-radius: 100% 60%;
     border-bottom-right-radius: 100% 60%;
-    height: ${props => props.button ? '850px' : '650px'};
+    height: ${props => props.button ? '850px' : '750px'};
   }
 `;
 
@@ -102,14 +112,15 @@ export class Header extends React.PureComponent { // eslint-disable-line react/p
   }
 
   handleStateChange = (state) => {
-    this.setState({ menuOpen: state.isOpen });
+    this.setState({ isOpen: state.isOpen });
   }
 
   closeMenu = () => {
-    this.setState({ menuOpen: false });
+    this.setState({ isOpen: false });
   }
 
   render() {
+    console.log(this.state.isOpen);
     return (
       <HeaderStyled button={this.props.button}>
         <HeaderEllipsis button={this.props.button}/>

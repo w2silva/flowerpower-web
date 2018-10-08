@@ -126,7 +126,7 @@ function Register(props) {
       <RegisterContainer>
         <Form className={classes.container}>
           <Row middle="xs">
-            <Col xs={8} xsOffset={2} sm={8} smOffset={2} md={6} mdOffset={3}>
+            <Col xs={10} xsOffset={1} sm={8} smOffset={2} md={6} mdOffset={3}>
               <RegisterWrapper>
                 <Row>
                   <Col xs={12} sm={12} md={12} lg={12}>
