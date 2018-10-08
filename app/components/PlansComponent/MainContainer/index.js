@@ -9,8 +9,8 @@ import styled from 'styled-components';
 // import styled from 'styled-components';
 import H2 from 'components/H2'
 import Packages from 'components/Packages'
-import sideLeftImage from 'images/img-lateral-esquerda-planos.jpg';
-import sideRightImage from 'images/img-lateral-direita-planos.jpg';
+import sideLeftImage from 'images/img-lateral-esquerda-planos.png';
+import sideRightImage from 'images/img-lateral-direita-planos.png';
 
 
 const Intro = styled.div`

@@ -31,6 +31,10 @@ const ScheduleWrapper = styled.div`
   }
 `;
 
+const ButtonWrapper = styled.div`
+  margin: 20px 20px 0px 20px;
+`;
+
 const ScheduleContent = styled.div`
   color: white;
   padding: 100px 120px 10px 30px;
@@ -88,13 +92,15 @@ function Schedule() {
           <Row middle="xs">
             <Col xs={12} sm={12} md={8} lg={8}>
               <ScheduleBody>
-                Nosso sistema foi desenvolvido com extrema expertise da área de conhecimentos de casos práticos, mas se houver maiores dúvidas, pergunte a um terapeuta floral e <ScheduleLink href="/quiz">agende sua consulta hoje mesmo, clicando no botão</ScheduleLink>
+                Nosso sistema foi desenvolvido com extrema expertise da área de conhecimentos de casos práticos, mas se houver maiores dúvidas, pergunte a um terapeuta floral e <ScheduleLink href="/quiz">agende sua consulta hoje mesmo, clicando no botão ao lado.</ScheduleLink>
               </ScheduleBody>
             </Col>
             <Col xs={12} sm={12} md={4} lg={4}>
-              <Link to="/me">
-                <AwesomeButton type="secondary">AGENDAR SUA CONSULTA</AwesomeButton>
-              </Link>
+              <ButtonWrapper>
+                <Link to="/me">
+                  <AwesomeButton type="secondary">AGENDE SUA CONSULTA</AwesomeButton>
+                </Link>
+              </ButtonWrapper>
               {/*<ScheduleButton href="/quiz">agendar uma consulta</ScheduleButton>*/}
             </Col>
           </Row>

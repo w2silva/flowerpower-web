@@ -19,7 +19,12 @@ const Button = styled.a`
 `
 
 const ProfileImage = styled.img`
-  max-width: 140px;
+  @media (max-width: 780px) {
+    max-width: 70px;
+  }
+  @media (min-width: 780px) {
+    max-width: 140px;
+  }
   box-shadow: ${props => props.selected ? '0 3px 30px rgba(0,0,0,.8);' : ''}
   padding: 0px 0;
   border-radius: 50%;
@@ -30,13 +35,17 @@ const ProfileTitle = styled.div`
   font-size: 1.1em;
 `;
 
+const Figure = styled.figure`
+  background-color: transparent !important
+`;
+
 function Profile(props) {
   return (
     <ProfileWrapper>
       <Row middle="xs" center="xs">
         <Col>
           <div className="container effect">
-            <figure className="effect-steve">
+            <Figure className="effect-steve">
                 {props.to ?
                   <Link to={props.to}>
                     <ProfileImage src={props.src} />
@@ -46,7 +55,7 @@ function Profile(props) {
                     <ProfileImage selected={props.selectedProfile === props.target} src={props.src} />
                   </Button>
                 }
-            </figure>
+            </Figure>
           </div>
           <div className="title">
             <a

@@ -15,35 +15,49 @@ const NewProfilesWrapper = styled.div`
   margin: 10px 0 5em 0;
 `;
 
+const ProfileLeft = styled.div`
+  @media (min-width: 780px) {
+    margin-left: 200px
+  }
+`;
+
+const ProfileRight = styled.div`
+  @media (min-width: 780px) {
+    margin-right: 200px
+  }
+`;
+
 function NewProfiles(props) {
   return (
-    <Grid>
+    <Grid style={{paddingRight: 0, paddingLeft: 0}}>
     <NewProfilesWrapper>
       <Row middle="xs" around="xs">
-        <Col xs={3} sm={3} md={3} lg={3} />
-        <Col xs={3} sm={3} md={3} lg={3} >
-          <Profile
-            src={iconeHumanos}
-            title='Para amigo ou parente'
-            target='human'
-            to={props.to}
-            color={props.color}
-            selectProfile={props.selectProfile}
-            selectedProfile={props.selectedProfile}
-          />
+        <Col xs={6} sm={6} md={6} lg={6} >
+          <ProfileLeft>
+            <Profile
+              src={iconeHumanos}
+              title='Para amigo ou parente'
+              target='human'
+              to={props.to}
+              color={props.color}
+              selectProfile={props.selectProfile}
+              selectedProfile={props.selectedProfile}
+            />
+          </ProfileLeft>
         </Col>
-        <Col xs={3} sm={3} md={3} lg={3} >
-          <Profile
-            src={iconeAnimals}
-            title='Para meu cão ou gato'
-            target='pet'
-            to={props.to}
-            color={props.color}
-            selectProfile={props.selectProfile}
-            selectedProfile={props.selectedProfile}
-          />
+        <Col xs={6} sm={6} md={6} lg={6} >
+          <ProfileRight>
+            <Profile
+              src={iconeAnimals}
+              title='Para meu cão ou gato'
+              target='pet'
+              to={props.to}
+              color={props.color}
+              selectProfile={props.selectProfile}
+              selectedProfile={props.selectedProfile}
+            />
+          </ProfileRight>
         </Col>
-        <Col xs={3} sm={3} md={3} lg={3} />
       </Row>
     </NewProfilesWrapper>
     </Grid>

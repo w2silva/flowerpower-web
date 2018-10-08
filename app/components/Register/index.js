@@ -42,10 +42,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 // `;
 
 const RegisterWrapper = styled.div`
-  border: 1px solid #ccc;
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 3px 30px rgba(0,0,0,.8);
+  background-color: #F2F2F2;
 `;
 
 const RegisterContainer = styled.div`
@@ -131,7 +130,7 @@ function Register(props) {
               <RegisterWrapper>
                 <Row>
                   <Col xs={12} sm={12} md={12} lg={12}>
-                    <H2 align="center">Primeiro faça seu cadastro</H2>
+                    <H5 align="center">Primeiro faça seu cadastro</H5>
                   </Col>
                   <Col xs={12} sm={12} md={6} lg={6}>
                     <div className="group">

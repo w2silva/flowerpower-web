@@ -16,14 +16,22 @@ const Img = styled.img`
   background-color: #779ccb;
   border-radius: 100%;
   padding: 12em;
-  width: 412px;
-  height: 412px;
+  @media (max-width: 780px) {
+    width: 212px;
+    height: 212px;
+    margin-top: 30px;
+  }
+  @media (min-width: 780px) {
+    width: 412px;
+    height: 412px;
+  }
   opacity: 0.5;
 `;
 
 const OwnerProfileWrapper = styled.div`
   margin-bottom: 30px;
   line-height: 2.0;
+  font-size: 1.3em;
 `;
 
 const ImgWrapper = styled.div`
@@ -50,16 +58,20 @@ function OwnerProfile(props) {
         <Col xs={12} sm={12} md={6} lg={6}>
           <H2>Quem é Patrícia ?</H2>
           <OwnerProfileWrapper>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in justo ullamcorper, sollicitudin turpis dapibus, hendrerit tortor. Morbi tincidunt non sapien nec pretium. Donec elementum tristique consequat. Cras ut orci at felis accumsan ullamcorper non quis risus. Ut at ex mi. Aenean ac varius elit, eu congue dolor.</span>
+            <span>Patricia tem 31 anos, é formada em Engenharia pelo Instituto Mauá de Engenharia e em Coaching Profissional pelo Instituto Brasileiro de Coaching. Desde muito cedo começou a sentir interesse por assuntos relacionados à psicologia e à formação de hábitos, padrões de comportamento e pensamento humanos.</span>
             <br />
             <br />
-            <span>Mauris aliquam justo dolor, ut pulvinar nulla pellentesque nec. Praesent dapibus lorem eros, ut bibendum elit sagittis vel.</span>
+            <span>Autora desde cedo, escreveu seus primeiros textos e poemas aos 17 anos, mas não chegou a publicá-los.</span>
             <br />
             <br />
-            <strong>Duis justo odio, blandit quis augue ac, faucibus faucibus enim. Nulla facilisi.</strong>
+            <span>Ao longo de sua busca por autoconhecimento conheceu a terapia floral, método vibracional de equilíbrio de emoções e energias e desde então tem visto excelentes resultados e transformações em seus pacientes e coachees que a utilizam.</span>
+            <br />
+            <br />
+            <span>O interesse natural pela engenharia e sua curiosidade sobre o ser humano fazem com que Patricia esteja sempre criando e buscando novos métodos de Coaching que levem a resultados extraordinários – que são sempre potencializados com a ajuda da terapia floral.</span>
+
           </OwnerProfileWrapper>
           {props.button?
-            <Link to="/about">
+            <Link to="/biography">
               <AwesomeButton type="secondary">CONHEÇA MAIS SOBRE MIM <Arrow/></AwesomeButton>
               {/*<OwnerProfileButton href="/about">conheça mais sobre mim <Arrow/></OwnerProfileButton>*/}
             </Link>

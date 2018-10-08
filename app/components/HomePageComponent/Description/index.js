@@ -26,6 +26,7 @@ const DescriptionImg = styled.img`
 const DescriptionWrapper = styled.div`
   margin-bottom: 30px;
   line-height: 2.0;
+  font-size: 1.3em;
 `;
 
 // const DescriptionButton = styled.a`
@@ -52,13 +53,13 @@ export class Description extends React.PureComponent { // eslint-disable-line re
           <Col xs={12} sm={12} md={6} lg={6}>
             <H2>O que são florais?</H2>
             <DescriptionWrapper>
-              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in justo ullamcorper, sollicitudin turpis dapibus, hendrerit tortor. Morbi tincidunt non sapien nec pretium. Donec elementum tristique consequat. Cras ut orci at felis accumsan ullamcorper non quis risus. Ut at ex mi. Aenean ac varius elit, eu congue dolor. Praesent elit purus, elementum nec molestie nec, molestie ut sapien. Nulla consequat justo in volutpat tincidunt. Vestibulum vitae consequat tortor.</span>
+              <span>Os florais são essências extraídas das flores que têm o poder de transformar emoções e vibrações. Uma essência floral não contém a substância química extraída das flores, somente a assinatura energética delas, o que chamamos de essência vibracional.</span>
               <br />
               <br />
-              <span>Mauris aliquam justo dolor, ut pulvinar nulla pellentesque nec. Praesent dapibus lorem eros, ut bibendum elit sagittis vel.</span>
+              <span>Quando utilizamos uma essência floral, ela atua em diversos de nossos corpos além do físico, como o corpo etérico, emocional e mental. O floral estimula a conexão com nosso verdadeiro Eu superior, que tem uma ligação muito mais direta com nosso Criador e tem muito mais sabedoria do que nosso Ego e nossa personalidade atual.</span>
               <br />
               <br />
-              <strong>Duis justo odio, blandit quis augue ac, faucibus faucibus enim. Nulla facilisi.</strong>
+              <span>Nosso Eu superior acumula e guarda o conhecimento de diversas vivências das quais não temos a capacidade de lembrar conscientemente. O uso dos florais favorece esses aprendizados de forma mais rápida, nos levando a uma evolução pessoal e transformação de tendências negativas e hábitos que não nos favorecem.</span>
             </DescriptionWrapper>
             <Link to="/about">
               <AwesomeButton type="secondary">SAIBA MAIS SOBRE FLORAIS <Arrow /></AwesomeButton>

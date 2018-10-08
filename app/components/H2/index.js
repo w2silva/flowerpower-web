@@ -10,6 +10,7 @@ const H2 = styled.h2`
   padding: 0px;
   font-weight: 400;
   color: #403151;
+  font-size: 2.5em;
   text-align: ${props => props.align};
 `;
 

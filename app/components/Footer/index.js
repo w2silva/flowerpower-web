@@ -25,10 +25,10 @@ const FooterEllipsis = styled.div`
   position: absolute;
   border-bottom-left-radius: 100% 100%;
   border-bottom-right-radius: 100% 100%;
-  width: 120%;
+  width: 100%;
   height: 150px;
   top: -110px;
-  left: -70%;
+  left: -50%;
   transform: translateX(50%);
   background: linear-gradient(to bottom, transparent, white 75%);
   @media (max-width: 780px) {

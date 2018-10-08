@@ -12,12 +12,14 @@ import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import bgBannerHome from 'images/bg-banner-home.png';
 import Button from 'components/Button';
 import Arrow from 'react-icons/lib/io/android-arrow-forward';
+import Burger from 'react-icons/lib/md/menu';
 import { AwesomeButton } from 'react-awesome-button';
+import { stack as Menu } from 'react-burger-menu';
 
 import Logo from './Logo'
 import HeaderMenu from './HeaderMenu'
 import Info from './Info'
-
+import HeaderBurgerMenu from './HeaderBurgerMenu'
 // Create a <Title> react component that renders an <h1> which is
 // centered, palevioletred and sized at 1.5em
 const HeaderStyled = styled.div`
@@ -25,20 +27,23 @@ const HeaderStyled = styled.div`
   width: 100%;
   font-size: 1em;
   padding: 20px 0px 30px 0px;
-  margin-bottom: 4em;
   overflow: hidden;
-  height: ${props => props.button ? '500px' : '300px'}
+  height: ${props => props.button ? '500px' : '300px'} !important;
+  margin-bottom: 4em;
+`;
+
+const BurgerWrapper = styled.a `
+  font-size: 4em;
 `;
 
 const HeaderEllipsis = styled.div`
   position: absolute;
   color: white;
-  border-bottom-left-radius: 100% 100%;
-  border-bottom-right-radius: 100% 100%;
-  width: 120%;
-  height: ${props => props.button ? '850px' : '650px'};
+  border-bottom-left-radius: 100% 60%;
+  border-bottom-right-radius: 100% 60%;
+  width: 100%;
   top: -350px;
-  left: -70%;
+  left: -50%;
   transform: translateX(50%);
   background-image: url(${bgBannerHome});
   background-color: transparent;
@@ -47,8 +52,14 @@ const HeaderEllipsis = styled.div`
   background-size: cover;
 
   @media (max-width: 780px) {
-    border-bottom-left-radius: 150% 100%;
-    border-bottom-right-radius: 150% 100%;
+    border-bottom-left-radius: 100% 10%;
+    border-bottom-right-radius: 100% 10%;
+    height: ${props => props.button ? '850px' : '650px'};
+  }
+  @media (min-width: 780px) {
+    border-bottom-left-radius: 100% 60%;
+    border-bottom-right-radius: 100% 60%;
+    height: ${props => props.button ? '850px' : '650px'};
   }
 `;
 
@@ -76,54 +87,85 @@ const HeaderNav = styled.div`
 //   }
 // `;
 
-function Header(props) {
-  return (
-    <HeaderStyled button={props.button}>
-      <HeaderEllipsis button={props.button}/>
-      <HeaderNav>
-        <Grid>
-            <Row top="xs" top="sm" middle="md" middle="lg" between="xs">
-              <Col xs={3} sm={3} md={2} lg={2}>
-                <Logo/>
-              </Col>
-              <Col xs={9} sm={9} md={10} lg={10}>
-                <HeaderMenu
-                  handleClick={props.handleClick}
-                  titles={['Faça sua Terapia']}
-                  to={['/quiz']}/>
-                <HeaderMenu
-                  handleClick={props.handleClick}
-                  titles={['Home', 'Sobre Florais', 'Quem é Patrícia?', 'Nossos Planos', 'Contato', 'Minha Conta']}
-                  scroll={['top', 'description']}
-                  to={['/biography', '/plans', '/contact', '/me']}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12}>
-                <Row center="xs">
-                  <Col xs={10}>
-                    <Info button={props.button}/>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-            { props.button ?
-              <Row center="xs" style={{ margin: `6em 0 5em 0` }}>
-                <Col>
-                  <Link to="/therapy">
-                    {/*<HeaderButton>faça agora sua terapia <Arrow/></HeaderButton>*/}
-                    <AwesomeButton>FAÇA AGORA SUA TERAPIA <Arrow/></AwesomeButton>
-                  </Link>
+export class Header extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false
+    }
+  }
+
+  openMenu = () => {
+    this.setState({
+      isOpen: true
+    })
+  }
+
+  handleStateChange = (state) => {
+    this.setState({ menuOpen: state.isOpen });
+  }
+
+  closeMenu = () => {
+    this.setState({ menuOpen: false });
+  }
+
+  render() {
+    return (
+      <HeaderStyled button={this.props.button}>
+        <HeaderEllipsis button={this.props.button}/>
+        <HeaderBurgerMenu closeMenu={this.closeMenu} isOpen={this.state.isOpen} handleStateChange={this.handleStateChange}/>
+        <HeaderNav>
+          <Grid>
+              <Row top="xs" top="sm" middle="md" middle="lg" between="xs">
+                <Col xs={9} sm={9} md={2} lg={2}>
+                  <Logo/>
+                </Col>
+                <Col xs={3} sm={0} md={0} lg={0}>
+                  <BurgerWrapper onClick={this.openMenu}>
+                    <Burger/>
+                  </BurgerWrapper>
+                </Col>
+                <Col xs={0} sm={3} md={10} lg={10}>
+                  <HeaderMenu
+                    handleClick={this.props.handleClick}
+                    titles={['Faça sua Terapia']}
+                    mobilehidden={true}
+                    to={['/quiz']}/>
+                  <HeaderMenu
+                    handleClick={this.props.handleClick}
+                    titles={['Home', 'Sobre Florais', 'Quem é Patrícia?', 'Nossos Planos', 'Contato', 'Minha Conta']}
+                    scroll={['top', 'description']}
+                    mobilehidden={true}
+                    to={['/biography', '/plans', '/contact', '/me']}
+                  />
                 </Col>
               </Row>
-              :
-              ''
-          }
-        </Grid>
-      </HeaderNav>
-    </HeaderStyled>
-  );
+              <Row>
+                <Col xs={12}>
+                  <Row center="xs">
+                    <Col xs={10}>
+                      <Info button={this.props.button}/>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+              { this.props.button ?
+                <Row center="xs" style={{ margin: `6em 0 5em 0` }}>
+                  <Col>
+                    <Link to="/therapy">
+                      {/*<HeaderButton>faça agora sua terapia <Arrow/></HeaderButton>*/}
+                      <AwesomeButton>FAÇA AGORA SUA TERAPIA <Arrow/></AwesomeButton>
+                    </Link>
+                  </Col>
+                </Row>
+                :
+                ''
+            }
+          </Grid>
+        </HeaderNav>
+      </HeaderStyled>
+    );
+  }
 }
 
 Header.propTypes = {
