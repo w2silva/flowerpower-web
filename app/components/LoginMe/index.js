@@ -23,6 +23,18 @@ const LoginContainer = styled.div`
   }
 `;
 
+const Button = styled.a`
+  color: #007bff !important;
+  cursor: pointer;
+  font-weight: 500;
+`;
+
+const RegisterContainer = styled.div`
+  text-align: center;
+  font-size: 15px;
+  padding-top: 20px
+`;
+
 const LoginWrapper = styled.div`
   padding: 20px;
   border-radius: 20px;
@@ -123,6 +135,11 @@ function LoginMe(props) {
               </Col>
             </Form>
           </Row>
+          <RegisterContainer>
+            <span>
+              Não possui cadastro? Faça seu <Button onClick={props.hideLogin}>cadastro</Button> agora!
+            </span>
+          </RegisterContainer>
         </LoginContainer>
       </Grid>
       <div className="text-center">

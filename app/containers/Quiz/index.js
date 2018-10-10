@@ -260,6 +260,12 @@ export class Quiz extends React.PureComponent { // eslint-disable-line react/pre
     })
   }
 
+  hideLogin = () => {
+    this.setState({
+      activeLogin: false
+    })
+  }
+
   selectProfile = (profile) => (e) => {
     e.preventDefault();
     this.setState({
@@ -287,6 +293,7 @@ export class Quiz extends React.PureComponent { // eslint-disable-line react/pre
         updateLogin={this.updateLogin}
         activeLogin={this.state.activeLogin}
         showLogin={this.showLogin}
+        hideLogin={this.hideLogin}
         loginSuccess={this.props.loginSuccess}
         login={this.state.login}
         register={this.state.register}

@@ -5,11 +5,27 @@
  */
 
 import {
-  DEFAULT_ACTION,
+  GET_SUPPLIERS,
+  SUPPLIERS_SUCCESS,
+  SUPPLIERS_FAILURE,
 } from './constants';
 
-export function defaultAction() {
+export function getSuppliers() {
   return {
-    type: DEFAULT_ACTION,
+    type: GET_SUPPLIERS,
+  };
+}
+
+export function suppliersSuccess(suppliers) {
+  return {
+    type: SUPPLIERS_SUCCESS,
+    suppliers
+  };
+}
+
+export function suppliersFailure(error) {
+  return {
+    type: SUPPLIERS_FAILURE,
+    error
   };
 }

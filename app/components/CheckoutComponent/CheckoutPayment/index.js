@@ -21,10 +21,16 @@ const CheckoutPaymentWrapper = styled.div`
 const CheckoutPaymentTitle = styled.div`
   text-transform: uppercase;
   margin-bottom: 10px;
+  font-size: 1.3em;
+`;
+
+const Method = styled.div`
+  font-size: 1.3em;
 `;
 
 const CheckoutPaymentRadio = styled.input`
   position: relative;
+  margin-top: 2em;
 
   &:checked,
   &:not(:checked) {
@@ -89,16 +95,16 @@ function CheckoutPayment(props) {
   return (
     <Grid>
       <CheckoutPaymentWrapper>
-        <CheckoutPaymentTitle>pagamento</CheckoutPaymentTitle>
-        <Row middle="xs" between="xs">
-          <Col xs={12} sm={12} md={4} lg={4}>
+        <CheckoutPaymentTitle>Selecione Método de Pagamento</CheckoutPaymentTitle>
+        <Row middle="xs" between="xs" style={{marginTop: '40px'}}>
+          <Col xs={12} sm={12} md={4} lg={4} lgOffset={2}>
             <Row middle="xs">
               <Col xs={2}>
                 <CheckoutPaymentRadio type="radio" checked={props.payment.type === 'creditcard'}/>
                 <label onClick={selectPaymentType('creditcard')} >&nbsp;</label>
               </Col>
               <Col xs={10}>
-                <div>Cartão de Crédito</div>
+                <Method>Cartão de Crédito</Method>
                 <div>&nbsp;</div>
               </Col>
             </Row>
@@ -110,11 +116,12 @@ function CheckoutPayment(props) {
                 <label onClick={selectPaymentType('boleto')} >&nbsp;</label>
               </Col>
               <Col xs={10}>
-                <div>Boleto Bancário</div>
+                <Method>Boleto Bancário</Method>
                 <div>&nbsp;</div>
               </Col>
             </Row>
           </Col>
+          <Col xs={12} sm={12} md={4} lg={2}/>
         </Row>
         { props.payment.type === 'creditcard' &&
           <CheckoutPaymentCreditCard payment={props.payment}/>

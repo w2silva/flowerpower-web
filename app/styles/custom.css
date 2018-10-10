@@ -1,3 +1,10 @@
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
 .aws-btn {
   --button-default-height: 40px;
   --button-font-weight: 600;

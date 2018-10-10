@@ -4,4 +4,6 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/Benefits/DEFAULT_ACTION';
+export const GET_PURCHASES = 'app/Benefits/GET_PURCHASES';
+export const PURCHASES_SUCCESS = 'app/Benefits/PURCHASES_SUCCESS';
+export const PURCHASES_FAILURE = 'app/Benefits/PURCHASES_FAILURE';

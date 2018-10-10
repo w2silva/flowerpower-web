@@ -9,8 +9,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import RegisterMe from './RegisterMe'
-import LoginMe from './LoginMe'
+import RegisterMe from 'components/RegisterMe'
+import LoginMe from 'components/LoginMe'
 import styled from 'styled-components';
 import Therapy from './Therapy';
 import ProfileSelect from './ProfileSelect';

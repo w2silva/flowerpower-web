@@ -9,6 +9,9 @@ import {
   REQUEST_LOGIN,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  REQUEST_LOGOUT,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE,
   TOKEN_SUCCESS,
 } from './constants';
 
@@ -30,6 +33,20 @@ function loginReducer(state = initialState, action) {
         .delete('requestingLogin')
         .delete('loginSuccess')
         .delete('token');
+    case REQUEST_LOGOUT:
+      return state.set('requestingLogout', fromJS(true))
+        .delete('logoutSuccess')
+        .delete('logoutFailure');
+    case LOGOUT_SUCCESS:
+      return state.set('logoutSuccess', fromJS(true))
+        .delete('loginSuccess')
+        .delete('requestingLogout')
+        .delete('logoutFailure')
+        .delete('token');
+    case LOGOUT_FAILURE:
+      return state.set('logoutFailure', fromJS(action.error))
+        .delete('requestingLogout')
+        .delete('logoutSuccess');
     case TOKEN_SUCCESS:
       return state.set('token', fromJS(action.token));
     default:

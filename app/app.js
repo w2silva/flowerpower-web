@@ -38,6 +38,7 @@ import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess';
 import 'styles/custom.css';
 import 'react-awesome-button/dist/styles.css';
+import 'react-credit-cards/lib/styles-compiled.css';
 
 /* eslint-enable import/no-unresolved, import/extensions */
 

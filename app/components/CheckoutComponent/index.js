@@ -15,25 +15,11 @@ import H2 from 'components/H2'
 import CheckoutItems from './CheckoutItems'
 import CheckoutPayment from './CheckoutPayment'
 import CheckoutSignup from './CheckoutSignup'
+import { AwesomeButton } from 'react-awesome-button';
 
 const MarginFooter = styled.div`
   margin: 1em 0px 5em 0;
   text-align: center;
-`;
-
-const FormSubmit = styled.button`
-  display: inline-block;
-  border: none;
-  background-color: #779ccb;
-  color: white;
-  border-radius: 50px;
-  padding: 10px 25px;
-  margin: 0px 10px;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: .8em;
-  box-shadow: 4px 4px 20px 0px #3336;
 `;
 
 
@@ -76,7 +62,7 @@ export class CheckoutComponent extends React.PureComponent {
           updateSignup={this.updateSignup}
           />
         <MarginFooter>
-          <FormSubmit>concluir compra e prosseguir com terapia</FormSubmit>
+          <AwesomeButton type="secondary">concluir compra e prosseguir com terapia</AwesomeButton>
         </MarginFooter>
         <Footer />
       </div>

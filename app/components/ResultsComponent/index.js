@@ -13,7 +13,7 @@ import Footer from 'components/Footer'
 import Download from './Download'
 import Mailing from './Mailing'
 
-function ResultsComponent() {
+function ResultsComponent(props) {
   return (
     <div>
       <Helmet>
@@ -23,7 +23,7 @@ function ResultsComponent() {
       <Header/>
       {/* <Profile/> */}
       <Download/>
-      <Mailing/>
+      <Mailing suppliers={props.suppliers}/>
       <Footer/>
     </div>
   );
