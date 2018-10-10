@@ -45,6 +45,7 @@ const ToggleProfile = styled.div`
 
 class Packages extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
+    console.log(this.props)
     return (
       <Grid>
         <PackagesWrapper>
@@ -56,11 +57,15 @@ class Packages extends React.Component { // eslint-disable-line react/prefer-sta
               <input type="radio" /> animal
             </label>
           </ToggleProfile>*/}
-          { this.props.bundles && this.props.bundles.map((b) =>
-            <Pack
-              bundle={b}
-              bundleCheckout={this.props.bundleCheckout}/>
-          )}
+          { this.props.bundles &&
+            this.props.bundles.filter((b) => !this.props.currentDiagnosis || b.therapies.filter((t) => t.therapy === this.props.currentDiagnosis.therapy._id).length > 0)
+              .map((b) =>
+                <Pack
+                  currentDiagnosis={this.props.currentDiagnosis}
+                  bundle={b}
+                  bundleCheckout={this.props.bundleCheckout}/>
+              )
+          }
         </PackagesWrapper>
       </Grid>
     );

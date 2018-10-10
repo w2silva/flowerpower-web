@@ -217,6 +217,11 @@ export class Quiz extends React.PureComponent { // eslint-disable-line react/pre
     this.props.dispatch(push('/results'));
   }
 
+  goToPlanSelection = (e) => {
+    e.preventDefault();
+    this.props.dispatch(push('/plans'));
+  }
+
   updateRegister = (attrName) => (e) => {
     this.setState({ register: { ...this.state.register, [attrName]: e.target.value } });
   };
@@ -307,6 +312,7 @@ export class Quiz extends React.PureComponent { // eslint-disable-line react/pre
         finishFlowers={this.finishFlowers}
         me={this.props.me}
         startTherapy={this.startTherapy}
+        goToPlanSelection={this.goToPlanSelection}
       />
     );
   }

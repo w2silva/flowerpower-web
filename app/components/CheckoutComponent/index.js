@@ -37,6 +37,12 @@ export class CheckoutComponent extends React.PureComponent {
     }
   }
 
+  makePayment = () => {
+    console.log(`[CheckoutComponent] bundle id: ${this.props.bundle.id}`)
+    console.log(`[CheckoutComponent] payment: ${JSON.stringify(this.state.payment)}`)
+    this.props.makePayment(this.props.bundle.id, this.state.payment)
+  }
+
   updatePayment = (payment) => {
     console.log('payment', payment)
     this.setState({ payment })
@@ -50,7 +56,7 @@ export class CheckoutComponent extends React.PureComponent {
       <div>
         <Helmet>
           <title>Quiz</title>
-          <meta name="description" content="Description of Quiz" />
+          <meta name="description" content="Pagamento" />
         </Helmet>
         <Header />
         <H2 align="center">Checkout</H2>
@@ -59,10 +65,13 @@ export class CheckoutComponent extends React.PureComponent {
           updatePayment={this.updatePayment}
           payment={this.state.payment}/>
         <CheckoutSignup
-          updateSignup={this.updateSignup}
-          />
+          updateSignup={this.updateSignup}/>
         <MarginFooter>
-          <AwesomeButton type="secondary">concluir compra e prosseguir com terapia</AwesomeButton>
+          <AwesomeButton
+            type="secondary"
+            onClick={this.makePayment}>
+            concluir compra e prosseguir com terapia
+          </AwesomeButton>
         </MarginFooter>
         <Footer />
       </div>

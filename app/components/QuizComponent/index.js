@@ -14,6 +14,7 @@ import LoginMe from 'components/LoginMe'
 import styled from 'styled-components';
 import Therapy from './Therapy';
 import ProfileSelect from './ProfileSelect';
+import PrePurchaseResults from './PrePurchaseResults';
 
 const StartButton = styled.a`
   cursor: pointer;
@@ -83,9 +84,9 @@ function QuizComponent(props) {
           diagnosis={props.diagnosis}
         />}
       { props.diagnosis && props.diagnosis.state === 'waiting' &&
-        <div style={{marginBottom: '50px'}}>
-          Checkout
-        </div>
+        <PrePurchaseResults
+          goToPlanSelection={props.goToPlanSelection}
+        />
       }
       <Footer/>
     </div>

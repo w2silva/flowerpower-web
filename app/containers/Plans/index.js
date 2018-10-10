@@ -16,10 +16,13 @@ import injectReducer from 'utils/injectReducer';
 import PlansComponent from 'components/PlansComponent';
 
 import { bundleCheckout } from 'containers/Checkout/actions';
+import { makeSelectDiagnosis } from 'containers/Quiz/selectors';
+import makeSelectMe from 'containers/Me/selectors';
+
 import { makeSelectBundles } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import { requestBundles } from './actions'
+import { requestBundles } from './actions';
 
 export class Plans extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -34,6 +37,7 @@ export class Plans extends React.PureComponent { // eslint-disable-line react/pr
   render() {
     return (
       <PlansComponent
+        currentDiagnosis={this.props.diagnosis}
         bundles={this.props.bundles}
         bundleCheckout={this.bundleCheckout}
       />
@@ -47,6 +51,8 @@ Plans.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   bundles: makeSelectBundles(),
+  diagnosis: makeSelectDiagnosis(),
+  me: makeSelectMe(),
 });
 
 function mapDispatchToProps(dispatch) {

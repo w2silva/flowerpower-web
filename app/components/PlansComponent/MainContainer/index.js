@@ -62,6 +62,7 @@ function MainContainer(props) {
       <H2 align="center">Escolha seu plano</H2>
       <Intro>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in justo ullamcorper, sollicitudin turpis dapibus, hendrerit tortor. Morbi tincidunt non sapien nec pretium. Donec elementum tristique consequat.</Intro>
       <Packages
+        currentDiagnosis={props.currentDiagnosis}
         bundles={props.bundles}
         bundleCheckout={props.bundleCheckout}/>
     </div>

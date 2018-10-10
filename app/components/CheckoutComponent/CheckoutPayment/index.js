@@ -92,6 +92,16 @@ function CheckoutPayment(props) {
     }
   }
 
+  function updateCreditCard(creditCard) {
+    props.updatePayment({...payment, creditCard: creditCard})
+  }
+
+  function updateBoleto(boleto) {
+    props.updatePayment({...payment, boleto: boleto})
+  }
+
+
+
   return (
     <Grid>
       <CheckoutPaymentWrapper>
@@ -124,10 +134,14 @@ function CheckoutPayment(props) {
           <Col xs={12} sm={12} md={4} lg={2}/>
         </Row>
         { props.payment.type === 'creditcard' &&
-          <CheckoutPaymentCreditCard payment={props.payment}/>
+          <CheckoutPaymentCreditCard
+            payment={props.payment}
+            updateCreditCard={updateCreditCard}/>
         }
         { props.payment.type === 'boleto' &&
-          <CheckoutPaymentBoleto payment={props.payment}/>
+          <CheckoutPaymentBoleto
+            payment={props.payment}
+            updateBoleto={updateBoleto}/>
         }
       </CheckoutPaymentWrapper>
     </Grid>

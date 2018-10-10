@@ -39,6 +39,7 @@ export class PlansComponent extends React.PureComponent { // eslint-disable-line
         </Helmet>
         <Header button={false} handleClick={this.handleClick}/>
         <MainContainer
+          currentDiagnosis={this.props.currentDiagnosis}
           bundles={this.props.bundles}
           bundleCheckout={this.props.bundleCheckout}/>
         <Footer/>

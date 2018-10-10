@@ -11,23 +11,26 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
+import CheckoutComponent from 'components/CheckoutComponent';
+
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { makeSelectCheckoutBundle } from './selectors';
+import { makePayment } from './actions';
 import reducer from './reducer';
 import saga from './saga';
-import CheckoutComponent from 'components/CheckoutComponent';
 
 export class Checkout extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  submitTherapy = (e) => {
-    e.preventDefault();
-    this.props.dispatch(push('/checkout'));
+  makePayment = (bundleId, payment) => {
+    console.log(`[Checkout] bundle id: ${bundleId}`)
+    console.log(`[Checkout] payment: ${JSON.stringify(payment)}`)
+    this.props.dispatch(makePayment(bundleId, payment));
   }
 
   render() {
     return (
       <CheckoutComponent
-        submitTherapy={this.submitTherapy}
+        makePayment={this.makePayment}
         bundle={this.props.bundle}
       />
     );
