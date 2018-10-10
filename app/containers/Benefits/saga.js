@@ -5,32 +5,43 @@ import request from 'utils/request';
 import { makeSelectToken } from 'containers/Login/selectors';
 
 import {
-  GET_PURCHASES,
+  GET_ALL,
+  GET_BUNDLES,
 } from './constants';
 
 import {
-  purchasesSuccess,
-  purchasesFailure,
+  allSuccess,
+  allFailure,
+  bundlesSuccess,
+  bundlesFailure,
 } from './actions';
 
 
-export function* getPurchasesSaga() {
+export function* getAllSaga() {
   // 1. enviar os dados para o servidor
   const accessToken = yield select(makeSelectToken());
-  console.log(111);
   try {
     if (accessToken) {
+      const bundles = yield request('/bundles', {
+        accessToken,
+      });
+      const assets = yield request('/assets', {
+        accessToken,
+      });
+      const therapies = yield request('/therapies', {
+        accessToken,
+      });
       const purchases = yield request('/purchases/me', {
         accessToken,
       });
-      yield put(purchasesSuccess(purchases));
+      yield put(allSuccess(purchases, bundles, assets, therapies));
     }
   } catch (err) {
-    yield put(purchasesFailure(err.toString()));
+    yield put(allFailure(err.toString()));
   }
 }
 
 // Individual exports for testing
 export default function* defaultSaga() {
-  yield takeLatest(GET_PURCHASES, getPurchasesSaga);
+  yield takeLatest(GET_ALL, getAllSaga);
 }

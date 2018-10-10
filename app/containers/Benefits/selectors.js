@@ -13,6 +13,21 @@ const makeSelectPurchases = () => createSelector(
  selectBenefitsDomain,
  (substate) => substate.purchases
 );
+
+const makeSelectTherapies = () => createSelector(
+ selectBenefitsDomain,
+ (substate) => substate.therapies
+);
+
+const makeSelectBundles = () => createSelector(
+ selectBenefitsDomain,
+ (substate) => substate.bundles
+);
+
+const makeSelectAssets = () => createSelector(
+ selectBenefitsDomain,
+ (substate) => substate.assets
+);
 /**
  * Default selector used by Benefits
  */
@@ -25,5 +40,8 @@ const makeSelectBenefits = () => createSelector(
 export default makeSelectBenefits;
 export {
   selectBenefitsDomain,
-  makeSelectPurchases
+  makeSelectPurchases,
+  makeSelectBundles,
+  makeSelectAssets,
+  makeSelectTherapies
 };

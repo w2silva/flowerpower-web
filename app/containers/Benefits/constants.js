@@ -4,6 +4,6 @@
  *
  */
 
-export const GET_PURCHASES = 'app/Benefits/GET_PURCHASES';
-export const PURCHASES_SUCCESS = 'app/Benefits/PURCHASES_SUCCESS';
-export const PURCHASES_FAILURE = 'app/Benefits/PURCHASES_FAILURE';
+export const GET_ALL = 'app/Benefits/GET_ALL';
+export const ALL_SUCCESS = 'app/Benefits/ALL_SUCCESS';
+export const ALL_FAILURE = 'app/Benefits/ALL_FAILURE';

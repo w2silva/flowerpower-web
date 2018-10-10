@@ -8,6 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import H2 from 'components/H2';
+import { AwesomeButton } from 'react-awesome-button';
 
 const DownloadWrapper = styled.div`
   padding: 0 0 3em 0;
@@ -16,6 +17,7 @@ const DownloadWrapper = styled.div`
 
 const DownloadIntro = styled.div`
   padding: 0 0 2em 0;
+  font-size: 1.3em;
 `;
 
 const DownloadLink = styled.a`
@@ -43,7 +45,9 @@ function PrePurchaseResults(props) {
         <DownloadIntro>Parabéns! Você completou o diagnóstico com sucesso e já temos sua receita em mãos.</DownloadIntro>
         <DownloadIntro>Para concluir a terapia e obter sua receita, clique no botão abaixo e faça o pagamento. Depois é só baixar o PDF, levar na sua farmácia de manipulação de confiança e iniciar o tratamento!</DownloadIntro>
         <DownloadIntro>Caso não conheça farmácias de manipulação que elaborem compostos para tratamento floral, nós compilamos uma lista para você.</DownloadIntro>
-        <DownloadLink onClick={props.goToPlanSelection}>Ir para o pagamento</DownloadLink>
+        <button onClick={props.goToPlanSelection}>
+          <AwesomeButton>Ir para o pagamento</AwesomeButton>
+        </button>
       </Grid>
     </DownloadWrapper>
   );

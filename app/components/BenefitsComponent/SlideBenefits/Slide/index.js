@@ -6,10 +6,13 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 
-const SlideWrapper = styled.div`
+const SlideWrapper = styled.a`
+  transition: 1s;
   width: 180px;
-  height: 250px;
+  height: auto;
+  min-height: 250px;
   padding: 10px;
   margin: 0px 15px 0px 15px;
   display: inline-block;
@@ -37,11 +40,13 @@ const SlideTitle = styled.h4`
 
 function Slide(props) {
   return (
-    <SlideWrapper shadow={props.active}>
-      <SlideImage src={props.icon} />
-      <SlideTitle>Título do benefício</SlideTitle>
-      <SlideIntro>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in justo ullamcorper.</SlideIntro>
-    </SlideWrapper>
+    <Col xs={12} sm={12} md={3} lg={3}>
+      <SlideWrapper shadow={props.active} onMouseEnter={props.makeActive(props.index)} onMouseLeave={props.makeActive(null)}>
+        <SlideImage src={props.icon} />
+        <SlideTitle>{props.title}</SlideTitle>
+        <SlideIntro>{props.description}</SlideIntro>
+      </SlideWrapper>
+    </Col>
   );
 }
 

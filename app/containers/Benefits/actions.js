@@ -5,27 +5,27 @@
  */
 
 import {
-  GET_PURCHASES,
-  PURCHASES_SUCCESS,
-  PURCHASES_FAILURE
+  GET_ALL,
+  ALL_SUCCESS,
+  ALL_FAILURE,
 } from './constants';
 
-export function getPurchases() {
+export function getAll() {
   return {
-    type: GET_PURCHASES,
+    type: GET_ALL,
   };
 }
 
-export function purchasesSuccess(purchases) {
+export function allSuccess(purchases, bundles, assets, therapies) {
   return {
-    type: PURCHASES_SUCCESS,
-    purchases
+    type: ALL_SUCCESS,
+    purchases, bundles, assets, therapies
   };
 }
 
-export function purchasesFailure(error) {
+export function allFailure(error) {
   return {
-    type: PURCHASES_FAILURE,
+    type: ALL_FAILURE,
     error
   };
 }

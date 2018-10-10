@@ -13,11 +13,11 @@ import { compose } from 'redux';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { requestLogout } from 'containers/Login/actions';
-import makeSelectBenefits, { makeSelectPurchases } from './selectors';
+import makeSelectBenefits, { makeSelectPurchases, makeSelectBundles, makeSelectAssets, makeSelectTherapies } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import BenefitsComponent from 'components/BenefitsComponent';
-import { getPurchases } from './actions'
+import { getAll } from './actions'
 import { registerMe } from '../Register/actions'
 import { requestLogin } from '../Login/actions'
 import makeSelectLogin from '../Login/selectors'
@@ -41,7 +41,7 @@ export class Benefits extends React.PureComponent { // eslint-disable-line react
         password: '',
       },
     }
-    props.dispatch(getPurchases());
+    props.dispatch(getAll());
   }
 
   logOut = () => {
@@ -189,10 +189,12 @@ export class Benefits extends React.PureComponent { // eslint-disable-line react
   };
 
   render() {
-    console.log(this.props.purchases);
-    console.log(this.state.showLogin);
     return (
       <BenefitsComponent
+        purchases={this.props.purchases}
+        bundles={this.props.bundles}
+        assets={this.props.assets}
+        therapies={this.props.therapies}
         loginSuccess={this.props.loginSuccess}
         logoutSuccess={this.props.logoutSuccess}
         activeLogin={this.state.activeLogin}
@@ -218,6 +220,9 @@ const mapStateToProps = createStructuredSelector({
   benefits: makeSelectBenefits(),
   loginSuccess: makeSelectLoginSuccess(),
   purchases: makeSelectPurchases(),
+  bundles: makeSelectBundles(),
+  assets: makeSelectAssets(),
+  therapies: makeSelectTherapies(),
 });
 
 function mapDispatchToProps(dispatch) {
