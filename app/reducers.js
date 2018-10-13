@@ -11,6 +11,7 @@ import registerReducer from 'containers/Register/reducer';
 import loginReducer from 'containers/Login/reducer';
 import meReducer from 'containers/Me/reducer';
 import checkoutReducer from 'containers/Checkout/reducer';
+import quizReducer from 'containers/Quiz/reducer';
 
 /*
  * routeReducer
@@ -51,6 +52,7 @@ export default function createReducer(injectedReducers) {
     login: loginReducer,
     me: meReducer,
     checkout: checkoutReducer,
+    quiz: quizReducer,
     ...injectedReducers,
   });
 }

@@ -110,7 +110,7 @@ function CheckoutPayment(props) {
           <Col xs={12} sm={12} md={4} lg={4} lgOffset={2}>
             <Row middle="xs">
               <Col xs={2}>
-                <CheckoutPaymentRadio type="radio" checked={props.payment.type === 'creditcard'}/>
+                <CheckoutPaymentRadio type="radio" checked={props.payment.type === 'creditcard'} readOnly/>
                 <label onClick={selectPaymentType('creditcard')} >&nbsp;</label>
               </Col>
               <Col xs={10}>
@@ -135,12 +135,12 @@ function CheckoutPayment(props) {
         </Row>
         { props.payment.type === 'creditcard' &&
           <CheckoutPaymentCreditCard
-            payment={props.payment}
+            creditCard={props.payment.creditCard}
             updateCreditCard={updateCreditCard}/>
         }
         { props.payment.type === 'boleto' &&
           <CheckoutPaymentBoleto
-            payment={props.payment}
+            boleto={props.payment.boleto}
             updateBoleto={updateBoleto}/>
         }
       </CheckoutPaymentWrapper>

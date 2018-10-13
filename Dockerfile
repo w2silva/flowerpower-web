@@ -1,8 +1,19 @@
-FROM node:8-onbuild
+FROM node:10-stretch
 
 # reduce log size (not working?)
 ENV NPM_CONFIG_LOGLEVEL warn
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+ENV NODE_ENV $NODE_ENV
+COPY package.json /usr/src/app/
+RUN npm install --no-audit
+RUN npm cache clean --force
+COPY . /usr/src/app
 RUN npm run start:prepare
+RUN npm run build:dll
+
+CMD [ "npm", "start" ]
 
 # build:
 # $ docker build -t flowerpower-web .

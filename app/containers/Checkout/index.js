@@ -12,6 +12,7 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import CheckoutComponent from 'components/CheckoutComponent';
+import makeSelectMe from 'containers/Me/selectors';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -21,15 +22,16 @@ import reducer from './reducer';
 import saga from './saga';
 
 export class Checkout extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  makePayment = (bundleId, payment) => {
+  makePayment = (bundleId, payment, client) => {
     console.log(`[Checkout] bundle id: ${bundleId}`)
     console.log(`[Checkout] payment: ${JSON.stringify(payment)}`)
-    this.props.dispatch(makePayment(bundleId, payment));
+    this.props.dispatch(makePayment(bundleId, payment, client));
   }
 
   render() {
     return (
       <CheckoutComponent
+        me={this.props.me}
         makePayment={this.makePayment}
         bundle={this.props.bundle}
       />
@@ -43,6 +45,7 @@ Checkout.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   bundle: makeSelectCheckoutBundle(),
+  me: makeSelectMe()
 });
 
 function mapDispatchToProps(dispatch) {

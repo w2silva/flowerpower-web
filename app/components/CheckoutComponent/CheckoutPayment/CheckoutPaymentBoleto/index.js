@@ -16,15 +16,12 @@ const CleaveLabel = styled.div`
 `
 
 export class CheckoutPaymentBoleto extends React.PureComponent {
-  constructor (props) {
-    super(props);
-    this.state = { }
-  }
 
-  handleChange = (name) => (event) => {
-    this.setState({
-      [name]: event.target.value,
-    });
+  updateBoleto = (name) => (event) => {
+    const value = event.target.value;
+    this.props.updateBoleto({
+      [name]: value
+    })
   };
 
   render () {
@@ -38,13 +35,25 @@ export class CheckoutPaymentBoleto extends React.PureComponent {
     return (
       <Form>
         <Row>
-          <Col xs={12} sm={12} md={12} lg={12}>
+          <Col xs={6} sm={6} md={6} lg={6}>
             <div className="group">
               <CleaveLabel>CPF:</CleaveLabel>
               <Cleave
                 options={{ blocks: [3, 3, 3, 2], delimiters: ['.', '.', '-'], numericOnly: true }}
-                value={this.state.CPF}
-                onChange={this.handleChange('CPF')}
+                value={this.props.boleto.cpf}
+                onChange={this.updateBoleto('cpf')}
+                key="CPF"
+                style={input}
+              />
+            </div>
+          </Col>
+          <Col xs={6} sm={6} md={6} lg={6}>
+            <div className="group">
+              <CleaveLabel>Data de nascimento:</CleaveLabel>
+              <Cleave
+                options={{ blocks: [3, 3, 3, 2], delimiters: ['.', '.', '-'], numericOnly: true }}
+                value={this.props.boleto.birthdate}
+                onChange={this.updateBoleto('birthdate')}
                 key="CPF"
                 style={input}
               />

@@ -57,6 +57,7 @@ const withRegisterSaga = injectSaga({ key: 'register', saga: registerSaga });
 const withLoginSaga = injectSaga({ key: 'login', saga: loginSaga });
 const withMeSaga = injectSaga({ key: 'me', saga: meSaga });
 const withCheckoutSaga = injectSaga({ key: 'checkout', saga: checkoutSaga });
+const withQuizSaga = injectSaga({ key: 'checkout', saga: checkoutSaga });
 
 export default compose(
   withConnect,
@@ -64,4 +65,5 @@ export default compose(
   withLoginSaga,
   withMeSaga,
   withCheckoutSaga,
+  withQuizSaga,
 )(Startup);

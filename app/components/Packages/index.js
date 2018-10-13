@@ -63,7 +63,8 @@ class Packages extends React.Component { // eslint-disable-line react/prefer-sta
                 <Pack
                   currentDiagnosis={this.props.currentDiagnosis}
                   bundle={b}
-                  bundleCheckout={this.props.bundleCheckout}/>
+                  bundleCheckout={this.props.bundleCheckout}
+                  key={b.id}/>
               )
           }
         </PackagesWrapper>

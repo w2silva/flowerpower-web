@@ -18,11 +18,12 @@ export function bundleCheckout(bundle) {
   };
 }
 
-export function makePayment(bundleId, payment) {
+export function makePayment(bundleId, payment, client) {
   return {
     type: REQUEST_PAYMENT,
     bundle: bundleId,
-    payment
+    payment,
+    client
   }
 }
 

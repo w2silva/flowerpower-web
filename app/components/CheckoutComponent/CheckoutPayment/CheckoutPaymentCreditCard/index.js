@@ -37,18 +37,25 @@ const CleaveLabel = styled.div`
 `
 
 export class CheckoutPaymentCreditCard extends React.PureComponent {
+
   constructor(props) {
     super(props);
     this.state = {
-      number: '',
-      name: '',
+      focused: ''
     }
   }
 
-  handleChange = (name) => (event) => {
+  updateCreditCard = (name) => (event) => {
+    // this.setState({
+    //   [name]: event.target.value,
+    // });
+    const value = event.target.value
     this.setState({
-      [name]: event.target.value,
-    });
+      focused: name
+    }, () => this.props.updateCreditCard({
+      ...this.props.creditCard,
+      [name]: value
+    }))
   };
 
   render() {
@@ -66,11 +73,11 @@ export class CheckoutPaymentCreditCard extends React.PureComponent {
             <Col xs={12} sm={12} md={12} lg={12}>
               <div style={{ margin: '30px 0px 30px 0px' }} className="input-with-label col-sm-12 text-left">
                 <Cards
-                  number={this.state.number}
-                  name={this.state.name}
-                  expiry={this.state.expiry}
-                  cvc={this.state.cvc}
-                  focused={this.state.focused}
+                  number={this.props.creditCard.number}
+                  name={this.props.creditCard.name}
+                  expiry={this.props.creditCard.expiry}
+                  cvc={this.props.creditCard.cvc}
+                  focused={this.props.creditCard.focused}
                   placeholders={{ name: 'NOME COMPLETO', expiry: 'VALIDADE' }}
                 />
               </div>
@@ -83,8 +90,8 @@ export class CheckoutPaymentCreditCard extends React.PureComponent {
               <Cleave
                 placeholder="**** **** **** ****"
                 options={{ creditCard: true }}
-                value={this.state.number}
-                onChange={this.handleChange('number')}
+                value={this.props.creditCard.number}
+                onChange={this.updateCreditCard('number')}
                 key="number"
                 style={input}
               />
@@ -96,8 +103,8 @@ export class CheckoutPaymentCreditCard extends React.PureComponent {
               <Cleave
                 placeholder="mm/aa"
                 options={{ date: true, datePattern: ['m', 'y'] }}
-                value={this.state.expiry}
-                onChange={this.handleChange('expiry')}
+                value={this.props.creditCard.expiry}
+                onChange={this.updateCreditCard('expiry')}
                 key="expiry"
                 style={input}
               />
@@ -107,8 +114,8 @@ export class CheckoutPaymentCreditCard extends React.PureComponent {
             <div className="group">
               <CleaveLabel>Nome Completo (conforme no cartão):</CleaveLabel>
               <Cleave
-                value={this.state.name}
-                onChange={this.handleChange('name')}
+                value={this.props.creditCard.name}
+                onChange={this.updateCreditCard('name')}
                 key="name"
                 options={{ blocks:[99999], delimiter: '', uppercase: true }}
                 style={input}
@@ -121,8 +128,8 @@ export class CheckoutPaymentCreditCard extends React.PureComponent {
               <CleaveLabel>Código de Segurança:</CleaveLabel>
               <Cleave
                 options={{ blocks: [3] }}
-                value={this.state.cvv}
-                onChange={this.handleChange('cvv')}
+                value={this.props.creditCard.cvc}
+                onChange={this.updateCreditCard('cvc')}
                 key="cvv"
                 style={input}
               />
@@ -133,25 +140,25 @@ export class CheckoutPaymentCreditCard extends React.PureComponent {
               <CleaveLabel>Data de Aniversário:</CleaveLabel>
               <Cleave
                 options={{ date: true, datePattern: ['d', 'm', 'Y'] }}
-                value={this.state.birthday}
-                onChange={this.handleChange('birthday')}
-                key="birthday"
+                value={this.props.creditCard.birthdate}
+                onChange={this.updateCreditCard('birthdate')}
+                key="birthdate"
                 style={input}
               />
             </div>
           </Col>
-          <Col xs={12} sm={12} md={6} lg={6}>
+          {/* <Col xs={12} sm={12} md={6} lg={6}>
             <div className="group">
               <CleaveLabel>CPF:</CleaveLabel>
               <Cleave
                 options={{ blocks: [3, 3, 3, 2], delimiters: ['.', '.', '-'], numericOnly: true }}
-                value={this.state.CPF}
-                onChange={this.handleChange('CPF')}
+                value={this.props.creditCard.CPF}
+                onChange={this.updateCreditCard('cpf')}
                 key="CPF"
                 style={input}
               />
             </div>
-          </Col>
+          </Col> */}
         </Row>
       </Form>
     );

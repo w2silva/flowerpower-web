@@ -13,12 +13,15 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+
+import ResultsComponent from 'components/ResultsComponent';
+import { makeSelectDiagnosis } from 'containers/Quiz/selectors';
+
 import makeSelectResults, { makeSelectSuppliers } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { getSuppliers } from './actions'
 
-import ResultsComponent from 'components/ResultsComponent';
 
 export class Results extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
@@ -28,7 +31,9 @@ export class Results extends React.PureComponent { // eslint-disable-line react/
 
   render() {
     return (
-      <ResultsComponent suppliers={this.props.suppliers}/>
+      <ResultsComponent
+        diagnosis={this.props.diagnosis}
+        suppliers={this.props.suppliers}/>
     );
   }
 }
@@ -38,7 +43,7 @@ Results.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  results: makeSelectResults(),
+  diagnosis: makeSelectDiagnosis(),
   suppliers: makeSelectSuppliers(),
 });
 

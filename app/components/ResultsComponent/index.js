@@ -22,7 +22,7 @@ function ResultsComponent(props) {
       </Helmet>
       <Header/>
       {/* <Profile/> */}
-      <Download/>
+      <Download diagnosis={props.diagnosis}/>
       <Mailing suppliers={props.suppliers}/>
       <Footer/>
     </div>

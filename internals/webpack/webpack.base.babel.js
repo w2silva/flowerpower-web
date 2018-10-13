@@ -94,6 +94,7 @@ module.exports = (options) => ({
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        MOIP_PUBKEY: JSON.stringify(process.env.MOIP_PUBKEY)
       },
     }),
     new webpack.NamedModulesPlugin(),

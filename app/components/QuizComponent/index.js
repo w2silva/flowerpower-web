@@ -15,6 +15,7 @@ import styled from 'styled-components';
 import Therapy from './Therapy';
 import ProfileSelect from './ProfileSelect';
 import PrePurchaseResults from './PrePurchaseResults';
+import RedirectToResults from './RedirectToResults';
 
 const StartButton = styled.a`
   cursor: pointer;
@@ -70,7 +71,7 @@ function QuizComponent(props) {
           startTherapy={props.startTherapy}
         />
       }
-      { props.diagnosis && ['started', 'answering'].indexOf(props.diagnosis.state) >= 0 &&
+      { props.diagnosis && ['started', 'answering', 'ready'].indexOf(props.diagnosis.state) >= 0 &&
         <Therapy
           me={props.me}
           emotions={props.emotions}
@@ -86,6 +87,11 @@ function QuizComponent(props) {
       { props.diagnosis && props.diagnosis.state === 'waiting' &&
         <PrePurchaseResults
           goToPlanSelection={props.goToPlanSelection}
+        />
+      }
+      { props.diagnosis && props.diagnosis.state === 'finished' &&
+        <RedirectToResults
+          goToResults={props.goToResults}
         />
       }
       <Footer/>

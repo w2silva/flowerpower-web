@@ -25,30 +25,77 @@ const MarginFooter = styled.div`
 
 export class CheckoutComponent extends React.PureComponent {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    console.log('[CheckoutComponent.constructor] props.me', props.me)
     this.state = {
+      // payment: {
+      //   creditCard: {
+      //     number: '',
+      //     name: '',
+      //     expiry: '',
+      //     cvc: ''
+      //   },
+      //   boleto: {
+      //     cpf: ''
+      //   },
+      //   numberOfInstallments: 1,
+      //   type: 'creditcard'
+      // },
+      // client: {
+      //
+      // }
       payment: {
-
+        creditCard: {
+          number: '5555 6666 7777 8884',
+          name: 'PEDRO CAVALCANTE',
+          expiry: '11/19',
+          cvc: '123',
+          birthdate: '15/01/1987'
+        },
+        boleto: {
+          cpf: ''
+        },
+        numberOfInstallments: 1,
+        type: 'creditcard'
       },
-      signup: {
-
+      client: {
+        name: 'PEDRO VICTOR LOSADA CAVALCANTE',
+        taxDocumentValue: '337.611.878-74',
+        phone: '11 994593789',
+        street: 'Rua Marieta',
+        streetNumber: '71',
+        complement: '',
+        district: 'Jd America',
+        postalCode: '01442·010',
+        city: 'Sao Paulo',
+        state: 'SP'
       }
+    }
+    const me = props.me.me;
+    if (me) {
+      this.state.client.user = me.id;
+      this.state.client.client = me.client.id;
+      this.state.client.name = me.name;
+      this.state.client.telephone = me.telephones[0];
+      this.state.client.email = me.email;
     }
   }
 
   makePayment = () => {
-    console.log(`[CheckoutComponent] bundle id: ${this.props.bundle.id}`)
-    console.log(`[CheckoutComponent] payment: ${JSON.stringify(this.state.payment)}`)
-    this.props.makePayment(this.props.bundle.id, this.state.payment)
+    console.log(`[CheckoutComponent.CheckoutComponent] bundle id: ${this.props.bundle.id}`)
+    console.log(`[CheckoutComponent.CheckoutComponent] payment: ${JSON.stringify(this.state.payment)}`)
+    this.props.makePayment(this.props.bundle.id, this.state.payment, this.state.client)
   }
 
   updatePayment = (payment) => {
-    console.log('payment', payment)
+    console.log('[CheckoutComponent.updatePayment] payment', payment)
     this.setState({ payment })
   }
 
-  updateSignup = () => {
+  updateClient = (client) => {
+    console.log('[CheckoutComponent.updateClient] client', client)
+    this.setState({ client })
   }
 
   render() {
@@ -65,11 +112,12 @@ export class CheckoutComponent extends React.PureComponent {
           updatePayment={this.updatePayment}
           payment={this.state.payment}/>
         <CheckoutSignup
-          updateSignup={this.updateSignup}/>
+          updateClient={this.updateClient}
+          client={this.state.client}/>
         <MarginFooter>
           <AwesomeButton
             type="secondary"
-            onClick={this.makePayment}>
+            action={this.makePayment}>
             concluir compra e prosseguir com terapia
           </AwesomeButton>
         </MarginFooter>

@@ -1,6 +1,6 @@
 /**
 *
-* Download
+* PrePurchaseResults
 *
 */
 
@@ -37,36 +37,20 @@ const DownloadLink = styled.a`
   }
 `;
 
-function Download(props) {
-  function open() {
-    window.open(props.diagnosis.prescription.rendered.pdf_url, '_blank');
-  }
-
-  if (!props.diagnosis) {
-    return (
-      <div></div>
-    )
-  }
-
+function PrePurchaseResults(props) {
   return (
     <DownloadWrapper>
-      <Grid>
-        <H2 align="center">Faça download da receita de sua terapia</H2>
-        <DownloadIntro>Baseado nas duas respostas, foi gerada um PDF com a receita do floral a ser produzido pela sua farmácia de manipulação preferida.</DownloadIntro>
-        <AwesomeButton
-          target="_blank"
-          href={props.diagnosis.prescription.rendered.pdf_url}>
-          Download da Receita
-        </AwesomeButton>
-        {/* <div dangerouslySetInnerHTML={{__html: props.diagnosis.prescription.rendered.html}}>
-        </div> */}
+      <Grid style={{marginBottom: '150px'}}>
+        <H2 align="center">Sua receita está pronta!</H2>
+        <DownloadIntro>Parabéns! Você completou o diagnóstico com sucesso e já temos sua receita em mãos.</DownloadIntro>
+        <AwesomeButton action={props.goToResults}>Ver receita</AwesomeButton>
       </Grid>
     </DownloadWrapper>
   );
 }
 
-Download.propTypes = {
+PrePurchaseResults.propTypes = {
 
 };
 
-export default Download;
+export default PrePurchaseResults;

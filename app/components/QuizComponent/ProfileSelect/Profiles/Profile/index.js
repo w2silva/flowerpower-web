@@ -6,7 +6,8 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import imageProfile from 'images/profile.jpg';
+import imageProfileMale from 'images/profile-male.jpg';
+import imageProfileFemale from 'images/profile-female.jpg';
 import { Link } from 'react-router-dom'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 
@@ -48,7 +49,7 @@ function Profile(props) {
       <div className="container effect">
         <figure className="effect-steve">
           <a onClick={props.selectProfile(props.profile._id)}>
-            <ProfileImg src={imageProfile} selected={props.profile._id === props.selectedProfile}/>
+            <ProfileImg src={props.profile.gender === 'female' ? imageProfileFemale : imageProfileMale} selected={props.profile._id === props.selectedProfile}/>
           </a>
         </figure>
       </div>
