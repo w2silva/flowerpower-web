@@ -29,6 +29,7 @@ export class CheckoutComponent extends React.PureComponent {
     super(props)
     console.log('[CheckoutComponent.constructor] props.me', props.me)
     this.state = {
+      attemptingPayment: false,
       payment: {
         creditCard: {
           number: '',
@@ -85,6 +86,9 @@ export class CheckoutComponent extends React.PureComponent {
   makePayment = () => {
     console.log(`[CheckoutComponent.CheckoutComponent] bundle id: ${this.props.bundle.id}`)
     console.log(`[CheckoutComponent.CheckoutComponent] payment: ${JSON.stringify(this.state.payment)}`)
+    this.setState({
+      attemptingPayment: true
+    })
     this.props.makePayment(this.props.bundle.id, this.state.payment, this.state.client)
   }
 
@@ -115,11 +119,20 @@ export class CheckoutComponent extends React.PureComponent {
           updateClient={this.updateClient}
           client={this.state.client}/>
         <MarginFooter>
-          <AwesomeButton
-            type="secondary"
-            action={this.makePayment}>
-            concluir compra e prosseguir com terapia
-          </AwesomeButton>
+
+          {!this.state.attemptingPayment ?
+            <AwesomeButton
+              type="secondary"
+              action={this.makePayment}>
+              concluir compra e prosseguir com terapia
+            </AwesomeButton>
+          :
+            <AwesomeButton
+              type="secondary"
+              disabled>
+              efetuando pagamento...
+            </AwesomeButton>
+          }
         </MarginFooter>
         <Footer />
       </div>
