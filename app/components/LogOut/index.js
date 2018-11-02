@@ -7,6 +7,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { AwesomeButton } from 'react-awesome-button';
+
 const LogoutWrapper = styled.div`
   color: #000;
   padding-bottom: 100px;
@@ -17,7 +19,7 @@ const LogoutWrapper = styled.div`
 function LogOut(props) {
   return (
     <LogoutWrapper >
-      <a onClick={props.logOut}>logout</a>
+      <AwesomeButton type="secondary" onClick={props.logOut}>Sair</AwesomeButton>
     </LogoutWrapper>
   );
 }

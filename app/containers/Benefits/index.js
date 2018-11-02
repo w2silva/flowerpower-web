@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { push } from 'react-router-redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -20,6 +21,7 @@ import BenefitsComponent from 'components/BenefitsComponent';
 import { getAll } from './actions'
 import { registerMe } from '../Register/actions'
 import { requestLogin } from '../Login/actions'
+import { setTherapy, cleanDiagnosis } from '../Quiz/actions'
 import makeSelectLogin from '../Login/selectors'
 import { makeSelectRegisterSuccess, makeSelectRegisterFailure } from '../Register/selectors'
 import { makeSelectLoginSuccess, makeSelectLoginFailure } from '../Login/selectors'
@@ -188,13 +190,19 @@ export class Benefits extends React.PureComponent { // eslint-disable-line react
     this.setState({ login: { ...this.state.login, [attrName]: e.target.value } });
   };
 
+  goToQuiz = (therapy) => (e) => {
+    this.props.dispatch(cleanDiagnosis())
+    this.props.dispatch(setTherapy(therapy.id))
+    this.props.dispatch(push('/quiz'));
+  }
+
   render() {
     return (
       <BenefitsComponent
         purchases={this.props.purchases}
-        bundles={this.props.bundles}
-        assets={this.props.assets}
-        therapies={this.props.therapies}
+        // bundles={this.props.bundles}
+        // assets={this.props.assets}
+        // therapies={this.props.therapies}
         loginSuccess={this.props.loginSuccess}
         logoutSuccess={this.props.logoutSuccess}
         activeLogin={this.state.activeLogin}
@@ -205,6 +213,7 @@ export class Benefits extends React.PureComponent { // eslint-disable-line react
         updateLogin={this.updateLogin}
         submitRegister={this.submitRegister}
         submitLogin={this.submitLogin}
+        goToQuiz={this.goToQuiz}
         login={this.state.login}
         register={this.state.register}
       />
@@ -217,12 +226,12 @@ Benefits.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  benefits: makeSelectBenefits(),
+  // benefits: makeSelectBenefits(),
   loginSuccess: makeSelectLoginSuccess(),
   purchases: makeSelectPurchases(),
-  bundles: makeSelectBundles(),
-  assets: makeSelectAssets(),
-  therapies: makeSelectTherapies(),
+  // bundles: makeSelectBundles(),
+  // assets: makeSelectAssets(),
+  // therapies: makeSelectTherapies(),
 });
 
 function mapDispatchToProps(dispatch) {

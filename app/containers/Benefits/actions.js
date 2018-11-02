@@ -16,10 +16,10 @@ export function getAll() {
   };
 }
 
-export function allSuccess(purchases, bundles, assets, therapies) {
+export function allSuccess(purchases) {
   return {
     type: ALL_SUCCESS,
-    purchases, bundles, assets, therapies
+    purchases
   };
 }
 

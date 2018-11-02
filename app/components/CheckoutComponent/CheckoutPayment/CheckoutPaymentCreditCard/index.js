@@ -77,7 +77,7 @@ export class CheckoutPaymentCreditCard extends React.PureComponent {
                   name={this.props.creditCard.name}
                   expiry={this.props.creditCard.expiry}
                   cvc={this.props.creditCard.cvc}
-                  focused={this.props.creditCard.focused}
+                  focused={this.state.focused}
                   placeholders={{ name: 'NOME COMPLETO', expiry: 'VALIDADE' }}
                 />
               </div>
@@ -130,7 +130,7 @@ export class CheckoutPaymentCreditCard extends React.PureComponent {
                 options={{ blocks: [3] }}
                 value={this.props.creditCard.cvc}
                 onChange={this.updateCreditCard('cvc')}
-                key="cvv"
+                key="cvc"
                 style={input}
               />
             </div>

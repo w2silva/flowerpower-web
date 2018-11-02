@@ -26,8 +26,8 @@ function ProfileComponent(props) {
       <H2 align="center">Selecione um perfil</H2>
       {/* <Profiles /> */}
       <ClientProfile getQuizzes={props.getQuizzes}/>
-      <Books />
-      <Schedule />
+      {/* <Books /> */}
+      {/* <Schedule /> */}
       <Footer/>
     </div>
   );

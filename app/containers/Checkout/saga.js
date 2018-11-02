@@ -178,9 +178,9 @@ export function* makePaymentSaga(action) {
           return;
         } else if (purchase.state === 'purchased') {
           console.log('[3c] purchase success!')
-          const diagnosis = select(makeSelectDiagnosis())
+          const diagnosis = yield select(makeSelectDiagnosis())
           if (diagnosis) {
-            yield put(requestDiagnosis({ id: diagnosis.id }))
+            yield put(requestDiagnosis(diagnosis.id))
             // yield put(paymentDone());
             yield put(push('/results'));
           }
@@ -204,6 +204,7 @@ export function* makePaymentSaga(action) {
 
 
 export default function* defaultSaga() {
+  console.log('************* LOADING CHECKOUT')
   yield takeLatest(BUNDLE_CHECKOUT, bundleCheckoutSaga);
   yield takeLatest(REQUEST_PAYMENT, makePaymentSaga);
 }

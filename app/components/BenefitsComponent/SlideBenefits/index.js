@@ -9,10 +9,10 @@ import styled from 'styled-components';
 import Slide from './Slide'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 
-import iconBenefit1 from "images/icone-beneficio1.png";
-import iconBenefit2 from "images/icone-beneficio2.png";
-import iconBenefit3 from "images/icone-beneficio3.png";
-import iconBenefit4 from "images/icone-beneficio4.png";
+import iconBenefit1 from 'images/icone-beneficio1.png';
+import iconBenefit2 from 'images/icone-beneficio2.png';
+import iconBenefit3 from 'images/icone-beneficio3.png';
+import iconBenefit4 from 'images/icone-beneficio4.png';
 
 const SlideBenefitsWrapper = styled.div`
   margin: 5em auto;
@@ -35,10 +35,9 @@ export class SlideBenefits extends React.PureComponent { // eslint-disable-line 
   }
 
   render() {
-    if(!this.props.therapies) {
+    if (!this.props.purchases) {
       return null
     }
-
     const pictures = [
       require('images/Icon2.png'),
       require('images/Icon3.png'),
@@ -70,48 +69,104 @@ export class SlideBenefits extends React.PureComponent { // eslint-disable-line 
       require('images/Icon31.png'),
     ]
 
-    console.log('herapy', this.props.therapies)
+
+    // REDEEMED AND TO BE REDEEMED ONLINE THERAPIES
+    const allTherapies = this.props.purchases.reduce((acc, purchase) => acc.concat(purchase.bundle.therapies), [])
+    const redeemedTherapies = this.props.purchases.reduce((acc, purchase) => acc.concat(purchase.redeems.therapies), [])
+    const redeemedTherapiesDiagnoses = []
+    const toBeRedeemedTherapies = []
+    for (let i = 0; i < allTherapies.length; i++) {
+      const item = {
+        therapy: allTherapies[i].therapy,
+        available: allTherapies[i].number_of_diagnoses
+      }
+      let found = false;
+      for (let j = 0; j < toBeRedeemedTherapies.length && !found; j++) {
+        if (toBeRedeemedTherapies[j].therapy.id === item.therapy.id) {
+          found = true;
+          toBeRedeemedTherapies[j].available += item.number_of_diagnoses;
+        }
+      }
+      if (!found) {
+        toBeRedeemedTherapies.push(item)
+      }
+    }
+    for (let i = 0; i < redeemedTherapies.length; i++) {
+      let found = false
+      for (let j = toBeRedeemedTherapies.length - 1; j >= 0 && !found; j--) {
+        if (toBeRedeemedTherapies[j].therapy.id === redeemedTherapies[i].therapy) {
+          found = true
+          toBeRedeemedTherapies[j].available -= redeemedTherapies[i].diagnoses.length;
+          redeemedTherapiesDiagnoses.concat(redeemedTherapies[i].diagnoses)
+        }
+      }
+    }
+
+    // REDEEMED AND TO BE REDEEMED APPOINTMENTS
+    const purchasedAppointments = this.props.purchases.reduce((acc, purchase) => acc + purchase.bundle.number_of_appointments, 0)
+    const redeemedAppointments = this.props.purchases.reduce((acc, purchase) => acc.push(purchase.redeems.appointments), [])
+    const availableAppointments = purchasedAppointments - redeemedAppointments.length
+
+    const purchasedAssets = this.props.purchases.reduce((acc, purchase) => acc.concat(purchase.bundle.assets), [])
+
     let slides = []
 
-    for (let i = 0; i < this.props.therapies.length; i ++) {
+    console.log('toBeRedeemedTherapies', toBeRedeemedTherapies)
+    console.log('redeemedTherapies', redeemedTherapies)
+    for (let i = 0; i < toBeRedeemedTherapies.length; i++) {
       slides.push({
-        title: "Consulta Online " + this.props.therapies[i].name,
-        description: this.props.therapies[i].description,
+        title: `Consulta Online ${toBeRedeemedTherapies[i].therapy.name}`,
+        subtitle: `Disponível: ${toBeRedeemedTherapies[i].available}`,
+        description: toBeRedeemedTherapies[i].therapy.description,
         icon: i < pictures.length ? pictures[i] : pictures[i % pictures.length],
+        available: toBeRedeemedTherapies.available,
         index: i,
+        onClick: toBeRedeemedTherapies[i].available > 0 ? this.props.goToQuiz(toBeRedeemedTherapies[i].therapy) : null
       })
     }
-    const length = slides.length
-    slides.push({
-      title: "Sessão Presencial",
-      icon: length < pictures.length ? pictures[length + 1] : pictures[length % pictures.length + 1],
-      description: "Agende uma sessão comigo para uma terapia mais aprofundada e personalizada",
-      index: length + 1,
-    },{
-      title: "Coaching Online",
-      icon: length < pictures.length ? pictures[length + 2] : pictures[length % pictures.length + 2],
-      description: "Faça um coaching comigo online e descubra como lidar com medos, ansiedades, propósitos e crenças.",
-      index: length + 2,
-    },{
-      title: "Download E-books",
-      icon: length < pictures.length ? pictures[length + 3] : pictures[length % pictures.length + 3],
-      description: "Tenha acesso ao exclusivo E-book: A arte dos Florais",
-      index: length + 3,
-    })
 
-    console.log(this.state.activeSlide);
+
+    if (availableAppointments > 0) {
+      slides.push({
+        title: 'Sessão Presencial',
+        subtitle: `Disponível: ${availableAppointments}`,
+        icon: length < pictures.length ? pictures[length + 1] : pictures[length % pictures.length + 1],
+        description: 'Agende uma sessão comigo para uma terapia mais aprofundada e personalizada',
+        available: availableAppointments,
+        index: slides.length + 1,
+      })
+    }
+
+    if (purchasedAssets.length > 0) {
+      for (let i = 0; i < purchasedAssets.length; i++) {
+        slides.push({
+          title: `Ebook: ${purchasedAssets[i].name}`,
+          subtitle: `Disponível: ∞`,
+          icon: length < pictures.length ? pictures[length + 3] : pictures[length % pictures.length + 3],
+          description: `Tenha acesso ao exclusivo e-book ${purchasedAssets[i].name}`,
+          available: purchasedAssets.length,
+          index: slides.length + 1,
+          onClick: function() { window.open(purchasedAssets[i].provider_info.url, '_blank').focus();  }
+        })
+      }
+    }
+
+    // slides.push({
+    //   title: 'Coaching Online',
+    //   icon: length < pictures.length ? pictures[length + 2] : pictures[length % pictures.length + 2],
+    //   description: 'Faça um coaching comigo online e descubra como lidar com medos, ansiedades, propósitos e crenças.',
+    //   index: length + 2,
+    // })
+
     return (
       <SlideBenefitsWrapper>
         <Grid>
           <Row>
             {slides.map((s) => (
               <Slide
-                icon={s.icon}
-                title={s.title}
-                description={s.description}
-                index={s.index}
                 makeActive={this.makeActive}
                 active={this.state.activeSlide === s.index}
+                {...s}
               />
             ))}
           </Row>

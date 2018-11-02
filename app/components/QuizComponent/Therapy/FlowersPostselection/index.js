@@ -63,7 +63,7 @@ function FlowersPostselection(props) {
           :
           ""
         }
-        <AwesomeButton disabled={isAnswering} disabled={props.postselection.maximum_selection > 0 && props.postselected.flowers.length > props.postselection.maximum_selection} action={props.finalizeFlowers}>Continuar</AwesomeButton>
+        <AwesomeButton disabled={isAnswering} action={props.finalizeFlowers}>Continuar</AwesomeButton>
       </div>
     </Grid>
   );

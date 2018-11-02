@@ -8,6 +8,8 @@ import {
   REQUEST_ALL,
   ALL_SUCCESS,
   ALL_FAILURE,
+  CLEAN_DIAGNOSIS,
+  SET_THERAPY,
   RUN_DIAGNOSIS,
   DIAGNOSIS_SUCCESS,
   DIAGNOSIS_FAILURE,
@@ -43,11 +45,25 @@ export function allFailure(error) {
   };
 }
 
-export function runDiagnosis(profileId, target) {
+export function cleanDiagnosis() {
+  return {
+    type: CLEAN_DIAGNOSIS
+  }
+}
+
+export function setTherapy(therapy) {
+  return {
+    type: SET_THERAPY,
+    therapy
+  }
+}
+
+export function runDiagnosis(profileId, target, therapy) {
   return {
     type: RUN_DIAGNOSIS,
     profileId,
     target,
+    therapy
   };
 }
 

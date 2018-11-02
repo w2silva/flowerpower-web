@@ -35,7 +35,8 @@ function ClientProfile(props) {
   return (
     <ClientProfileWrapper>
       <Grid>
-        <ClientProfileIntro>Você ainda possui créditos para realizar <strong style={{ color: `purple` }}>X terapias</strong><br />selecione o novo perfil</ClientProfileIntro>
+        {/* <ClientProfileIntro>Você ainda possui créditos para realizar <strong style={{ color: `purple` }}>X terapias</strong><br />selecione o novo perfil</ClientProfileIntro> */}
+        <ClientProfileIntro>Selecione o tipo de perfil que você deseja tratar nessa nova terapia</ClientProfileIntro>
         <NewProfiles color={'black'} to={'/quiz'}/>
         {/*<ProfilesWrapper>
           <Row middle="xs" center="xs">

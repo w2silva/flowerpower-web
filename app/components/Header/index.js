@@ -163,7 +163,7 @@ export class Header extends React.PureComponent { // eslint-disable-line react/p
               { this.props.button ?
                 <Row center="xs" style={{ margin: `6em 0 5em 0` }}>
                   <Col>
-                    <Link to="/therapy">
+                    <Link to="/quiz">
                       {/*<HeaderButton>faça agora sua terapia <Arrow/></HeaderButton>*/}
                       <AwesomeButton>FAÇA AGORA SUA TERAPIA <Arrow/></AwesomeButton>
                     </Link>

@@ -7,6 +7,8 @@
 export const REQUEST_ALL = 'app/Quiz/REQUEST_ALL';
 export const ALL_SUCCESS = 'app/Quiz/ALL_SUCCESS';
 export const ALL_FAILURE = 'app/Quiz/ALL_FAILURE';
+export const CLEAN_DIAGNOSIS = 'app/Quiz/CLEAN_DIAGNOSIS';
+export const SET_THERAPY = 'app/Quiz/SET_THERAPY';
 export const RUN_DIAGNOSIS = 'app/Quiz/RUN_DIAGNOSIS';
 export const REQUEST_DIAGNOSIS = 'app/Quiz/REQUEST_DIAGNOSIS';
 export const DIAGNOSIS_SUCCESS = 'app/Quiz/DIAGNOSIS_SUCCESS';

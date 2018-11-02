@@ -14,12 +14,8 @@ import { compose } from 'redux';
 import CheckoutComponent from 'components/CheckoutComponent';
 import makeSelectMe from 'containers/Me/selectors';
 
-import injectSaga from 'utils/injectSaga';
-import injectReducer from 'utils/injectReducer';
 import { makeSelectCheckoutBundle } from './selectors';
 import { makePayment } from './actions';
-import reducer from './reducer';
-import saga from './saga';
 
 export class Checkout extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   makePayment = (bundleId, payment, client) => {

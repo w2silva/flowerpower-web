@@ -28,11 +28,18 @@ const SlideImage = styled.img`
 
 const SlideTitle = styled.h4`
   font-size: 1.2em;
+  font-weight: bold;
   margin: 10px 0px 10px 0px;
   text-align: left;
-  `;
+`;
 
-  const SlideIntro = styled.div`
+const SlideSubtitle = styled.h4`
+  font-size: 1.2em;
+  margin: 10px 0px 10px 0px;
+  text-align: left;
+`;
+
+const SlideIntro = styled.div`
   font-size: .9em;
   line-height: 2.5em;
   text-align: left;
@@ -40,10 +47,11 @@ const SlideTitle = styled.h4`
 
 function Slide(props) {
   return (
-    <Col xs={12} sm={12} md={3} lg={3}>
+    <Col xs={12} sm={12} md={3} lg={3} onClick={props.onClick}>
       <SlideWrapper shadow={props.active} onMouseEnter={props.makeActive(props.index)} onMouseLeave={props.makeActive(null)}>
         <SlideImage src={props.icon} />
         <SlideTitle>{props.title}</SlideTitle>
+        <SlideSubtitle>{props.subtitle}</SlideSubtitle>
         <SlideIntro>{props.description}</SlideIntro>
       </SlideWrapper>
     </Col>

@@ -31,7 +31,6 @@ const IntroCredits = styled.div`
 `;
 
 function BenefitsComponent(props) {
-  console.log(props.bundles);
   console.log(props.purchases);
   return (
     <div>
@@ -60,9 +59,12 @@ function BenefitsComponent(props) {
         <div>
           <H2 align="center">Use seus benefícios</H2>
           <Intro>Resgate seus beneficios abaixo!</Intro>
-          <SlideBenefits purchases={props.purchases} bundles={props.bundles} assets={props.assets} therapies={props.therapies}/>
-          <IntroCredits>Vocẽ não possue mais créditos para realizar X terapias<br />selecione um novo pacote ou clique aqui para ver os perfis salvos.</IntroCredits>
-          <Packages/>
+          <SlideBenefits purchases={props.purchases} goToQuiz={props.goToQuiz}/>
+          {/* <IntroCredits>
+            Você não possui créditos para realizar terapias.<br />
+            Selecione um novo pacote ou clique aqui para ver os perfis salvos.
+          </IntroCredits>
+          <Packages/> */}
           <LogOut logOut={props.logOut}/>
         </div>
       }

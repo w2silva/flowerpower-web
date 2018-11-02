@@ -60,7 +60,7 @@ function MainContainer(props) {
         <Img src={sideRightImage} />
       </SideRightImage>
       <H2 align="center">Escolha seu plano</H2>
-      <Intro>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in justo ullamcorper, sollicitudin turpis dapibus, hendrerit tortor. Morbi tincidunt non sapien nec pretium. Donec elementum tristique consequat.</Intro>
+      <Intro>Abaixo você pode escolher um dos nossos planos que incluem uma terapia floral online. Além da própria terapia, nossos planos podem incluir conteúdo online exclusivo e consultas presenciais com nossa terapeuta.</Intro>
       <Packages
         currentDiagnosis={props.currentDiagnosis}
         bundles={props.bundles}

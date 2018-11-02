@@ -177,16 +177,15 @@ export function* runDiagnosisSaga(action) {
 
   try {
     const accessToken = yield select(makeSelectToken());
-    const therapies = yield request(`/therapies/active`, { method: 'GET' });
-    // console.log('therapies', therapies)
-
     const profileId = action.profileId
     const target = action.target
-
-    // console.log('action', action)
-
-    const therapy = therapies.filter((t) => t.target === target)[0]
-    // console.log('therapy', therapy)
+    let therapyId = action.therapy;
+    if (!therapyId) {
+      const therapies = yield request(`/therapies/active`, { method: 'GET' });
+      console.log('therapies', therapies)
+      console.log('target', target)
+      therapyId = therapies.filter((t) => t.target === target)[0].id
+    }
 
     let diagnosisBody = { }
 
@@ -208,7 +207,7 @@ export function* runDiagnosisSaga(action) {
       diagnosisBody.profile = profileId
     }
 
-    const diagnosis = yield request(`/therapies/${therapy.id}/start`, { body: diagnosisBody, method: 'POST', accessToken }); // eslint-disable-line no-underscore-dangle
+    const diagnosis = yield request(`/therapies/${therapyId}/start`, { body: diagnosisBody, method: 'POST', accessToken }); // eslint-disable-line no-underscore-dangle
     // console.log('diagnosis', diagnosis);
     // 2. receber dados do servidor
     // 3. despachar ações com os dados recebidos

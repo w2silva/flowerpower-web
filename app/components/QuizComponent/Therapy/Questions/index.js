@@ -56,7 +56,17 @@ export class Questions extends React.PureComponent { // eslint-disable-line reac
   componentDidUpdate(prevProps, prevState) {
     this.setState({
       index: this.props.answers.answers.filter((a) => a.selected).map((a) => a.state === 'answered').lastIndexOf(true)
-    })
+    }, this.scrollToBottom)
+  }
+
+  scrollToBottom = () => {
+    this.end.scrollIntoView({ behavior: "smooth" });
+  }
+
+  submitTherapy = (e) => {
+    e.preventDefault();
+    this.props.submitTherapy();
+    return false;
   }
 
   render() {
@@ -73,7 +83,7 @@ export class Questions extends React.PureComponent { // eslint-disable-line reac
         <H2 align="center">Continuando...</H2>
         <QuestionWrapper>
           <QuestionsIntro>Abaixo você encontra uma série de perguntas específicas, por favor escolha sempre a alternativa<br /> com a qual o perfil selecionado mais se identifica</QuestionsIntro>
-          <form onSubmit={this.props.submitTherapy}>
+          <form onSubmit={this.submitTherapy}>
             { this.props.quiz.questions.map((q, index) => {
               const answer = this.props.answers.answers.filter((a) => a.question === q._id)[0];
               if (!answer.selected) {
@@ -92,6 +102,8 @@ export class Questions extends React.PureComponent { // eslint-disable-line reac
                 />
               )
             })}
+            <div style={{ float:"left", clear: "both" }} ref={(el) => { this.end = el; }}>
+            </div>
             <div className="text-center">
               <AwesomeButton disabled={isAnswering} action={this.props.finalizeQuestions}>Continuar</AwesomeButton>
             </div>

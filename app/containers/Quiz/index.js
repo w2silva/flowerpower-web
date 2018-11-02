@@ -10,8 +10,6 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import injectSaga from 'utils/injectSaga';
-import injectReducer from 'utils/injectReducer';
 import { push } from 'react-router-redux';
 
 import makeSelectQuiz from './selectors';
@@ -19,8 +17,6 @@ import makeSelectMe from '../Me/selectors'
 import makeSelectLogin from '../Login/selectors'
 import { makeSelectRegisterSuccess, makeSelectRegisterFailure } from '../Register/selectors'
 import { makeSelectLoginSuccess, makeSelectLoginFailure } from '../Login/selectors'
-import reducer from './reducer';
-import saga from './saga';
 import {
   requestAll,
   updateEmotion,
@@ -90,7 +86,7 @@ export class Quiz extends React.PureComponent { // eslint-disable-line react/pre
     }
 
 
-    this.props.dispatch(runDiagnosis(profileId, target));
+    this.props.dispatch(runDiagnosis(profileId, target, this.props.quiz.therapy));
   }
 
   submitRegister = () => {
@@ -345,11 +341,6 @@ function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'quiz', reducer });
-const withSaga = injectSaga({ key: 'quiz', saga });
-
 export default compose(
-  withReducer,
-  withSaga,
   withConnect,
 )(Quiz);

@@ -10,6 +10,9 @@ import {
   ALL_SUCCESS,
   ALL_FAILURE,
 
+  CLEAN_DIAGNOSIS,
+  SET_THERAPY,
+
   REQUEST_DIAGNOSIS,
   RUN_DIAGNOSIS,
   DIAGNOSIS_SUCCESS,
@@ -40,23 +43,32 @@ function quizReducer(state = initialState, action) {
         .delete('flowers')
         .delete('emotions')
 
+    case CLEAN_DIAGNOSIS:
+      return state.delete('diagnosis')
+        .delete('runningDiagnosis')
+        .delete('requestingDiagnosis')
+        .delete('runFailure')
+
+    case SET_THERAPY:
+      return state.set('therapy', action.therapy)
+
     case REQUEST_DIAGNOSIS:
       return state.set('requestingDiagnosis', fromJS(true))
         .delete('diagnosis')
         .delete('runFailure')
     case RUN_DIAGNOSIS:
-      return state.set('runingDiagnosis', fromJS(true))
+      return state.set('runningDiagnosis', fromJS(true))
         .delete('diagnosis')
         .delete('runFailure')
 
     case DIAGNOSIS_SUCCESS:
       return state.set('diagnosis', action.diagnosis)
-        .delete('runingDiagnosis')
+        .delete('runningDiagnosis')
         .delete('requestingDiagnosis')
         .delete('runFailure')
     case DIAGNOSIS_FAILURE:
       return state.set('runFailure', fromJS(true))
-        .delete('runingDiagnosis')
+        .delete('runningDiagnosis')
         .delete('requestingDiagnosis')
         .delete('diagnosis')
 

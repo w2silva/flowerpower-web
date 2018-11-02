@@ -22,19 +22,11 @@ export function* getAllSaga() {
   const accessToken = yield select(makeSelectToken());
   try {
     if (accessToken) {
-      const bundles = yield request('/bundles', {
-        accessToken,
-      });
-      const assets = yield request('/assets', {
-        accessToken,
-      });
-      const therapies = yield request('/therapies', {
-        accessToken,
-      });
       const purchases = yield request('/purchases/me', {
         accessToken,
       });
-      yield put(allSuccess(purchases, bundles, assets, therapies));
+
+      yield put(allSuccess(purchases));
     }
   } catch (err) {
     yield put(allFailure(err.toString()));

@@ -80,10 +80,10 @@ const ItemCost = styled.span`
   color: #333;
 `;
 
-const ButtonRemove = styled.button`
-  background-color: #ddd;
-  border-radius: 2px;
-`;
+// const ButtonRemove = styled.button`
+//   background-color: #ddd;
+//   border-radius: 2px;
+// `;
 
 const TotalDiv = styled.div`
   display: block;
@@ -274,7 +274,7 @@ function CheckoutItems(props) {
                   <ItemCost>R$ {props.bundle.price.amount.toFixed(2).replace('.', ',')}</ItemCost>
                 </td>
                 <td>
-                  <ButtonRemove>x</ButtonRemove>
+                  {/* <ButtonRemove>x</ButtonRemove> */}
                 </td>
               </Tr>
             </tbody>
@@ -296,7 +296,7 @@ function CheckoutItems(props) {
                 </td>
                 <td>
                   <ItemCost>R$ {props.bundle.price.amount.toFixed(2).replace('.', ',')}</ItemCost>
-                  <ButtonRemove>x</ButtonRemove>
+                  {/* <ButtonRemove>x</ButtonRemove> */}
                 </td>
               </Tr>
             </tbody>
