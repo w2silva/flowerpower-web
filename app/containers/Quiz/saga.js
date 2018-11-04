@@ -14,7 +14,8 @@ import {
   REQUEST_QUIZ_FINISH,
   UPDATE_QUIZ_ANSWER,
   REQUEST_FLOWER_FINISH,
-  UPDATE_FLOWER
+  UPDATE_FLOWER,
+  REQUEST_BACK
 } from './constants';
 
 import {
@@ -219,6 +220,53 @@ export function* runDiagnosisSaga(action) {
   }
 }
 
+export function* goBack(action) {
+  try {
+    const accessToken = yield select(makeSelectToken());
+    const id = action.diagnosisId
+    const diagnosis = yield request(`/diagnoses/${id}`, { method: 'GET', accessToken });
+
+    // find out where we are at this diagnosis
+    let url = ''
+    let lastState = ''
+    for (let i = 0; i < diagnosis.emotions_preselected.length; i++) {
+      const stage = diagnosis.emotions_preselected[i]
+      if (['started', 'answering', 'ready'].indexOf(stage.state) >= 0 && lastState === 'finished') {
+        const updated = yield request(url, { method: 'POST', accessToken });
+        yield put(diagnosisSuccess(updated));
+        return
+      } else {
+        lastState = stage.state
+        url = `/diagnoses/${id}/emotions-preselected/${stage._id}/reactivate`
+      }
+    }
+    for (let i = 0; i < diagnosis.quizzes.length; i++) {
+      const stage = diagnosis.quizzes[i]
+      if (['started', 'answering', 'ready'].indexOf(stage.state) >= 0 && lastState === 'finished') {
+        const updated = yield request(url, { method: 'POST', accessToken });
+        yield put(diagnosisSuccess(updated));
+        return
+      } else {
+        lastState = stage.state
+        url = `/diagnoses/${id}/quizzes/${stage._id}/reactivate`
+      }
+    }
+    for (let i = 0; i < diagnosis.flowers_postselected.length; i++) {
+      const stage = diagnosis.flowers_postselected[i]
+      if (['started', 'answering', 'ready'].indexOf(stage.state) >= 0 && lastState === 'finished') {
+        const updated = yield request(url, { method: 'POST', accessToken });
+        yield put(diagnosisSuccess(updated));
+        return
+      } else {
+        lastState = stage.state
+        url = `/diagnoses/${id}/flower-postselected/${stage._id}/reactivate`
+      }
+    }
+  } catch(err) {
+    yield put(diagnosisFailure(`${err.toString()} ${err.stack ? err.stack : ''}`));
+  }
+}
+
 // Individual exports for testing
 export default function* defaultSaga() {
   // See example in containers/HomePage/saga.js
@@ -231,4 +279,5 @@ export default function* defaultSaga() {
   yield takeLatest(REQUEST_QUIZ_FINISH, finishQuizSaga);
   yield takeLatest(UPDATE_FLOWER, updateFlowerSaga);
   yield takeLatest(REQUEST_FLOWER_FINISH, finishFlowerSaga);
+  yield takeLatest(REQUEST_BACK, goBack);
 }

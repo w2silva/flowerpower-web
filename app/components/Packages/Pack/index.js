@@ -28,6 +28,13 @@ const PackImage = styled.img`
   }
 `;
 
+const AssetImage = styled.img`
+  padding-right: 10px;
+  max-width: 60px;
+  max-height: 60px;
+  position: relative;
+`;
+
 const PackTitle = styled.h4`
   font-size: 1.3em;
   font-weight: 600;
@@ -44,6 +51,16 @@ const PackIntro = styled.div`
   padding: 0px 0px 0px 10px;
   @media (max-width: 780px) {
     text-align: center;
+  }
+`;
+
+const PackAssets = styled.div`
+  font-size: 1.0em;
+  display: inline;
+  @media (max-width: 780px) {
+    text-align: center;
+    flex: 1;
+
   }
 `;
 
@@ -120,9 +137,18 @@ function Pack(props) {
         <Col xs={12} sm={6} md={6} lg={6}>
           <PackTitle>{props.bundle.name}</PackTitle>
           <PackIntro>{props.bundle.statement}</PackIntro>
+          {/* props.bundle.assets.length > 0 &&
+            <PackAssets>
+              <div style={{width: '100%'}}>
+                {props.bundle.assets.map((a) => (
+                    <AssetImage src={a.provider_info.thumbnail}/>
+                ))}
+              </div>
+            </PackAssets>
+          */}
         </Col>
         <Col xs={12} sm={2} md={3} lg={3}>
-          <PackCost><strong>R$ {props.bundle.price.amount.toFixed(2).replace('.', ',')}</strong> em 10x s/juros</PackCost>
+          <PackCost><strong>R$ {props.bundle.price.amount.toFixed(2).replace('.', ',')}</strong>{/* em 10x s/juros*/}</PackCost>
           {/* <PackLinkDetails>ver mais detalhes do plano</PackLinkDetails> */}
         </Col>
         <Col xs={12} sm={2} md={2} lg={2}>

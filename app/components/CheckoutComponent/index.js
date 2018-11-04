@@ -8,6 +8,9 @@ import React from 'react';
 // import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
+import { AwesomeButton } from 'react-awesome-button';
+
+import securePayment from 'images/pagamento-seguro.jpg'
 
 import Header from 'components/Header'
 import Footer from 'components/Footer'
@@ -15,7 +18,7 @@ import H2 from 'components/H2'
 import CheckoutItems from './CheckoutItems'
 import CheckoutPayment from './CheckoutPayment'
 import CheckoutSignup from './CheckoutSignup'
-import { AwesomeButton } from 'react-awesome-button';
+
 
 const MarginFooter = styled.div`
   margin: 1em 0px 5em 0;
@@ -133,6 +136,9 @@ export class CheckoutComponent extends React.PureComponent {
               efetuando pagamento...
             </AwesomeButton>
           }
+        </MarginFooter>
+        <MarginFooter>
+          <img src={securePayment} style={{width: 675/5, height: 200/5}}/>
         </MarginFooter>
         <Footer />
       </div>

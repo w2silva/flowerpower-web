@@ -26,7 +26,8 @@ import {
   updateQuizAnswer,
   finishQuiz,
   updateFlower,
-  finishFlowers
+  finishFlowers,
+  goBack
 } from './actions'
 import { registerMe } from '../Register/actions'
 import { requestLogin } from '../Login/actions'
@@ -230,6 +231,10 @@ export class Quiz extends React.PureComponent { // eslint-disable-line react/pre
     this.setState({ login: { ...this.state.login, [attrName]: e.target.value } });
   };
 
+  goBack = () => {
+    this.props.dispatch(goBack(this.props.diagnosis.id));
+  }
+
   submitEmotion = (emotionId, phaseIdx) => {
     const diagnosisId = this.props.match.params.id
     this.props.dispatch(updateEmotion(diagnosisId, emotionId, phaseIdx));
@@ -312,6 +317,7 @@ export class Quiz extends React.PureComponent { // eslint-disable-line react/pre
         finishFlowers={this.finishFlowers}
         me={this.props.me}
         startTherapy={this.startTherapy}
+        goBack={this.goBack}
         goToPlanSelection={this.goToPlanSelection}
         goToResults={this.goToResults}
       />

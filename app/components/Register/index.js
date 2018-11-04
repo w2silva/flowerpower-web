@@ -174,7 +174,6 @@ function Register(props) {
                         name="birthday"
                         error={props.register.birthdayMessage && props.register.birthdayMessage.length > 0 }
                         helperText={props.register.birthdayMessage}
-                        defaultValue="2017-05-24"
                         onChange={props.updateRegister('birthday')}
                         inputProps={{ className: classes.birthday }}
                         className={classes.textField}
@@ -198,9 +197,6 @@ function Register(props) {
                             className: classes.textField
                           }}
                         >
-                          <MenuItem value="">
-                            <em>Gênero</em>
-                          </MenuItem>
                           <MenuItem value={'male'}>Masculino</MenuItem>
                           <MenuItem value={'female'}>Feminino</MenuItem>
                           <MenuItem value={'other'}>Outro</MenuItem>

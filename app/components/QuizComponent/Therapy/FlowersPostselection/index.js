@@ -63,6 +63,8 @@ function FlowersPostselection(props) {
           :
           ""
         }
+        <AwesomeButton type="secondary" action={props.goBack}>Voltar</AwesomeButton>
+        &nbsp;
         <AwesomeButton disabled={isAnswering} action={props.finalizeFlowers}>Continuar</AwesomeButton>
       </div>
     </Grid>

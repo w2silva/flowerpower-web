@@ -21,3 +21,4 @@ export const UPDATE_QUIZ_ANSWER = 'app/Quiz/UPDATE_QUIZ_ANSWER';
 export const REQUEST_QUIZ_FINISH = 'app/Quiz/REQUEST_QUIZ_FINISH';
 export const UPDATE_FLOWER = 'app/Quiz/UPDATE_FLOWER';
 export const REQUEST_FLOWER_FINISH = 'app/Quiz/REQUEST_FLOWER_FINISH';
+export const REQUEST_BACK = 'app/Quiz/REQUEST_BACK';

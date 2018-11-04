@@ -21,7 +21,8 @@ import {
   UPDATE_FLOWER,
   REQUEST_FLOWER_FINISH,
   EMOTION_SUCCESS,
-  EMOTION_FAILURE
+  EMOTION_FAILURE,
+  REQUEST_BACK
 } from './constants';
 
 export function requestAll() {
@@ -146,6 +147,13 @@ export function emotionFailure(error) {
     type: EMOTION_FAILURE,
     error,
   };
+}
+
+export function goBack(diagnosisId) {
+  return {
+    type: REQUEST_BACK,
+    diagnosisId
+  }
 }
 
 export function requestDiagnosis(id) {

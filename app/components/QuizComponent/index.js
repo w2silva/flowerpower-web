@@ -83,7 +83,9 @@ function QuizComponent(props) {
           finishFlowers={props.finishFlowers}
           flowers={props.flowers}
           diagnosis={props.diagnosis}
-        />}
+          goBack={props.goBack}
+        />
+      }
       { props.diagnosis && props.diagnosis.state === 'waiting' &&
         <PrePurchaseResults
           goToPlanSelection={props.goToPlanSelection}

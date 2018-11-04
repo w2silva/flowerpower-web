@@ -63,6 +63,7 @@ function Therapy(props) {
               submitFlower={props.submitFlower}
               finalizeFlowers={finalizeFlowers(props.diagnosis.flowers_postselected[flowersIdx]._id)}
               flowers={props.flowers}
+              goBack={props.goBack}
             />
           }
         </TherapyWrapper>
