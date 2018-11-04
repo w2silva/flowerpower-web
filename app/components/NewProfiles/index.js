@@ -36,7 +36,7 @@ function NewProfiles(props) {
           <ProfileLeft>
             <Profile
               src={iconeHumanos}
-              title='Para amigo ou parente'
+              title='Humanos (incluindo amigo e parente)'
               target='human'
               to={props.to}
               color={props.color}
@@ -49,7 +49,7 @@ function NewProfiles(props) {
           <ProfileRight>
             <Profile
               src={iconeAnimals}
-              title='Para meu cão ou gato'
+              title='Animais (cães e gatos)'
               target='pet'
               to={props.to}
               color={props.color}
