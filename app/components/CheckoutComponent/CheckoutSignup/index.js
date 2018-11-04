@@ -200,7 +200,7 @@ export class CheckoutSignup extends React.PureComponent {
                     value={this.props.client.email}
                     onChange={this.updateClient('email')}
                     key="email"
-                    options={{ blocks:[99999], delimiter: '', uppercase: true }}
+                    options={{ blocks:[99999], delimiter: '' }}
                     style={input}
                     uppercase={true}
                   />

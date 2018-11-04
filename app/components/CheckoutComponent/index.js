@@ -33,29 +33,12 @@ export class CheckoutComponent extends React.PureComponent {
     console.log('[CheckoutComponent.constructor] props.me', props.me)
     this.state = {
       attemptingPayment: false,
-      payment: {
-        creditCard: {
-          number: '',
-          name: '',
-          expiry: '',
-          cvc: ''
-        },
-        boleto: {
-          cpf: ''
-        },
-        numberOfInstallments: 1,
-        type: 'creditcard'
-      },
-      client: {
-
-      }
       // payment: {
       //   creditCard: {
-      //     number: '5555 6666 7777 8884',
-      //     name: 'PEDRO CAVALCANTE',
-      //     expiry: '11/19',
-      //     cvc: '123',
-      //     birthdate: '15/01/1987'
+      //     number: '',
+      //     name: '',
+      //     expiry: '',
+      //     cvc: ''
       //   },
       //   boleto: {
       //     cpf: ''
@@ -64,17 +47,34 @@ export class CheckoutComponent extends React.PureComponent {
       //   type: 'creditcard'
       // },
       // client: {
-      //   name: 'PEDRO VICTOR LOSADA CAVALCANTE',
-      //   taxDocumentValue: '337.611.878-74',
-      //   phone: '11 994593789',
-      //   street: 'Rua Marieta',
-      //   streetNumber: '71',
-      //   complement: '',
-      //   district: 'Jd America',
-      //   postalCode: '01442·010',
-      //   city: 'Sao Paulo',
-      //   state: 'SP'
+      //
       // }
+      payment: {
+        creditCard: {
+          number: '5555 6666 7777 8884',
+          name: 'PEDRO CAVALCANTE',
+          expiry: '11/19',
+          cvc: '123',
+          birthdate: '15/01/1987'
+        },
+        boleto: {
+          cpf: ''
+        },
+        numberOfInstallments: 1,
+        type: 'creditcard'
+      },
+      client: {
+        name: 'PEDRO VICTOR LOSADA CAVALCANTE',
+        taxDocumentValue: '337.611.878-74',
+        phone: '11 994593789',
+        street: 'Rua Marieta',
+        streetNumber: '71',
+        complement: '',
+        district: 'Jd America',
+        postalCode: '01442·010',
+        city: 'Sao Paulo',
+        state: 'SP'
+      }
     }
     const me = props.me.me;
     if (me) {

@@ -18,9 +18,8 @@ import { makeSelectCheckoutBundle } from './selectors';
 import { makePayment } from './actions';
 
 export class Checkout extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
   makePayment = (bundleId, payment, client) => {
-    console.log(`[Checkout] bundle id: ${bundleId}`)
-    console.log(`[Checkout] payment: ${JSON.stringify(payment)}`)
     this.props.dispatch(makePayment(bundleId, payment, client));
   }
 

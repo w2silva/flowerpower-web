@@ -12,6 +12,22 @@ import {
 import { makeSelectDiagnosis } from 'containers/Quiz/selectors';
 
 import {
+  tokenSuccess,
+  loginSuccess,
+  loginFailure
+} from 'containers/Login/actions'
+
+import {
+  meSuccess,
+} from 'containers/Me/actions';
+
+import {
+  registerSuccess,
+  registerFailure,
+} from 'containers/Register/actions';
+
+
+import {
   BUNDLE_CHECKOUT,
   REQUEST_PAYMENT
 } from './constants';
@@ -29,7 +45,47 @@ export function* makePaymentSaga(action) {
   console.log('[makePaymentSaga] payment', action.payment)
   console.log('[makePaymentSaga] client', action.client)
 
-  const accessToken = yield select(makeSelectToken());
+  let accessToken = yield select(makeSelectToken());
+
+  if (!accessToken) {
+    try {
+      const me = {
+        name: action.client.name,
+        email: action.client.email.toLowerCase(),
+        password: action.client.password,
+      };
+
+      const client = {
+        profiles: [{
+          name: action.client.name,
+          gender: action.client.gender,
+          target: 'human',
+          main: true
+        }]
+      }
+
+      yield call(request, '/users', { body: { user: me, client }, method: 'POST' });
+      const authHeader = btoa(`${action.client.email}:${action.client.password}`);
+
+      const { token, user } = yield request('/auth', {
+        method: 'POST',
+        headers: {
+          Authorization: `Basic ${authHeader}`,
+        },
+      });
+      window.localStorage.setItem('token', token);
+      yield put(meSuccess(user));
+      yield put(tokenSuccess(token));
+      yield put(loginSuccess());
+      yield put(registerSuccess());
+      accessToken = token;
+    } catch (err) {
+      yield put(registerFailure(err.toString()));
+    }
+    // 4. se der erro, despachar ação de erro
+  }
+
+  console.log('****************************')
 
   const bundleId = action.bundle;
   const paymentInfo = action.payment;
@@ -183,6 +239,8 @@ export function* makePaymentSaga(action) {
             yield put(requestDiagnosis(diagnosis.id))
             // yield put(paymentDone());
             yield put(push('/results'));
+          } else {
+            yield put(push('/me'))
           }
           return;
         }
