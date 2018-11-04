@@ -1,6 +1,9 @@
 FROM node:10-stretch
 
-# reduce log size (not working?)
+ARG MOIP_PUBKEY
+ENV MOIP_PUBKEY ${MOIP_PUBKEY}
+RUN echo pubKey: $MOIP_PUBKEY
+
 ENV NPM_CONFIG_LOGLEVEL warn
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
