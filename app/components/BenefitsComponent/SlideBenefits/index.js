@@ -104,7 +104,7 @@ export class SlideBenefits extends React.PureComponent { // eslint-disable-line 
 
     // REDEEMED AND TO BE REDEEMED APPOINTMENTS
     const purchasedAppointments = this.props.purchases.reduce((acc, purchase) => acc + purchase.bundle.number_of_appointments, 0)
-    const redeemedAppointments = this.props.purchases.reduce((acc, purchase) => acc.push(purchase.redeems.appointments), [])
+    const redeemedAppointments = this.props.purchases.reduce((acc, purchase) => { acc.push(purchase.redeems.appointments); return acc; }, [])
     const availableAppointments = purchasedAppointments - redeemedAppointments.length
 
     const purchasedAssets = this.props.purchases.reduce((acc, purchase) => acc.concat(purchase.bundle.assets), [])
