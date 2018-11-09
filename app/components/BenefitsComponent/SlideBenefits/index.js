@@ -84,7 +84,7 @@ export class SlideBenefits extends React.PureComponent { // eslint-disable-line 
       for (let j = 0; j < toBeRedeemedTherapies.length && !found; j++) {
         if (toBeRedeemedTherapies[j].therapy.id === item.therapy.id) {
           found = true;
-          toBeRedeemedTherapies[j].available += item.number_of_diagnoses;
+          toBeRedeemedTherapies[j].available += item.available;
         }
       }
       if (!found) {
