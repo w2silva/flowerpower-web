@@ -14,6 +14,9 @@ import { push } from 'react-router-redux';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { requestLogout } from 'containers/Login/actions';
+
+import { makeSelectClient } from 'containers/Me/selectors';
+
 import makeSelectBenefits, { makeSelectPurchases, makeSelectBundles, makeSelectAssets, makeSelectTherapies } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -196,6 +199,10 @@ export class Benefits extends React.PureComponent { // eslint-disable-line react
     this.props.dispatch(push('/quiz'));
   }
 
+  goToResults = (diagnosis) => (e) => {
+    this.props.dispatch(push(`/quiz/${diagnosis.id}`));
+  }
+
   render() {
     return (
       <BenefitsComponent
@@ -203,6 +210,7 @@ export class Benefits extends React.PureComponent { // eslint-disable-line react
         // bundles={this.props.bundles}
         // assets={this.props.assets}
         // therapies={this.props.therapies}
+        client={this.props.client}
         loginSuccess={this.props.loginSuccess}
         logoutSuccess={this.props.logoutSuccess}
         activeLogin={this.state.activeLogin}
@@ -214,6 +222,7 @@ export class Benefits extends React.PureComponent { // eslint-disable-line react
         submitRegister={this.submitRegister}
         submitLogin={this.submitLogin}
         goToQuiz={this.goToQuiz}
+        goToResults={this.goToResults}
         login={this.state.login}
         register={this.state.register}
       />
@@ -227,11 +236,12 @@ Benefits.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   // benefits: makeSelectBenefits(),
-  loginSuccess: makeSelectLoginSuccess(),
-  purchases: makeSelectPurchases(),
   // bundles: makeSelectBundles(),
   // assets: makeSelectAssets(),
   // therapies: makeSelectTherapies(),
+  loginSuccess: makeSelectLoginSuccess(),
+  purchases: makeSelectPurchases(),
+  client: makeSelectClient(),
 });
 
 function mapDispatchToProps(dispatch) {

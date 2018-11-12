@@ -15,6 +15,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
+import moment from 'moment';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
@@ -39,6 +40,7 @@ import 'file-loader?name=[name].[ext]!./.htaccess';
 import 'styles/custom.css';
 import 'react-awesome-button/dist/styles.css';
 import 'react-credit-cards/lib/styles-compiled.css';
+import 'moment/src/locale/pt-br'; // eslint-disable-line import/first
 
 /* eslint-enable import/no-unresolved, import/extensions */
 
@@ -49,6 +51,8 @@ import { translationMessages } from './i18n';
 
 // Import CSS reset and Global Styles
 import './global-styles';
+
+moment.locale('pt-br');
 
 // Observer loading of Open Sans
 var openSansObserver = new FontFaceObserver('Open Sans');

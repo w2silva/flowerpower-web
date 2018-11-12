@@ -31,7 +31,6 @@ const IntroCredits = styled.div`
 `;
 
 function BenefitsComponent(props) {
-  console.log(props.purchases);
   return (
     <div>
       <Helmet>
@@ -59,7 +58,11 @@ function BenefitsComponent(props) {
         <div>
           <H2 align="center">Use seus benefícios</H2>
           <Intro>Resgate seus beneficios abaixo!</Intro>
-          <SlideBenefits purchases={props.purchases} goToQuiz={props.goToQuiz}/>
+          <SlideBenefits
+            purchases={props.purchases}
+            goToQuiz={props.goToQuiz}
+            goToResults={props.goToResults}
+            client={props.client}/>
           {/* <IntroCredits>
             Você não possui créditos para realizar terapias.<br />
             Selecione um novo pacote ou clique aqui para ver os perfis salvos.

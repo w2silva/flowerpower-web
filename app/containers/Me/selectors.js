@@ -8,6 +8,11 @@ const selectMeDomain = (state) => state.get('me').toJS();
 /**
  * Other specific selectors
  */
+const makeSelectClient = () => createSelector(
+ selectMeDomain,
+ (substate) => substate.me && substate.me.client
+);
+
 
 
 /**
@@ -22,4 +27,5 @@ const makeSelectMe = () => createSelector(
 export default makeSelectMe;
 export {
   selectMeDomain,
+  makeSelectClient
 };

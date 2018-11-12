@@ -6,8 +6,10 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import Slide from './Slide'
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
+import moment from 'moment'
+
+import Slide from './Slide'
 
 import iconBenefit1 from 'images/icone-beneficio1.png';
 import iconBenefit2 from 'images/icone-beneficio2.png';
@@ -113,26 +115,26 @@ export class SlideBenefits extends React.PureComponent { // eslint-disable-line 
 
     console.log('toBeRedeemedTherapies', toBeRedeemedTherapies)
     console.log('redeemedTherapies', redeemedTherapies)
+    console.log('this.props', this.props)
     for (let i = 0; i < toBeRedeemedTherapies.length; i++) {
       slides.push({
+        key: toBeRedeemedTherapies[i].therapy.id,
         title: `Consulta Online ${toBeRedeemedTherapies[i].therapy.name}`,
         subtitle: `Disponível: ${toBeRedeemedTherapies[i].available}`,
         description: toBeRedeemedTherapies[i].therapy.description,
         icon: i < pictures.length ? pictures[i] : pictures[i % pictures.length],
-        available: toBeRedeemedTherapies.available,
         index: i,
         onClick: toBeRedeemedTherapies[i].available > 0 ? this.props.goToQuiz(toBeRedeemedTherapies[i].therapy) : null
       })
     }
 
-
     if (availableAppointments > 0) {
       slides.push({
+        key: `appointments`,
         title: 'Sessão Presencial',
         subtitle: `Disponível: ${availableAppointments}`,
         icon: length < pictures.length ? pictures[length + 1] : pictures[length % pictures.length + 1],
         description: 'Agende uma sessão comigo para uma terapia mais aprofundada e personalizada',
-        available: availableAppointments,
         index: slides.length + 1,
       })
     }
@@ -140,14 +142,40 @@ export class SlideBenefits extends React.PureComponent { // eslint-disable-line 
     if (purchasedAssets.length > 0) {
       for (let i = 0; i < purchasedAssets.length; i++) {
         slides.push({
+          key: purchasedAssets[i].id,
           title: `Ebook: ${purchasedAssets[i].name}`,
           subtitle: `Disponível: ∞`,
           icon: length < pictures.length ? pictures[length + 3] : pictures[length % pictures.length + 3],
           description: `Tenha acesso ao exclusivo e-book ${purchasedAssets[i].name}`,
-          available: purchasedAssets.length,
           index: slides.length + 1,
           onClick: function() { window.open(purchasedAssets[i].provider_info.url, '_blank').focus();  }
         })
+      }
+    }
+
+    for (let i = 0; i < redeemedTherapies.length; i++) {
+      for (let j = 0; j < redeemedTherapies[i].diagnoses.length; j++) {
+        if (redeemedTherapies[i].diagnoses[j].state === 'finished') {
+          slides.push({
+            key: redeemedTherapies[i].diagnoses[j].id,
+            title: redeemedTherapies[i].diagnoses[j].therapy.name,
+            subtitle: this.props.client.profiles.filter((p) => p._id === redeemedTherapies[i].diagnoses[j].profile)[0].name,
+            description: `Diagnóstico concluído em ${moment(redeemedTherapies[i].diagnoses[j].finished_at).format('L')}`,
+            icon: i < pictures.length ? pictures[i] : pictures[i % pictures.length],
+            index: i,
+            onClick: this.props.goToResults(redeemedTherapies[i].diagnoses[j])
+          })
+        } else {
+          slides.push({
+            key: redeemedTherapies[i].diagnoses[j].id,
+            title: redeemedTherapies[i].diagnoses[j].therapy.name,
+            subtitle: this.props.client.profiles.filter((p) => p._id === redeemedTherapies[i].diagnoses[j].profile)[0].name,
+            description: `Continuar diagnóstico iniciado em ${moment(redeemedTherapies[i].diagnoses[j].created_at).format('L')}`,
+            icon: i < pictures.length ? pictures[i] : pictures[i % pictures.length],
+            index: i,
+            onClick: this.props.goToResults(redeemedTherapies[i].diagnoses[j])
+          })
+        }
       }
     }
 
