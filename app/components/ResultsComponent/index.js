@@ -7,7 +7,6 @@
 import React from 'react';
 // import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
-import Header from 'components/Header'
 import Footer from 'components/Footer'
 // import Profile from 'components/Profile'
 import Download from './Download'
@@ -20,10 +19,9 @@ function ResultsComponent(props) {
         <title>Results</title>
         <meta name="description" content="Description of Results" />
       </Helmet>
-      <Header/>
       {/* <Profile/> */}
       <Download diagnosis={props.diagnosis}/>
-      <Mailing suppliers={props.suppliers}/>
+      <Mailing suppliers={props.suppliers} sendPrescription={props.sendPrescription}/>
       <Footer/>
     </div>
   );

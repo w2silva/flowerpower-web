@@ -234,8 +234,8 @@ export class Mailing extends React.PureComponent { // eslint-disable-line react/
     });
   };
 
-  handleListPlus = (email) => () => {
-    console.log(email);
+  handleListPlus = (email) => (e) => {
+    e.preventDefault();
     const list = this.state.list.slice()
     if(email){
       if(list.filter((l) => l === email).length === 0) {
@@ -243,15 +243,14 @@ export class Mailing extends React.PureComponent { // eslint-disable-line react/
         this.setState({
           list
         })
-
       }
     }
   }
 
-  handleListMinus = (index) => () => {
+  handleListMinus = (email) => () => {
     const list = this.state.list.slice()
-    list.splice(index, 1)
-    console.log(list);
+    const idx = list.indexOf(email)
+    list.splice(idx, 1)
     this.setState({
       list
     })
@@ -263,10 +262,24 @@ export class Mailing extends React.PureComponent { // eslint-disable-line react/
     })
   }
 
+  send = () => {
+    console.log('[send] state', this.state)
+    const supplierIds = this.state.suppliers.map((s) => s.id)
+    const emails = this.state.list.slice()
+    for (let i = emails.length - 1; i >= 0; i--) {
+      const found = this.state.suppliers.filter((s) => s.contact_info.main_email === emails[i])[0]
+      if (found) {
+        emails.splice(i, 1)
+      }
+    }
+    this.props.sendPrescription(supplierIds, emails)
+
+    return false
+  }
 
   render () {
     const { classes } = this.props
-    console.log('state', this.state.list);
+    // console.log('state', this.state.list);
     return (
       <MailingWrapper>
         <Grid>
@@ -315,7 +328,7 @@ export class Mailing extends React.PureComponent { // eslint-disable-line react/
               </Row>
             </ProviderWrapper>
           }
-          <Form>
+          <Form onSubmit={this.handleListPlus(this.state.newEmail)}>
             <Title>Se preferir, adicione o email de seu fornecedor aqui:</Title>
             <div className="group" style={{marginBottom: '50px'}}>
               <input type="text" onChange={this.newEmail} style={{ width: '200px', borderRadius: '40px', display: 'inline-block', marginRight: '10px' }} />
@@ -325,24 +338,23 @@ export class Mailing extends React.PureComponent { // eslint-disable-line react/
               <Row>
                 <Col xs={12} sm={12} md={12} lg={12}>
                   <EmailsWrapper className="group">
-                    {this.state.list.map((l, index) => (
-                      <Row>
-                        <Span>{this.state.list[index]}<ProviderLink onClick={this.handleListMinus(index)}>Excluir</ProviderLink></Span>
+                    {this.state.list.map((email) => (
+                      <Row key={email}>
+                        <Span>{email}<ProviderLink onClick={this.handleListMinus(email)}>Excluir</ProviderLink></Span>
                       </Row>
                     ))}
                   </EmailsWrapper>
                 </Col>
               </Row>
             }
-            {this.state.list.length > 0 &&
-              <Row>
-                <Col xs={12} sm={12} md={12} lg={12}>
-                  <AwesomeButton type="secondary"> Enviar receita para os emails acima </AwesomeButton>
-                </Col>
-              </Row>
-            }
-
           </Form>
+          {this.state.list.length > 0 &&
+            <Row>
+              <Col xs={12} sm={12} md={12} lg={12}>
+                <AwesomeButton type="secondary" action={this.send}> Enviar receita para os emails acima </AwesomeButton>
+              </Col>
+            </Row>
+          }
         </Grid>
       </MailingWrapper>
     );

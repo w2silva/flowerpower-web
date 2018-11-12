@@ -22,7 +22,6 @@ function ProfileComponent(props) {
         <title>Selecione o Plano</title>
         <meta name="description" content="Description of Plans" />
       </Helmet>
-      <Header/>
       <H2 align="center">Selecione um perfil</H2>
       {/* <Profiles /> */}
       <ClientProfile getQuizzes={props.getQuizzes}/>

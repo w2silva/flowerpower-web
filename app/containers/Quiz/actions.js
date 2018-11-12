@@ -22,7 +22,10 @@ import {
   REQUEST_FLOWER_FINISH,
   EMOTION_SUCCESS,
   EMOTION_FAILURE,
-  REQUEST_BACK
+  REQUEST_BACK,
+  REQUEST_SEND_PRESCRIPTION,
+  SEND_PRESCRIPTION_SUCCESS,
+  SEND_PRESCRIPTION_FAILURE
 } from './constants';
 
 export function requestAll() {
@@ -161,4 +164,26 @@ export function requestDiagnosis(id) {
     type: REQUEST_DIAGNOSIS,
     id
   };
+}
+
+export function sendPrescription(diagnosisId, supplierIds, emails) {
+  return {
+    type: REQUEST_SEND_PRESCRIPTION,
+    id: diagnosisId,
+    suppliers: supplierIds,
+    emails
+  }
+}
+
+export function sendPrescriptionSuccess(diagnosis) {
+  return {
+    type: SEND_PRESCRIPTION_SUCCESS
+  }
+}
+
+export function sendPrescriptionFailure(error) {
+  return {
+    type: SEND_PRESCRIPTION_FAILURE,
+    error
+  }
 }

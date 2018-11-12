@@ -17,6 +17,8 @@ import injectReducer from 'utils/injectReducer';
 import ResultsComponent from 'components/ResultsComponent';
 import { makeSelectDiagnosis } from 'containers/Quiz/selectors';
 
+import { sendPrescription } from 'containers/Quiz/actions';
+
 import makeSelectResults, { makeSelectSuppliers } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -29,11 +31,16 @@ export class Results extends React.PureComponent { // eslint-disable-line react/
     props.dispatch(getSuppliers());
   }
 
+  sendPrescription = (supplierIds, emails) => {
+    this.props.dispatch(sendPrescription(this.props.diagnosis.id, supplierIds, emails))
+  }
+
   render() {
     return (
       <ResultsComponent
         diagnosis={this.props.diagnosis}
-        suppliers={this.props.suppliers}/>
+        suppliers={this.props.suppliers}
+        sendPrescription={this.sendPrescription}/>
     );
   }
 }

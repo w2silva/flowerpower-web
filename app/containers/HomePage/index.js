@@ -17,7 +17,7 @@ import { push } from 'react-router-redux';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   goTo = (location) => {
-    this.props.dispatch(push(`${location}`));
+    this.props.dispatch(push(location))
   }
 
   render() {

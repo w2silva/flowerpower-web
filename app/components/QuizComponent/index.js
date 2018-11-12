@@ -7,7 +7,6 @@
 import React from 'react';
 // import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
-import Header from 'components/Header'
 import Footer from 'components/Footer'
 import RegisterMe from 'components/RegisterMe'
 import LoginMe from 'components/LoginMe'
@@ -46,7 +45,6 @@ function QuizComponent(props) {
         <title>Quiz</title>
         <meta name="description" content="Description of Quiz" />
       </Helmet>
-      <Header/>
       {!props.loginSuccess && !props.activeLogin &&
         <RegisterMe
           updateRegister={props.updateRegister}

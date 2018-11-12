@@ -12,10 +12,15 @@
  */
 
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components'
 
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { push } from 'react-router-redux';
+
 import Startup from 'containers/Startup';
+import Header from 'components/Header'
 
 import HomePage from 'containers/HomePage/Loadable';
 import Quiz from 'containers/Quiz';
@@ -52,25 +57,44 @@ const theme = {
   }
 };
 
-export default function App() {
-  return (
-    <AppWrapper>
-      <Startup></Startup>
-      <ThemeProvider theme={theme}>
-        <Switch>
-          <Route exact path="/results" component={Results} />
-          <Route exact path="/quiz" component={Quiz} />
-          <Route exact path="/quiz/:id" component={Quiz} />
-          <Route exact path="/plans" component={Plans} />
-          <Route exact path="/checkout" component={Checkout} />
-          <Route exact path="/(benefits|me)" component={Benefits} />
-          <Route exact path="/therapy" component={SelectProfile} />
-          <Route exact path="/(biography|contact)" component={Biography} />
-          <Route exact path="/register" component={Checkout} />
-          <Route exact path="/" component={HomePage} />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </ThemeProvider>
-    </AppWrapper>
-  );
+export class App extends React.PureComponent {
+
+  goTo = (url) => {
+    this.props.history.push(url);
+  }
+
+  render() {
+    return (
+      <AppWrapper>
+        <Startup></Startup>
+        <Header
+          button={true}
+          handleClick={this.handleClick}
+          goTo={this.goTo}
+          currentUrl={this.props.location.pathname}/>
+        <ThemeProvider theme={theme}>
+          <Switch>
+            <Route exact path="/results" component={Results} />
+            <Route exact path="/quiz" component={Quiz} />
+            <Route exact path="/quiz/:id" component={Quiz} />
+            <Route exact path="/plans" component={Plans} />
+            <Route exact path="/checkout" component={Checkout} />
+            <Route exact path="/(benefits|me)" component={Benefits} />
+            <Route exact path="/therapy" component={SelectProfile} />
+            <Route exact path="/(biography|contact)" component={Biography} />
+            <Route exact path="/register" component={Checkout} />
+            <Route exact path="/" component={HomePage} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </ThemeProvider>
+      </AppWrapper>
+    )
+  }
 }
+
+const withConnect = connect();
+
+export default compose(
+  withRouter,
+  withConnect
+)(App);

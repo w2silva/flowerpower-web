@@ -12,7 +12,6 @@ import { AwesomeButton } from 'react-awesome-button';
 
 import securePayment from 'images/pagamento-seguro.jpg'
 
-import Header from 'components/Header'
 import Footer from 'components/Footer'
 import H2 from 'components/H2'
 import CheckoutItems from './CheckoutItems'
@@ -112,7 +111,6 @@ export class CheckoutComponent extends React.PureComponent {
           <title>Quiz</title>
           <meta name="description" content="Pagamento" />
         </Helmet>
-        <Header />
         <H2 align="center">Checkout</H2>
         <CheckoutItems bundle={this.props.bundle}/>
         <CheckoutPayment

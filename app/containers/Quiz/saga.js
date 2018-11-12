@@ -15,7 +15,8 @@ import {
   UPDATE_QUIZ_ANSWER,
   REQUEST_FLOWER_FINISH,
   UPDATE_FLOWER,
-  REQUEST_BACK
+  REQUEST_BACK,
+  REQUEST_SEND_PRESCRIPTION
 } from './constants';
 
 import {
@@ -25,6 +26,8 @@ import {
   diagnosisFailure,
   emotionSuccess,
   emotionFailure,
+  sendPrescriptionFailure,
+  sendPrescriptionSuccess
 } from './actions';
 
 export function* requestAllSaga() {
@@ -267,6 +270,21 @@ export function* goBack(action) {
   }
 }
 
+export function* sendPrescription(action) {
+  console.log('action', action)
+  try {
+    const accessToken = yield select(makeSelectToken());
+    const id = action.id;
+    const emails = action.emails;
+    const suppliers = action.suppliers;
+    const diagnosis = yield request(`/diagnoses/${id}/prescription/send`, { method: 'POST', accessToken, body: { emails, suppliers } });
+    yield put(sendPrescriptionSuccess());
+    yield put(diagnosisSuccess(diagnosis));
+  } catch(err) {
+    yield put(sendPrescriptionFailure(err.toString()));
+  }
+}
+
 // Individual exports for testing
 export default function* defaultSaga() {
   // See example in containers/HomePage/saga.js
@@ -280,4 +298,5 @@ export default function* defaultSaga() {
   yield takeLatest(UPDATE_FLOWER, updateFlowerSaga);
   yield takeLatest(REQUEST_FLOWER_FINISH, finishFlowerSaga);
   yield takeLatest(REQUEST_BACK, goBack);
+  yield takeLatest(REQUEST_SEND_PRESCRIPTION, sendPrescription);
 }

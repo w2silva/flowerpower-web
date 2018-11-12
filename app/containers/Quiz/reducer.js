@@ -20,7 +20,11 @@ import {
 
   UPDATE_EMOTION,
   EMOTION_SUCCESS,
-  EMOTION_FAILURE
+  EMOTION_FAILURE,
+
+  REQUEST_SEND_PRESCRIPTION,
+  SEND_PRESCRIPTION_SUCCESS,
+  SEND_PRESCRIPTION_FAILURE
 } from './constants';
 
 const initialState = fromJS({});
@@ -83,6 +87,16 @@ function quizReducer(state = initialState, action) {
       return state.set('emotionFailure', fromJS(action.error))
         .delete('updatingEmotion')
         .delete('diagnosis')
+
+    case REQUEST_SEND_PRESCRIPTION:
+      return state.set('sendingPrescriptions', fromJS(true))
+        .delete('sendPrescriptionFailure')
+    case SEND_PRESCRIPTION_SUCCESS:
+      return state.delete('sendingPrescriptions')
+        .delete('sendPrescriptionFailure')
+    case SEND_PRESCRIPTION_FAILURE:
+      return state.set('sendPrescriptionFailure', fromJS(action.error))
+        .delete('sendingPrescriptions')
 
     default:
       return state;

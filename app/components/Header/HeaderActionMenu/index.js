@@ -6,7 +6,6 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { push } from 'react-router-redux';
 import styled from 'styled-components'
 import scrollToComponent from 'react-scroll-to-component';
 import { HashLink } from 'react-router-hash-link';
@@ -15,7 +14,7 @@ import { AwesomeButton } from 'react-awesome-button';
 export class HeaderActionMenu extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   goTo = (url) => () => {
-    this.props.dispatch(push(url))
+    this.props.goTo(url)
   }
 
   render () {
@@ -56,7 +55,7 @@ export class HeaderActionMenu extends React.PureComponent { // eslint-disable-li
     return (
       <HeaderActionMenuWrapper mobilehidden={this.props.mobilehidden}>
         {this.props.titles.map((t, idx) => (
-          <AwesomeButton onClick={this.goTo(this.props.to[idx])}>
+          <AwesomeButton key={this.props.to[idx]} action={this.goTo(this.props.to[idx])}>
             {t}
           </AwesomeButton>
         ))}

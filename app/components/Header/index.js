@@ -121,7 +121,8 @@ export class Header extends React.PureComponent { // eslint-disable-line react/p
   }
 
   render() {
-    console.log(this.state.isOpen);
+    console.log('this.props.currentUrl: ', this.props.currentUrl)
+    const showMainButton = this.props.currentUrl === '/';
     return (
       <HeaderStyled button={this.props.button}>
         <HeaderEllipsis button={this.props.button}/>
@@ -138,11 +139,14 @@ export class Header extends React.PureComponent { // eslint-disable-line react/p
                   </BurgerWrapper>
                 </Col>
                 <Col xs={0} sm={3} md={10} lg={10}>
-                  <HeaderActionMenu
-                    handleClick={this.props.handleClick}
-                    titles={['Faça sua Terapia']}
-                    mobilehidden={true}
-                    to={['/quiz']}/>
+                  { !showMainButton &&
+                    <HeaderActionMenu
+                      handleClick={this.props.handleClick}
+                      titles={['Faça sua Terapia']}
+                      mobilehidden={true}
+                      to={['/quiz']}
+                      goTo={this.props.goTo}/>
+                  }
                   <HeaderMenu
                     handleClick={this.props.handleClick}
                     titles={['Home', 'Sobre Florais', 'Quem é Patrícia?', 'Nossos Planos', 'Contato', 'Minha Conta']}
@@ -161,7 +165,7 @@ export class Header extends React.PureComponent { // eslint-disable-line react/p
                   </Row>
                 </Col>
               </Row>
-              { this.props.button ?
+              { showMainButton ?
                 <Row center="xs" style={{ margin: `6em 0 5em 0` }}>
                   <Col>
                     <Link to="/quiz">
