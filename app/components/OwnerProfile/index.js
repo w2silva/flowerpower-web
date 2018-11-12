@@ -12,6 +12,8 @@ import Arrow from 'react-icons/lib/io/android-arrow-forward';
 import { Link } from 'react-router-dom'
 import { AwesomeButton } from 'react-awesome-button';
 
+import picture from 'images/patricia.jpg';
+
 const Img = styled.img`
   background-color: #779ccb;
   border-radius: 100%;
@@ -26,6 +28,9 @@ const Img = styled.img`
     height: 412px;
   }
   opacity: 0.5;
+  background-image: url(${picture});
+  background-position: center;
+  background-size: cover;
 `;
 
 const OwnerProfileWrapper = styled.div`
@@ -83,7 +88,7 @@ function OwnerProfile(props) {
           <Row center="xs">
             <Col xs={12}>
               <ImgWrapper>
-                <Img />
+                <Img/>
               </ImgWrapper>
             </Col>
           </Row>
