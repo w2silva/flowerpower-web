@@ -18,6 +18,7 @@ import { stack as Menu } from 'react-burger-menu';
 
 import Logo from './Logo'
 import HeaderMenu from './HeaderMenu'
+import HeaderActionMenu from './HeaderActionMenu'
 import Info from './Info'
 import HeaderBurgerMenu from './HeaderBurgerMenu'
 // Create a <Title> react component that renders an <h1> which is
@@ -137,7 +138,7 @@ export class Header extends React.PureComponent { // eslint-disable-line react/p
                   </BurgerWrapper>
                 </Col>
                 <Col xs={0} sm={3} md={10} lg={10}>
-                  <HeaderMenu
+                  <HeaderActionMenu
                     handleClick={this.props.handleClick}
                     titles={['Faça sua Terapia']}
                     mobilehidden={true}
