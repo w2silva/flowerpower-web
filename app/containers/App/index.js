@@ -31,6 +31,7 @@ import SelectProfile from 'containers/SelectProfile';
 import Biography from 'containers/Biography';
 import Checkout from 'containers/Checkout';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import Appointment from 'containers/Appointment/Loadable';
 
 const AppWrapper = styled.div`
   background-color: white;
@@ -77,6 +78,8 @@ export class App extends React.PureComponent {
             <Route exact path="/results" component={Results} />
             <Route exact path="/quiz" component={Quiz} />
             <Route exact path="/quiz/:id" component={Quiz} />
+            <Route exact path="/appointment" component={Appointment} />
+            <Route exact path="/appointment/:id" component={Appointment} />
             <Route exact path="/plans" component={Plans} />
             <Route exact path="/checkout" component={Checkout} />
             <Route exact path="/(benefits|me)" component={Benefits} />

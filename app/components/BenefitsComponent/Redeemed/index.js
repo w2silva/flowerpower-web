@@ -1,6 +1,6 @@
 /**
 *
-* SlideBenefits
+* Redeemed
 *
 */
 
@@ -16,13 +16,13 @@ import iconBenefit2 from 'images/icone-beneficio2.png';
 import iconBenefit3 from 'images/icone-beneficio3.png';
 import iconBenefit4 from 'images/icone-beneficio4.png';
 
-const SlideBenefitsWrapper = styled.div`
+const RedeemedWrapper = styled.div`
   margin: 5em auto;
   width: 960px;
   text-align: center;
 `;
 
-export class SlideBenefits extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class Redeemed extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   constructor() {
     super();
     this.state = {
@@ -106,18 +106,19 @@ export class SlideBenefits extends React.PureComponent { // eslint-disable-line 
 
     // REDEEMED AND TO BE REDEEMED APPOINTMENTS
     const purchasedAppointments = this.props.purchases.reduce((acc, purchase) => acc + purchase.bundle.number_of_appointments, 0)
-    const redeemedAppointments = this.props.purchases.reduce((acc, purchase) => { acc.push(purchase.redeems.appointments); return acc; }, [])
+    const redeemedAppointments = this.props.purchases.reduce((acc, purchase) => acc.concat(purchase.redeems.appointments), [])
     const availableAppointments = purchasedAppointments - redeemedAppointments.length
 
     const purchasedAssets = this.props.purchases.reduce((acc, purchase) => acc.concat(purchase.bundle.assets), [])
 
-    let slides = []
+    const toBeRedeemed = []
+    const redeemed = []
 
     console.log('toBeRedeemedTherapies', toBeRedeemedTherapies)
     console.log('redeemedTherapies', redeemedTherapies)
     console.log('this.props', this.props)
     for (let i = 0; i < toBeRedeemedTherapies.length; i++) {
-      slides.push({
+      toBeRedeemed.push({
         key: toBeRedeemedTherapies[i].therapy.id,
         title: `Consulta Online ${toBeRedeemedTherapies[i].therapy.name}`,
         subtitle: `Disponível: ${toBeRedeemedTherapies[i].available}`,
@@ -129,25 +130,26 @@ export class SlideBenefits extends React.PureComponent { // eslint-disable-line 
     }
 
     if (availableAppointments > 0) {
-      slides.push({
+      toBeRedeemed.push({
         key: `appointments`,
         title: 'Sessão Presencial',
         subtitle: `Disponível: ${availableAppointments}`,
         icon: length < pictures.length ? pictures[length + 1] : pictures[length % pictures.length + 1],
         description: 'Agende uma sessão comigo para uma terapia mais aprofundada e personalizada',
-        index: slides.length + 1,
+        index: toBeRedeemed.length + 1,
+        onClick: this.props.goToNewAppointment
       })
     }
 
     if (purchasedAssets.length > 0) {
       for (let i = 0; i < purchasedAssets.length; i++) {
-        slides.push({
+        toBeRedeemed.push({
           key: purchasedAssets[i].id,
           title: `Ebook: ${purchasedAssets[i].name}`,
           subtitle: `Disponível: ∞`,
           icon: length < pictures.length ? pictures[length + 3] : pictures[length % pictures.length + 3],
           description: `Tenha acesso ao exclusivo e-book ${purchasedAssets[i].name}`,
-          index: slides.length + 1,
+          index: toBeRedeemed.length + 1,
           onClick: function() { window.open(purchasedAssets[i].provider_info.url, '_blank').focus();  }
         })
       }
@@ -156,7 +158,7 @@ export class SlideBenefits extends React.PureComponent { // eslint-disable-line 
     for (let i = 0; i < redeemedTherapies.length; i++) {
       for (let j = 0; j < redeemedTherapies[i].diagnoses.length; j++) {
         if (redeemedTherapies[i].diagnoses[j].state === 'finished') {
-          slides.push({
+          redeemed.push({
             key: redeemedTherapies[i].diagnoses[j].id,
             title: redeemedTherapies[i].diagnoses[j].therapy.name,
             subtitle: this.props.client.profiles.filter((p) => p._id === redeemedTherapies[i].diagnoses[j].profile)[0].name,
@@ -166,7 +168,7 @@ export class SlideBenefits extends React.PureComponent { // eslint-disable-line 
             onClick: this.props.goToResults(redeemedTherapies[i].diagnoses[j])
           })
         } else {
-          slides.push({
+          redeemed.push({
             key: redeemedTherapies[i].diagnoses[j].id,
             title: redeemedTherapies[i].diagnoses[j].therapy.name,
             subtitle: this.props.client.profiles.filter((p) => p._id === redeemedTherapies[i].diagnoses[j].profile)[0].name,
@@ -179,18 +181,23 @@ export class SlideBenefits extends React.PureComponent { // eslint-disable-line 
       }
     }
 
-    // slides.push({
-    //   title: 'Coaching Online',
-    //   icon: length < pictures.length ? pictures[length + 2] : pictures[length % pictures.length + 2],
-    //   description: 'Faça um coaching comigo online e descubra como lidar com medos, ansiedades, propósitos e crenças.',
-    //   index: length + 2,
-    // })
+    for (let i = 0; i < redeemedAppointments.length; i++) {
+      redeemed.push({
+        key: redeemedAppointments[i],
+        title: 'Sessão Presencial',
+        subtitle: `${redeemedAppointments[i].client.profiles.filter((p) => p._id === redeemedAppointments[i].profile)[0].name} @ ${moment(redeemedAppointments[i].slot.start_date).format('LLL')}`,
+        icon: length < pictures.length ? pictures[length + 1] : pictures[length % pictures.length + 1],
+        description: 'Sessão agendada',
+        index: toBeRedeemed.length + 1,
+        onClick: this.props.goToAppointment(redeemedAppointments[i])
+      })
+    }
 
     return (
-      <SlideBenefitsWrapper>
+      <RedeemedWrapper>
         <Grid>
           <Row>
-            {slides.map((s) => (
+            {redeemed.map((s) => (
               <Slide
                 makeActive={this.makeActive}
                 active={this.state.activeSlide === s.index}
@@ -199,13 +206,13 @@ export class SlideBenefits extends React.PureComponent { // eslint-disable-line 
             ))}
           </Row>
         </Grid>
-      </SlideBenefitsWrapper>
+      </RedeemedWrapper>
     );
   }
 }
 
-SlideBenefits.propTypes = {
+Redeemed.propTypes = {
 
 };
 
-export default SlideBenefits;
+export default Redeemed;

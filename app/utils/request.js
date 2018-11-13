@@ -66,4 +66,6 @@ export function getErrorBody(resp) {
 export const config = {
   webpageServerEndpoint: process.env.NODE_ENV === 'production' ? 'https://www.alleviusflorais.com' : 'http://localhost:3000',
   apiEndpoint: process.env.NODE_ENV === 'production' ? 'https://api.alleviusflorais.com' : 'http://localhost:9000',
+  // webpageServerEndpoint: process.env.NODE_ENV === 'production' ? 'https://www.alleviusflorais.com' : 'http://localhost:3000',
+  // apiEndpoint: process.env.NODE_ENV === 'production' ? 'https://api.alleviusflorais.com' : 'https://api.alleviusflorais.com',
 };

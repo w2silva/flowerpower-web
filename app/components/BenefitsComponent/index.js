@@ -9,7 +9,9 @@ import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 import Footer from 'components/Footer'
 import H2 from 'components/H2'
-import SlideBenefits from './SlideBenefits'
+import H3 from 'components/H3'
+import ToBeRedeemed from './ToBeRedeemed'
+import Redeemed from './Redeemed'
 import Packages from 'components/Packages'
 import LogOut from 'components/LogOut'
 import RegisterMe from 'components/RegisterMe'
@@ -54,12 +56,22 @@ function BenefitsComponent(props) {
       }
       {props.loginSuccess &&
         <div>
-          <H2 align="center">Use seus benefícios</H2>
-          <Intro>Resgate seus beneficios abaixo!</Intro>
-          <SlideBenefits
+          <H2 align="center">Minha conta</H2>
+          <H3 align="center">Benefícios a serem resgatados</H3>
+          <ToBeRedeemed
             purchases={props.purchases}
             goToQuiz={props.goToQuiz}
             goToResults={props.goToResults}
+            goToNewAppointment={props.goToNewAppointment}
+            goToAppointment={props.goToAppointment}
+            client={props.client}/>
+          <H3 align="center">Benefícios já resgatados</H3>
+          <Redeemed
+            purchases={props.purchases}
+            goToQuiz={props.goToQuiz}
+            goToResults={props.goToResults}
+            goToNewAppointment={props.goToNewAppointment}
+            goToAppointment={props.goToAppointment}
             client={props.client}/>
           {/* <IntroCredits>
             Você não possui créditos para realizar terapias.<br />

@@ -185,22 +185,31 @@ export class Benefits extends React.PureComponent { // eslint-disable-line react
   }
 
 
-  updateRegister = (attrName) => (e) => {
+  updateRegister = (attrName) => () => {
     this.setState({ register: { ...this.state.register, [attrName]: e.target.value } });
   };
 
-  updateLogin = (attrName) => (e) => {
+  updateLogin = (attrName) => () => {
     this.setState({ login: { ...this.state.login, [attrName]: e.target.value } });
   };
 
-  goToQuiz = (therapy) => (e) => {
+  goToQuiz = (therapy) => () => {
     this.props.dispatch(cleanDiagnosis())
     this.props.dispatch(setTherapy(therapy.id))
     this.props.dispatch(push('/quiz'));
   }
 
-  goToResults = (diagnosis) => (e) => {
+  goToResults = (diagnosis) => () => {
     this.props.dispatch(push(`/quiz/${diagnosis.id}`));
+  }
+
+  goToNewAppointment = () => {
+    console.log('clicked!')
+    this.props.dispatch(push('/appointment'));
+  }
+
+  goToAppointment = (appointment) => () => {
+    this.props.dispatch(push(`/appointment/${appointment.id}`));
   }
 
   render() {
@@ -223,6 +232,8 @@ export class Benefits extends React.PureComponent { // eslint-disable-line react
         submitLogin={this.submitLogin}
         goToQuiz={this.goToQuiz}
         goToResults={this.goToResults}
+        goToNewAppointment={this.goToNewAppointment}
+        goToAppointment={this.goToAppointment}
         login={this.state.login}
         register={this.state.register}
       />

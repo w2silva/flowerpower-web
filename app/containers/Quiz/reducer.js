@@ -56,15 +56,15 @@ function quizReducer(state = initialState, action) {
     case SET_THERAPY:
       return state.set('therapy', action.therapy)
 
-    case REQUEST_DIAGNOSIS:
-      return state.set('requestingDiagnosis', fromJS(true))
-        .delete('diagnosis')
-        .delete('runFailure')
     case RUN_DIAGNOSIS:
       return state.set('runningDiagnosis', fromJS(true))
         .delete('diagnosis')
         .delete('runFailure')
 
+    case REQUEST_DIAGNOSIS:
+      return state.set('requestingDiagnosis', fromJS(true))
+        .delete('diagnosis')
+        .delete('runFailure')
     case DIAGNOSIS_SUCCESS:
       return state.set('diagnosis', action.diagnosis)
         .delete('runningDiagnosis')
