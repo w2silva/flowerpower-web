@@ -61,7 +61,7 @@ function OwnerProfile(props) {
     <Grid id="biography">
       <Row middle="xs" between="xs">
         <Col xs={12} sm={12} md={6} lg={6}>
-          <H2>Quem é Patrícia ?</H2>
+          <H2>Quem é Patricia ?</H2>
           <OwnerProfileWrapper>
             <span>Patricia tem 31 anos, é formada em Engenharia pelo Instituto Mauá de Engenharia e em Coaching Profissional pelo Instituto Brasileiro de Coaching. Desde muito cedo começou a sentir interesse por assuntos relacionados à psicologia e à formação de hábitos, padrões de comportamento e pensamento humanos.</span>
             <br />

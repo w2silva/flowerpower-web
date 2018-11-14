@@ -149,7 +149,7 @@ export class Header extends React.PureComponent { // eslint-disable-line react/p
                   }
                   <HeaderMenu
                     handleClick={this.props.handleClick}
-                    titles={['Home', 'Sobre Florais', 'Quem é Patrícia?', 'Nossos Planos', 'Contato', 'Minha Conta']}
+                    titles={['Home', 'Sobre Florais', 'Quem é Patricia?', 'Nossos Planos', 'Contato', 'Minha Conta']}
                     scroll={['top', 'description']}
                     mobilehidden={true}
                     to={['/biography', '/plans', '/contact', '/me']}

@@ -40,7 +40,7 @@ class AppointmentComponent extends React.PureComponent { // eslint-disable-line 
             Terapeuta:
           </Col>
           <Col xs={9} style={{textAlign: 'left', fontSize: '2em'}}>
-            Patrícia
+            Patricia
           </Col>
         </Row>
         <Row style={{marginLeft: '20%', marginRight: '20%', marginBottom: '2em'}}>

@@ -30,7 +30,7 @@ function HeaderBurgerMenu(props) {
       <a onClick={props.closeMenu} style={{ textAlign: 'right', color: 'white', fontSize: '30px', paddingRight: '20px' }}><Close/></a>
       <Link to={'/'} style={style} onClick={props.closeMenu} className="menu-item" >HOME</Link>
       <Link to={'/quiz'} style={style} onClick={props.closeMenu} className="menu-item" >FAÇA SUA TERAPIA</Link>
-      <Link to={'/biography'} style={style} onClick={props.closeMenu} className="menu-item" >QUEM É PATRÍCIA?</Link>
+      <Link to={'/biography'} style={style} onClick={props.closeMenu} className="menu-item" >QUEM É PATRICIA?</Link>
       <Link to={'/plans'} style={style} onClick={props.closeMenu} className="menu-item" >NOSSOS PLANOS</Link>
       <Link to={'/contact'} style={style} onClick={props.closeMenu} className="menu-item" >CONTATO</Link>
       <Link to={'/me'} style={style} onClick={props.closeMenu} className="menu-item" >MINHA CONTA</Link>
