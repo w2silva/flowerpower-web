@@ -105,7 +105,7 @@ class NewAppointmentComponent extends React.PureComponent {
                       <Row style={{marginTop: '20px'}}>
                         <Col xs={12}>
                           <strong>Fique atento!</strong> A consulta ocorrerá no endereço abaixo. Certifique-se que poderá fazer o deslocamento no dia agendado!<br/>
-                          <em>Rua [THERAPY_ADDRESS]</em>
+                          <em>Rua Alves Guimarães 470 ap 101</em>
                         </Col>
                       </Row>
                     </Col>

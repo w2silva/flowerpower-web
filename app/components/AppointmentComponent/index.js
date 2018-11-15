@@ -64,7 +64,7 @@ class AppointmentComponent extends React.PureComponent { // eslint-disable-line 
             Local:
           </Col>
           <Col xs={9} style={{textAlign: 'left', fontSize: '2em'}}>
-            Rua [THERAPY_ADDRESS]
+            Rua Alves Guimarães 470 ap 101
           </Col>
         </Row>
         <AppointmentNotes>
