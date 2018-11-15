@@ -58,7 +58,7 @@ function Footer() {
       <FooterEllipsis />
       <Grid>
         <FooterTitle>Allevius Florais</FooterTitle>
-        <FooterIntro>Lorem ipsum todos os direitos reservados</FooterIntro>
+        <FooterIntro>Todos os direitos reservados</FooterIntro>
         <Row center="xs">
           <Col><span><Mail style={{fontSize: '20px'}}/> contato@alllevius.com.br</span></Col>
           <Col><span>/</span></Col>

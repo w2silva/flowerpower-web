@@ -223,12 +223,12 @@ export function* makePaymentSaga(action) {
         if (purchase.state === 'waiting') { // keep polling
           console.log('[3a] keep polling')
           yield call(delay, 3000);
-        } else if (purchase.state === 'canceled') {
+        } else if (purchase.state === 'idle') {
           console.log('[3b] something went wrong')
-          const result = {
-            status: payment.status,
-            status_reason: payment.status_reason,
-          };
+          // const result = {
+          //   status: payment.status,
+          //   status_reason: payment.status_reason,
+          // };
           // yield put(paymentError(result));
           console.log(`[2] ERROR: ${result}`)
           return;

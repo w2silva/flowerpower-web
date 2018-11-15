@@ -56,7 +56,7 @@ function ClientProfile() {
         <ClientProfileTitle>Terapia Floral Allevius</ClientProfileTitle>
         <ClientProfileIntro>Por favor, selecione para quem é esse floral:</ClientProfileIntro>
         <NewProfiles color={'white'} to={'/quiz'}/>
-        <ClientProfileSpan>Após selecionar a opção, você será direcionado ao nosso questionário, a fim de criar sua terapia exclusiva e instantânea<br />terapia exclusiva, lorem ipsum dollor amet sit lorem ipsum.</ClientProfileSpan>
+        <ClientProfileSpan>Após selecionar a opção, você será direcionado ao nosso questionário, a fim de criar sua terapia exclusiva e instantânea.</ClientProfileSpan>
       </Grid>
     </ClientProfileWrapper>
   );

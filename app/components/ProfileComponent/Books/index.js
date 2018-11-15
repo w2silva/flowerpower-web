@@ -38,8 +38,8 @@ function Books() {
   return (
     <BookseWrapper>
       <Grid>
-        <BooksTitle>Lorem ipsum dollor amet sit</BooksTitle>
-        <BooksIntro>Após selecionar a opção, você será direcionado ao nosso questionário, a fim de criar sua terapia exclusiva e instantânea<br />terapia exclusiva, lorem ipsum dollor amet sit lorem ipsum.</BooksIntro>
+        {/* <BooksTitle>Lorem ipsum dollor amet sit</BooksTitle> */}
+        <BooksIntro>Após selecionar a opção, você será direcionado ao nosso questionário, a fim de criar sua terapia exclusiva e instantânea.</BooksIntro>
         <Row middle="xs" around="xs">
           <Col>
             <Img src={iconeHumanos} />
