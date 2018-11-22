@@ -127,7 +127,7 @@ export class CheckoutPaymentCreditCard extends React.PureComponent {
             <div className="group">
               <CleaveLabel>Código de Segurança:</CleaveLabel>
               <Cleave
-                options={{ blocks: [3] }}
+                options={{ blocks: [4] }}
                 value={this.props.creditCard.cvc}
                 onChange={this.updateCreditCard('cvc')}
                 key="cvc"
