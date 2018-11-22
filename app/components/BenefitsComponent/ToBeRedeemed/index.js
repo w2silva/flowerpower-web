@@ -8,6 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import moment from 'moment'
+import { Link } from 'react-router-dom'
 
 import Slide from './Slide'
 
@@ -15,6 +16,7 @@ import iconBenefit1 from 'images/icone-beneficio1.png';
 import iconBenefit2 from 'images/icone-beneficio2.png';
 import iconBenefit3 from 'images/icone-beneficio3.png';
 import iconBenefit4 from 'images/icone-beneficio4.png';
+import H3 from 'components/H3'
 
 const ToBeRedeemedWrapper = styled.div`
   margin: 5em auto;
@@ -125,6 +127,7 @@ export class ToBeRedeemed extends React.PureComponent { // eslint-disable-line r
         description: toBeRedeemedTherapies[i].therapy.description,
         icon: i < pictures.length ? pictures[i] : pictures[i % pictures.length],
         index: i,
+        total: toBeRedeemedTherapies[i].available,
         onClick: toBeRedeemedTherapies[i].available > 0 ? this.props.goToQuiz(toBeRedeemedTherapies[i].therapy) : null
       })
     }
@@ -137,6 +140,7 @@ export class ToBeRedeemed extends React.PureComponent { // eslint-disable-line r
         icon: length < pictures.length ? pictures[length + 1] : pictures[length % pictures.length + 1],
         description: 'Agende uma sessão comigo para uma terapia mais aprofundada e personalizada',
         index: toBeRedeemed.length + 1,
+        total: availableAppointments,
         onClick: this.props.goToNewAppointment
       })
     }
@@ -150,6 +154,7 @@ export class ToBeRedeemed extends React.PureComponent { // eslint-disable-line r
           icon: length < pictures.length ? pictures[length + 3] : pictures[length % pictures.length + 3],
           description: `Tenha acesso ao exclusivo e-book ${purchasedAssets[i].name}`,
           index: toBeRedeemed.length + 1,
+          total: 0,
           onClick: function() { window.open(purchasedAssets[i].provider_info.url, '_blank').focus();  }
         })
       }
@@ -193,20 +198,33 @@ export class ToBeRedeemed extends React.PureComponent { // eslint-disable-line r
       })
     }
 
+    let totalNumberOfToBeRedeemed = toBeRedeemed.reduce((acc, item) => acc + item.total, 0)
+
     return (
-      <ToBeRedeemedWrapper>
-        <Grid>
-          <Row>
-            {toBeRedeemed.map((s) => (
-              <Slide
-                makeActive={this.makeActive}
-                active={this.state.activeSlide === s.index}
-                {...s}
-              />
-            ))}
-          </Row>
-        </Grid>
-      </ToBeRedeemedWrapper>
+      <div>
+        <H3 align="center">Benefícios a serem resgatados</H3>
+        <ToBeRedeemedWrapper>
+          <Grid>
+            <Row>
+              {toBeRedeemed.map((s) => (
+                <Slide
+                  makeActive={this.makeActive}
+                  active={this.state.activeSlide === s.index}
+                  {...s}
+                />
+              ))}
+            </Row>
+            <Row>
+              {totalNumberOfToBeRedeemed === 0 &&
+                <div>
+                  <span>Você não possui terapias para resgatar.</span>
+                  <Link to="/plans">Conheça nossos planos</Link>
+                </div>
+              }
+            </Row>
+          </Grid>
+        </ToBeRedeemedWrapper>
+      </div>
     );
   }
 }

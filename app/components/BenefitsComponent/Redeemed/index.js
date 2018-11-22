@@ -15,6 +15,7 @@ import iconBenefit1 from 'images/icone-beneficio1.png';
 import iconBenefit2 from 'images/icone-beneficio2.png';
 import iconBenefit3 from 'images/icone-beneficio3.png';
 import iconBenefit4 from 'images/icone-beneficio4.png';
+import H3 from 'components/H3'
 
 const RedeemedWrapper = styled.div`
   margin: 5em auto;
@@ -193,20 +194,27 @@ export class Redeemed extends React.PureComponent { // eslint-disable-line react
       })
     }
 
+    if (redeemed.length === 0) {
+      return <div></div>
+    }
+
     return (
-      <RedeemedWrapper>
-        <Grid>
-          <Row>
-            {redeemed.map((s) => (
-              <Slide
-                makeActive={this.makeActive}
-                active={this.state.activeSlide === s.index}
-                {...s}
-              />
-            ))}
-          </Row>
-        </Grid>
-      </RedeemedWrapper>
+      <div>
+        <H3 align="center">Benefícios já resgatados</H3>
+        <RedeemedWrapper>
+          <Grid>
+            <Row>
+              {redeemed.map((s) => (
+                <Slide
+                  makeActive={this.makeActive}
+                  active={this.state.activeSlide === s.index}
+                  {...s}
+                />
+              ))}
+            </Row>
+          </Grid>
+        </RedeemedWrapper>
+      </div>
     );
   }
 }

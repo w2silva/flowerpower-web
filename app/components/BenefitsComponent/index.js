@@ -57,7 +57,6 @@ function BenefitsComponent(props) {
       {props.loginSuccess &&
         <div>
           <H2 align="center">Minha conta</H2>
-          <H3 align="center">Benefícios a serem resgatados</H3>
           <ToBeRedeemed
             purchases={props.purchases}
             goToQuiz={props.goToQuiz}
@@ -65,7 +64,6 @@ function BenefitsComponent(props) {
             goToNewAppointment={props.goToNewAppointment}
             goToAppointment={props.goToAppointment}
             client={props.client}/>
-          <H3 align="center">Benefícios já resgatados</H3>
           <Redeemed
             purchases={props.purchases}
             goToQuiz={props.goToQuiz}
