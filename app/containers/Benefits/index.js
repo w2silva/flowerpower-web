@@ -185,7 +185,7 @@ export class Benefits extends React.PureComponent { // eslint-disable-line react
   }
 
 
-  updateRegister = (attrName) => () => {
+  updateRegister = (attrName) => (e) => {
     this.setState({ register: { ...this.state.register, [attrName]: e.target.value } });
   };
 
