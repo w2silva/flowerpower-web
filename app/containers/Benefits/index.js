@@ -49,7 +49,7 @@ export class Benefits extends React.PureComponent { // eslint-disable-line react
     props.dispatch(getAll());
   }
 
-  logOut = () => {
+  logout = () => {
     this.props.dispatch(requestLogout());
   }
 
@@ -223,7 +223,7 @@ export class Benefits extends React.PureComponent { // eslint-disable-line react
         loginSuccess={this.props.loginSuccess}
         logoutSuccess={this.props.logoutSuccess}
         activeLogin={this.state.activeLogin}
-        logOut={this.logOut}
+        logout={this.logout}
         showLogin={this.showLogin}
         hideLogin={this.hideLogin}
         updateRegister={this.updateRegister}

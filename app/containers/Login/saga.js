@@ -72,7 +72,7 @@ export function* requestLoginWithTokenSaga(action) {
 }
 
 export function* requestLogoutSaga() {
-  // 1. enviar os dados para o servidor
+  console.log('logout')
   try {
     yield put(clearToken());
     yield put(clearMe());
@@ -80,7 +80,6 @@ export function* requestLogoutSaga() {
   } catch (err) {
     yield put(logoutFailure(err.toString()));
   }
-  // 4. se der erro, despachar ação de erro
 }
 
 export function* clearTokenSaga() {

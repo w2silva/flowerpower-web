@@ -19,7 +19,7 @@ const LogoutWrapper = styled.div`
 function LogOut(props) {
   return (
     <LogoutWrapper >
-      <AwesomeButton type="secondary" onClick={props.logOut}>Sair</AwesomeButton>
+      <AwesomeButton type="secondary" action={props.logout}>Sair</AwesomeButton>
     </LogoutWrapper>
   );
 }

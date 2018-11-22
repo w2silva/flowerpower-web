@@ -76,7 +76,7 @@ function BenefitsComponent(props) {
             Selecione um novo pacote ou clique aqui para ver os perfis salvos.
           </IntroCredits>
           <Packages/> */}
-          <LogOut logOut={props.logOut}/>
+          <LogOut logout={props.logout}/>
         </div>
       }
       <Footer/>
