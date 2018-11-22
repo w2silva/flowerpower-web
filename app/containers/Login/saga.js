@@ -23,6 +23,10 @@ import {
   tokenSuccess,
 } from './actions';
 
+import {
+  getAll as getBenefits
+} from 'containers/Benefits/actions'
+
 export function* requestLoginSaga(action) {
   // 1. enviar os dados para o servidor
   const authHeader = btoa(`${action.email}:${action.password}`);
@@ -41,6 +45,7 @@ export function* requestLoginSaga(action) {
     yield put(meSuccess(user));
     yield put(tokenSuccess(token));
     yield put(loginSuccess());
+    yield put(getBenefits());
   } catch (err) {
     yield put(loginFailure(err.toString()));
   }
@@ -59,6 +64,7 @@ export function* requestLoginWithTokenSaga(action) {
     yield put(meSuccess(user));
     yield put(tokenSuccess(action.token));
     yield put(loginSuccess());
+    yield put(getBenefits());
   } catch (err) {
     yield put(loginFailure(err.toString()));
   }
