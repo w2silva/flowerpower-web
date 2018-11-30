@@ -91,7 +91,7 @@ export class CheckoutComponent extends React.PureComponent {
     this.setState({
       attemptingPayment: true
     })
-    this.props.makePayment(this.props.bundle.id, this.state.payment, this.state.client)
+    this.props.makePayment(this.props.bundle, this.state.payment, this.state.client)
   }
 
   updatePayment = (payment) => {
@@ -113,9 +113,11 @@ export class CheckoutComponent extends React.PureComponent {
         </Helmet>
         <H2 align="center">Checkout</H2>
         <CheckoutItems bundle={this.props.bundle}/>
-        <CheckoutPayment
-          updatePayment={this.updatePayment}
-          payment={this.state.payment}/>
+        { this.props.bundle.price.amount >= 0.01 &&
+          <CheckoutPayment
+            updatePayment={this.updatePayment}
+            payment={this.state.payment}/>
+        }
         <CheckoutSignup
           updateClient={this.updateClient}
           client={this.state.client}/>

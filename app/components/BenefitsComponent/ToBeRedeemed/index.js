@@ -217,8 +217,8 @@ export class ToBeRedeemed extends React.PureComponent { // eslint-disable-line r
             <Row>
               {totalNumberOfToBeRedeemed === 0 &&
                 <div>
-                  <span>Você não possui terapias para resgatar.</span>
-                  <Link to="/plans">Conheça nossos planos</Link>
+                  <span>Você não possui terapias para resgatar.&nbsp;</span>
+                  <Link to="/plans">Conheça nossos planos.</Link>
                 </div>
               }
             </Row>

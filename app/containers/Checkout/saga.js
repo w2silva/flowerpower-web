@@ -41,7 +41,7 @@ export function* bundleCheckoutSaga() {
 }
 
 export function* makePaymentSaga(action) {
-  console.log(`[makePaymentSaga] request payment for bundle ${action.bundle}`)
+  console.log('[makePaymentSaga] request payment for bundle', action.bundle)
   console.log('[makePaymentSaga] payment', action.payment)
   console.log('[makePaymentSaga] client', action.client)
 
@@ -87,7 +87,8 @@ export function* makePaymentSaga(action) {
 
   console.log('****************************')
 
-  const bundleId = action.bundle;
+  const bundle = action.bundle;
+  const bundleId = bundle.id;
   const paymentInfo = action.payment;
   const client = action.client;
 
@@ -253,7 +254,74 @@ export function* makePaymentSaga(action) {
     }
   }
 
-  if (paymentInfo.type === 'creditcard') {
+  function* makePaymentFree() {
+    const paymentData = {
+      payment: {
+        method: 'free',
+        provider: 'free',
+        provider_info: {
+          address: {
+            city: client.city,
+            complement: client.complement,
+            district: client.district,
+            postalCode: client.postalCode,
+            state: client.state,
+            street: client.street,
+            streetNumber: client.streetNumber,
+          },
+          phone: client.phone,
+          taxDocument: client.taxDocumentValue
+        }
+      }
+    };
+    try {
+      let purchase = yield call(request, `/bundles/${bundleId}/pay`, {
+        method: 'POST',
+        body: paymentData,
+        accessToken
+      });
+
+      yield call(delay, 3000);
+      console.log('[1] retrieving purchase...')
+      while (true) { // eslint-disable-line no-constant-condition
+        purchase = yield call(request, `/purchases/${purchase.id}`, { accessToken });
+        console.log(`[2] purchase retrieved: ${purchase.state}`)
+        if (purchase.state === 'waiting') { // keep polling
+          console.log('[3a] keep polling')
+          yield call(delay, 3000);
+        } else if (purchase.state === 'idle') {
+          console.log('[3b] something went wrong')
+          // const result = {
+          //   status: payment.status,
+          //   status_reason: payment.status_reason,
+          // };
+          // yield put(paymentError(result));
+          console.log(`[2] ERROR: ${result}`)
+          return;
+        } else if (purchase.state === 'purchased') {
+          console.log('[3c] purchase success!')
+          const diagnosis = yield select(makeSelectDiagnosis())
+          if (diagnosis) {
+            yield put(requestDiagnosis(diagnosis.id))
+            // yield put(paymentDone());
+            yield put(push('/results'));
+          } else {
+            yield put(push('/me'))
+          }
+          return;
+        }
+      }
+
+    } catch(e) {
+      console.log('ERROR: payment error', e.toString())
+      // yield put(paymentError(e.toString()))
+      return;
+    }
+  }
+
+  if (bundle.price.amount < 0.01) {
+    yield makePaymentFree();
+  } else if (paymentInfo.type === 'creditcard') {
     yield makePaymentCreditCard();
   } else if (paymentInfo.type === 'boleto') {
     yield makePaymentBoleto();

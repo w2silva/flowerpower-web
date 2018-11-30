@@ -19,8 +19,8 @@ import { makePayment } from './actions';
 
 export class Checkout extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
-  makePayment = (bundleId, payment, client) => {
-    this.props.dispatch(makePayment(bundleId, payment, client));
+  makePayment = (bundle, payment, client) => {
+    this.props.dispatch(makePayment(bundle, payment, client));
   }
 
   render() {
