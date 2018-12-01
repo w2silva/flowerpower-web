@@ -15,6 +15,7 @@ import Arrow from 'react-icons/lib/io/android-arrow-forward';
 import Burger from 'react-icons/lib/md/menu';
 import { AwesomeButton } from 'react-awesome-button';
 import { stack as Menu } from 'react-burger-menu';
+import MediaQuery from 'react-responsive';
 
 import Logo from './Logo'
 import HeaderMenu from './HeaderMenu'
@@ -31,13 +32,23 @@ const HeaderStyled = styled.div`
   overflow: hidden;
   margin-bottom: 4em;
   @media (min-width: 780px) {
-    height: ${props => props.button ? '500px' : '400px'} !important;
+    height: ${props => { console.log("aqui", props.showMainButton);return (props.showMainButton ? '550px' : '450px')}} !important;
   }
   @media (max-width: 780px) {
-    height: ${props => props.button ? '500px' : '300px'} !important;
+    height: 300px !important;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
   }
 `;
 
+const ButtonWrapper = styled.div`
+  @media (max-width: 780px) {
+     margin: 2em 0 1em 0
+  }
+  @media (min-width: 780px) {
+     margin: 6em 0 5em 0;
+  }
+`
 const BurgerWrapper = styled.a `
   @media (max-width: 780px) {
     font-size: 4em;
@@ -65,12 +76,12 @@ const HeaderEllipsis = styled.div`
   @media (max-width: 780px) {
     border-bottom-left-radius: 100% 10%;
     border-bottom-right-radius: 100% 10%;
-    height: ${props => props.button ? '850px' : '650px'};
+    height: 650px;
   }
   @media (min-width: 780px) {
     border-bottom-left-radius: 100% 60%;
     border-bottom-right-radius: 100% 60%;
-    height: ${props => props.button ? '850px' : '750px'};
+    height: ${props => props.showMainButton ? '850px' : '750px'};
   }
 `;
 
@@ -123,9 +134,10 @@ export class Header extends React.PureComponent { // eslint-disable-line react/p
   render() {
     console.log('this.props.currentUrl: ', this.props.currentUrl)
     const showMainButton = this.props.currentUrl === '/';
+    console.log('showMainButton: ', showMainButton)
     return (
-      <HeaderStyled button={this.props.button}>
-        <HeaderEllipsis button={this.props.button}/>
+      <HeaderStyled showMainButton={showMainButton} button={this.props.button}>
+        <HeaderEllipsis showMainButton={showMainButton} button={this.props.button}/>
         <HeaderBurgerMenu closeMenu={this.closeMenu} isOpen={this.state.isOpen} handleStateChange={this.handleStateChange}/>
         <HeaderNav>
           <Grid>
@@ -160,23 +172,39 @@ export class Header extends React.PureComponent { // eslint-disable-line react/p
                 <Col xs={12}>
                   <Row center="xs">
                     <Col xs={10}>
-                      <Info button={this.props.button}/>
+                      <Info showMainButton={showMainButton}/>
                     </Col>
                   </Row>
                 </Col>
               </Row>
               { showMainButton ?
-                <Row center="xs" style={{ margin: `6em 0 5em 0` }}>
-                  <Col>
-                    <Link to="/quiz">
-                      {/*<HeaderButton>faça agora sua terapia <Arrow/></HeaderButton>*/}
-                      <AwesomeButton>FAÇA AGORA SUA TERAPIA <Arrow/></AwesomeButton>
-                    </Link>
-                  </Col>
-                </Row>
+                <MediaQuery query="(min-device-width: 780px)">
+                  <ButtonWrapper>
+                    <Row center="xs">
+                      <Col>
+                        <Link to="/quiz">
+                          {/*<HeaderButton>faça agora sua terapia <Arrow/></HeaderButton>*/}
+                          <AwesomeButton>FAÇA AGORA SUA TERAPIA <Arrow/></AwesomeButton>
+                        </Link>
+                      </Col>
+                    </Row>
+                  </ButtonWrapper>
+                </MediaQuery>
                 :
                 ''
-            }
+              }
+              <MediaQuery query="(max-device-width: 780px)">
+                <ButtonWrapper>
+                  <Row center="xs">
+                    <Col>
+                      <Link to="/quiz">
+                        {/*<HeaderButton>faça agora sua terapia <Arrow/></HeaderButton>*/}
+                        <AwesomeButton>FAÇA AGORA SUA TERAPIA <Arrow/></AwesomeButton>
+                      </Link>
+                    </Col>
+                  </Row>
+                </ButtonWrapper>
+              </MediaQuery>
           </Grid>
         </HeaderNav>
       </HeaderStyled>

@@ -20,7 +20,6 @@ import H3 from 'components/H3'
 
 const ToBeRedeemedWrapper = styled.div`
   margin: 5em auto;
-  width: 960px;
   text-align: center;
 `;
 
@@ -202,7 +201,7 @@ export class ToBeRedeemed extends React.PureComponent { // eslint-disable-line r
 
     return (
       <div>
-        <H3 align="center">Benefícios a serem resgatados</H3>
+        <H3 style={{fontSize: "20px"}} align="center">Benefícios a serem resgatados</H3>
         <ToBeRedeemedWrapper>
           <Grid>
             <Row>

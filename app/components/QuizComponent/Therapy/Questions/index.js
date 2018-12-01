@@ -53,6 +53,10 @@ export class Questions extends React.PureComponent { // eslint-disable-line reac
     }
   }
 
+  componentDidMount() {
+    this.top.scrollIntoView({ behavior: "smooth" });
+  }
+
   componentDidUpdate(prevProps, prevState) {
     this.setState({
       index: this.props.answers.answers.filter((a) => a.selected).map((a) => a.state === 'answered').lastIndexOf(true)
@@ -81,6 +85,7 @@ export class Questions extends React.PureComponent { // eslint-disable-line reac
     return (
       <Grid>
         <H2 align="center">Continuando...</H2>
+        <div style={{ float:"left", clear: "both" }} ref={(el) => { this.top = el; }}/>
         <QuestionWrapper>
           <QuestionsIntro>Abaixo você encontra uma série de perguntas específicas, por favor escolha sempre a alternativa<br /> com a qual o perfil selecionado mais se identifica</QuestionsIntro>
           <form onSubmit={this.submitTherapy}>

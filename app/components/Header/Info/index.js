@@ -7,9 +7,10 @@
 import React from 'react';
 import styled from 'styled-components'
 import { Row, Col } from 'react-styled-flexboxgrid'
+import MediaQuery from 'react-responsive';
 
 const WrapperInfo = styled.div`
-  padding-top: ${props => props.button ? '7em' : '3em'};
+  padding-top: ${props => props.showMainButton ? '7em' : '3em'};
 
   @media (max-width: 780px) {
     padding-top: 0;
@@ -59,17 +60,19 @@ const WrapperInfo = styled.div`
 
 function Info(props) {
   return (
-    <WrapperInfo button={props.button}>
+    <WrapperInfo showMainButton={props.showMainButton}>
       <Row middle="xs" center="xs">
         <Col>
           <div className="info-title">Allevius Florais</div>
         </Col>
-        <Col>
-          <div className="info-divider">&nbsp;</div>
-        </Col>
-        <Col>
-          <div className="info-desc">Facilitando sua busca por<br /><b >bem-estar</b> e <b>autoconhecimento</b></div>
-        </Col>
+        <MediaQuery query="(min-device-width: 780px)">
+          <Col>
+            <div className="info-divider">&nbsp;</div>
+          </Col>
+          <Col>
+            <div className="info-desc">Facilitando sua busca por<br /><b >bem-estar</b> e <b>autoconhecimento</b></div>
+          </Col>
+        </MediaQuery>
       </Row>
     </WrapperInfo>
   );

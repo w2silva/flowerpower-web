@@ -19,7 +19,6 @@ import H3 from 'components/H3'
 
 const RedeemedWrapper = styled.div`
   margin: 5em auto;
-  width: 960px;
   text-align: center;
 `;
 
@@ -200,7 +199,7 @@ export class Redeemed extends React.PureComponent { // eslint-disable-line react
 
     return (
       <div>
-        <H3 align="center">Benefícios já resgatados</H3>
+        <H3 style={{fontSize: "20px"}} align="center">Benefícios já resgatados</H3>
         <RedeemedWrapper>
           <Grid>
             <Row>

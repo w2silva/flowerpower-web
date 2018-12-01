@@ -20,7 +20,7 @@ const ClientProfileWrapper = styled.div`
   background-position: center center;
   background-repeat: no-repeat;
   color: white;
-  padding: 50px 0px;
+  padding: 70px 0px;
   margin: 0px 0px 5em 0px;
   text-align: center;
 `;

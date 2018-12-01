@@ -27,7 +27,7 @@ const Img = styled.img`
     width: 412px;
     height: 412px;
   }
-  opacity: 0.5;
+  opacity: 0.9;
   background-image: url(${picture});
   background-position: center;
   background-size: cover;

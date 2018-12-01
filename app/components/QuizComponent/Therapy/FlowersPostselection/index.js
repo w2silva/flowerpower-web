@@ -30,45 +30,56 @@ const FlowersIntro = styled.div`
   }
 `;
 
-function FlowersPostselection(props) {
-  if (!props.flowers) {
-    return (
-      <div></div>
-    )
+export class FlowersPostselection extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
+    super(props);
   }
-  const isAnswering = ['started', 'answering'].indexOf(props.postselected.state) >= 0
 
-  const submitFlower = (flowerId, selection) => () => props.submitFlower(props.postselected._id, flowerId, selection)
-  console.log(props.postselection);
-  return (
-    <Grid>
-      <H2 align="center">Continuando...</H2>
-      <FlowerWrapper>
-        <FlowersIntro>{props.postselection.statement}</FlowersIntro>
-        <form>
-          <Row middle="xs">
-            {props.postselected.options.flowers.map((f) => (
-              <Flower
-                flower={props.flowers.filter((g) => g.id === f)[0]}
-                selected={props.postselected.flowers.filter((g) => f === g)[0] ? true : false}
-                submitFlower={submitFlower(f, props.postselected.flowers.filter((g) => f === g)[0] ? false : true)}
-              />
-            ))}
-          </Row>
-        </form>
-      </FlowerWrapper>
-      <div className="text-center">
-        {props.postselection.maximum_selection > 0 && props.postselected.flowers.length > props.postselection.maximum_selection ?
-          <H5 align="center">Selecione apenas {props.postselection.maximum_selection} opções</H5>
-          :
-          ""
-        }
-        <AwesomeButton type="secondary" action={props.goBack}>Voltar</AwesomeButton>
-        &nbsp;
-        <AwesomeButton disabled={isAnswering} action={props.finalizeFlowers}>Continuar</AwesomeButton>
-      </div>
-    </Grid>
-  );
+  componentDidMount() {
+    this.top.scrollIntoView({ behavior: "smooth" });
+  }
+
+  render() {
+    if (!this.props.flowers) {
+      return (
+        <div style={{ float:"left", clear: "both" }} ref={(el) => { this.top = el; }}/>
+      )
+    }
+    const isAnswering = ['started', 'answering'].indexOf(this.props.postselected.state) >= 0
+
+    const submitFlower = (flowerId, selection) => () => this.props.submitFlower(this.props.postselected._id, flowerId, selection)
+    console.log(this.props.postselection);
+    return (
+      <Grid>
+        <H2 align="center">Continuando...</H2>
+        <div style={{ float:"left", clear: "both" }} ref={(el) => { this.top = el; }}/>
+        <FlowerWrapper>
+          <FlowersIntro>{this.props.postselection.statement}</FlowersIntro>
+          <form>
+            <Row middle="xs">
+              {this.props.postselected.options.flowers.map((f) => (
+                <Flower
+                  flower={this.props.flowers.filter((g) => g.id === f)[0]}
+                  selected={this.props.postselected.flowers.filter((g) => f === g)[0] ? true : false}
+                  submitFlower={submitFlower(f, this.props.postselected.flowers.filter((g) => f === g)[0] ? false : true)}
+                />
+              ))}
+            </Row>
+          </form>
+        </FlowerWrapper>
+        <div className="text-center">
+          {this.props.postselection.maximum_selection > 0 && this.props.postselected.flowers.length > this.props.postselection.maximum_selection ?
+            <H5 align="center">Selecione apenas {this.props.postselection.maximum_selection} opções</H5>
+            :
+            ""
+          }
+          <AwesomeButton type="secondary" action={this.props.goBack}>Voltar</AwesomeButton>
+          &nbsp;
+          <AwesomeButton disabled={isAnswering} action={this.props.finalizeFlowers}>Continuar</AwesomeButton>
+        </div>
+      </Grid>
+    );
+  }
 }
 
 FlowersPostselection.propTypes = {

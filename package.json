@@ -250,6 +250,7 @@
     "react-loadable": "4.0.3",
     "react-photo-gallery": "^6.0.28",
     "react-redux": "5.0.5",
+    "react-responsive": "^6.0.1",
     "react-router-dom": "4.1.1",
     "react-router-hash-link": "^1.2.0",
     "react-router-redux": "5.0.0-alpha.6",

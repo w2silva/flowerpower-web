@@ -10,7 +10,7 @@ import { Row, Col } from 'react-styled-flexboxgrid'
 import { Link } from 'react-router-dom';
 
 const ProfileWrapper = styled.div`
-  padding: 0 30px;
+  padding: 0px;
   text-align: center;
 `;
 
@@ -43,7 +43,7 @@ function Profile(props) {
   return (
     <ProfileWrapper>
       <Row middle="xs" center="xs">
-        <Col>
+        <Col style={{width: '100%'}}>
           <div className="container effect">
             <Figure className="effect-steve">
                 {props.to ?
@@ -57,7 +57,7 @@ function Profile(props) {
                 }
             </Figure>
           </div>
-          <div className="title">
+          <div style={{height: '100%'}} className="title">
             <a
             >
               <ProfileTitle color={props.color}>{props.title}</ProfileTitle>

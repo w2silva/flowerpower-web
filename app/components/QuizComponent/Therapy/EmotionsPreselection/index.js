@@ -50,6 +50,11 @@ export class EmotionsPreselection extends React.PureComponent { // eslint-disabl
       idx: 0
     }
   }
+
+  componentDidMount() {
+    this.top.scrollIntoView({ behavior: "smooth" });
+  }
+
   render() {
     if (!this.props.diagnosis) {
       return (<div/>)
@@ -59,6 +64,7 @@ export class EmotionsPreselection extends React.PureComponent { // eslint-disabl
     return (
       <Grid>
         <H2 align="center">Agora vamos começar a terapia</H2>
+        <div style={{ float:"left", clear: "both" }} ref={(el) => { this.top = el; }}/>
         <QuestionWrapper>
           <QuestionsIntro>{this.props.diagnosis.therapy.emotions_preselection[this.props.idx].statement}</QuestionsIntro>
             <form>

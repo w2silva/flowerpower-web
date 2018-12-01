@@ -22,7 +22,7 @@ function HeaderBurgerMenu(props) {
   return (
     <Menu
       right
-      styles={{ bmOverlay: { height: '2000px', top: 0, backgroundImage: 'linear-gradient(to bottom right, rgba(119,157,203,0.8) , rgba(0,0,0,1))' }, bmMenuWrap: { height: '2000px' } }}
+      styles={{ bmOverlay: { height: '2000px', top: 0, backgroundImage: 'linear-gradient(to bottom right, rgba(0,0,0,0.8) , rgba(0,0,0,0.8))' }, bmMenuWrap: { height: '2000px' } }}
       width={'100%'}
       isOpen={props.isOpen}
       onStateChange={(state) => props.handleStateChange(state)}
