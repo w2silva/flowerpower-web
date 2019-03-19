@@ -8,6 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid'
 import H2 from 'components/H2';
+import { AwesomeButton } from 'react-awesome-button';
 
 const DownloadWrapper = styled.div`
   padding: 0 0 3em 0;
@@ -16,6 +17,7 @@ const DownloadWrapper = styled.div`
 
 const DownloadIntro = styled.div`
   padding: 0 0 2em 0;
+  font-size: 1.3em;
 `;
 
 const DownloadLink = styled.a`
@@ -35,13 +37,29 @@ const DownloadLink = styled.a`
   }
 `;
 
-function Download() {
+function Download(props) {
+  function open() {
+    window.open(props.diagnosis.prescription.rendered.pdf_url, '_blank');
+  }
+
+  if (!props.diagnosis) {
+    return (
+      <div></div>
+    )
+  }
+
   return (
     <DownloadWrapper>
       <Grid>
         <H2 align="center">Faça download da receita de sua terapia</H2>
-        <DownloadIntro>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in justo ullamcorper, sollicitudin turpis dapibus, hendrerit tortor. Morbi tincidunt non sapien nec pretium. Donec elementum tristique consequat. Cras ut orci at felis accumsan ullamcorper non quis risus. Ut at ex mi. Aenean ac varius elit, eu congue dolor.</DownloadIntro>
-        <DownloadLink href="/results">Download da Receita</DownloadLink>
+        <DownloadIntro>Baseado nas duas respostas, foi gerada um PDF com a receita do floral a ser produzido pela sua farmácia de manipulação preferida.</DownloadIntro>
+        <AwesomeButton
+          target="_blank"
+          href={props.diagnosis.prescription.rendered.pdf_url}>
+          Download da Receita
+        </AwesomeButton>
+        {/* <div dangerouslySetInnerHTML={{__html: props.diagnosis.prescription.rendered.html}}>
+        </div> */}
       </Grid>
     </DownloadWrapper>
   );

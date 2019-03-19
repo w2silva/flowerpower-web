@@ -13,20 +13,36 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectSelectProfile from './selectors';
+import { getActiveTherapy } from './actions'
+import makeSelectSelectProfile, { makeSelectTherapy } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import ProfileComponent from 'components/ProfileComponent';
+import { push } from 'react-router-redux';
 
 export class SelectProfile extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  submitTherapy = (e) => {
-    e.preventDefault();
-    this.props.dispatch(push('/profile'));
+  componentWillReceiveProps(nextProps) {
+    const dispatch = this.props.dispatch;
+    if (!this.props.therapy && nextProps.therapy) {
+      setTimeout(() => { this.props.dispatch(push('/quiz')); });
+    }
   }
-  
+
+  // submitTherapy = (e) => {
+  //   e.preventDefault();
+  //   this.props.dispatch(push('/profile'));
+  // }
+
+  getQuizzes = (profileType) => () => {
+    console.log('1');
+    this.props.dispatch(getActiveTherapy(profileType));
+  }
+
   render() {
     return (
-      <ProfileComponent submitTherapy={this.submitTherapy}/>
+      <ProfileComponent
+        getQuizzes={this.getQuizzes}
+      />
     );
   }
 }
@@ -37,6 +53,7 @@ SelectProfile.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   selectprofile: makeSelectSelectProfile(),
+  therapy: makeSelectTherapy()
 });
 
 function mapDispatchToProps(dispatch) {

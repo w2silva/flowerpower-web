@@ -15,6 +15,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
+import moment from 'moment';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
@@ -36,6 +37,11 @@ import '!file-loader?name=[name].[ext]!./images/icon-384x384.png';
 import '!file-loader?name=[name].[ext]!./images/icon-512x512.png';
 import '!file-loader?name=[name].[ext]!./manifest.json';
 import 'file-loader?name=[name].[ext]!./.htaccess';
+import 'styles/custom.css';
+import 'react-awesome-button/dist/styles.css';
+import 'react-credit-cards/lib/styles-compiled.css';
+import 'moment/src/locale/pt-br'; // eslint-disable-line import/first
+
 /* eslint-enable import/no-unresolved, import/extensions */
 
 import configureStore from './configureStore';
@@ -45,6 +51,8 @@ import { translationMessages } from './i18n';
 
 // Import CSS reset and Global Styles
 import './global-styles';
+
+moment.locale('pt-br');
 
 // Observer loading of Open Sans
 var openSansObserver = new FontFaceObserver('Open Sans');
@@ -107,4 +115,18 @@ if (!window.Intl) {
 // we do not want it installed
 if (process.env.NODE_ENV === 'production') {
   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
+}
+
+if (process.env.NODE_ENV === 'production' && typeof (window) !== 'undefined') {
+  // Zendesk Chat
+  /* eslint-disable */
+  window.zESettings = {
+    webWidget: {
+      color: {
+        theme: '#0abbad'
+      }
+    }
+  };
+  window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(e){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var e=this.createElement("script");n&&(this.domain=n),e.id="js-iframe-async",e.src="https://assets.zendesk.com/embeddable_framework/main.js",this.t=+new Date,this.zendeskHost="floraisallevius.zendesk.com",this.zEQueue=a,this.body.appendChild(e)},o.write('<body onload="document._l();">'),o.close()}();
+
 }

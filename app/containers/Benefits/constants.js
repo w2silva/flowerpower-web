@@ -4,4 +4,6 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/Benefits/DEFAULT_ACTION';
+export const GET_ALL = 'app/Benefits/GET_ALL';
+export const ALL_SUCCESS = 'app/Benefits/ALL_SUCCESS';
+export const ALL_FAILURE = 'app/Benefits/ALL_FAILURE';

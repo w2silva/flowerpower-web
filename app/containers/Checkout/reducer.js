@@ -6,15 +6,15 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  BUNDLE_CHECKOUT,
 } from './constants';
 
 const initialState = fromJS({});
 
 function checkoutReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case BUNDLE_CHECKOUT:
+      return state.set('bundle', action.bundle);
     default:
       return state;
   }

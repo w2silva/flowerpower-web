@@ -11,22 +11,25 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import injectSaga from 'utils/injectSaga';
-import injectReducer from 'utils/injectReducer';
-import makeSelectCheckout from './selectors';
-import reducer from './reducer';
-import saga from './saga';
 import CheckoutComponent from 'components/CheckoutComponent';
+import makeSelectMe from 'containers/Me/selectors';
+
+import { makeSelectCheckoutBundle } from './selectors';
+import { makePayment } from './actions';
 
 export class Checkout extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-  submitTherapy = (e) => {
-    e.preventDefault();
-    this.props.dispatch(push('/checkout'));
+
+  makePayment = (bundle, payment, client) => {
+    this.props.dispatch(makePayment(bundle, payment, client));
   }
 
   render() {
     return (
-      <CheckoutComponent submitTherapy={this.submitTherapy}/>
+      <CheckoutComponent
+        me={this.props.me}
+        makePayment={this.makePayment}
+        bundle={this.props.bundle}
+      />
     );
   }
 }
@@ -36,7 +39,8 @@ Checkout.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  checkout: makeSelectCheckout(),
+  bundle: makeSelectCheckoutBundle(),
+  me: makeSelectMe()
 });
 
 function mapDispatchToProps(dispatch) {
@@ -47,11 +51,6 @@ function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'checkout', reducer });
-const withSaga = injectSaga({ key: 'checkout', saga });
-
 export default compose(
-  withReducer,
-  withSaga,
   withConnect,
 )(Checkout);

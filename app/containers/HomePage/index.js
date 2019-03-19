@@ -13,11 +13,16 @@ import React from 'react';
 import HomePageComponent from 'components/HomePageComponent';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { push } from 'react-router-redux';
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  goTo = (location) => {
+    this.props.dispatch(push(location))
+  }
+
   render() {
     return (
-      <HomePageComponent dispatch={this.props.dispatch}/>
+      <HomePageComponent goTo={this.goTo}/>
     );
   }
 }

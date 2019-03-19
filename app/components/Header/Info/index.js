@@ -7,44 +7,72 @@
 import React from 'react';
 import styled from 'styled-components'
 import { Row, Col } from 'react-styled-flexboxgrid'
+import MediaQuery from 'react-responsive';
 
 const WrapperInfo = styled.div`
-  padding-top: 3em;
+  padding-top: ${props => props.showMainButton ? '7em' : '3em'};
 
-  .info-title {
-    font-size: 3em;
-    font-style: italic;
-    text-align: right;
+  @media (max-width: 780px) {
+    padding-top: 0;
+    .info-title {
+      font-size: 3em;
+      font-style: italic;
+      text-align: right;
+      font-weight: 390;
+      letter-spacing: 1px;
+    }
+    .info-divider {
+      visibility: hidden;
+      height: 0 !important;
+    }
+    .info-desc {
+      font-size: 1.4em;
+      font-weight: 100;
+      text-align: center;
+    }
   }
 
-  .info-divider {
-    border-right: solid 1px #bdb8b8;
-    height: 65px;
+  @media (min-width: 780px) {
+    .info-title {
+      font-size: 4.5em;
+      font-style: italic;
+      text-align: right;
+      font-weight: 390;
+      letter-spacing: 1px;
+    }
+    .info-divider {
+      border-right: solid 0.5px #bdb8b8;
+      opacity: 0.5;
+      height: 65px;
 
-    -webkit-transform: rotate(15deg); /* Safari */
-        -ms-transform: rotate(15deg); /* IE 9 */
-            transform: rotate(15deg);
+      -webkit-transform: rotate(15deg); /* Safari */
+          -ms-transform: rotate(15deg); /* IE 9 */
+              transform: rotate(15deg);
+    }
+    .info-desc {
+      font-size: 1.8em;
+      font-weight: 100;
+      text-align: left;
+    }
   }
 
-  .info-desc {
-    font-size: 1.2em;
-    text-align: left;
-  }
 `;
 
-function Info() {
+function Info(props) {
   return (
-    <WrapperInfo>
+    <WrapperInfo showMainButton={props.showMainButton}>
       <Row middle="xs" center="xs">
         <Col>
           <div className="info-title">Allevius Florais</div>
         </Col>
-        <Col>
-          <div className="info-divider">&nbsp;</div>
-        </Col>
-        <Col>
-          <div className="info-desc">Facilitando sua busca por<br /><b>bem-estar</b> e <b>autoconhecimento</b></div>
-        </Col>
+        <MediaQuery query="(min-device-width: 780px)">
+          <Col>
+            <div className="info-divider">&nbsp;</div>
+          </Col>
+          <Col>
+            <div className="info-desc">Facilitando sua busca por<br /><b >bem-estar</b> e <b>autoconhecimento</b></div>
+          </Col>
+        </MediaQuery>
       </Row>
     </WrapperInfo>
   );

@@ -10,3 +10,4 @@
  */
 
 export const DEFAULT_LOCALE = 'en';
+export const ADD_AFFILIATE = 'app/App/ADD_AFFILIATE';

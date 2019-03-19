@@ -12,8 +12,16 @@
  */
 
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components'
+import { Switch, Route, withRouter } from 'react-router-dom';
+import styled, { ThemeProvider } from 'styled-components'
+
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { push } from 'react-router-redux';
+
+import Startup from 'containers/Startup';
+import Header from 'components/Header'
+
 import HomePage from 'containers/HomePage/Loadable';
 import Quiz from 'containers/Quiz';
 import Results from 'containers/Results';
@@ -23,6 +31,11 @@ import SelectProfile from 'containers/SelectProfile';
 import Biography from 'containers/Biography';
 import Checkout from 'containers/Checkout';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import Appointment from 'containers/Appointment/Loadable';
+
+const AppWrapper = styled.div`
+  background-color: white;
+`;
 
 const theme = {
   flexboxgrid: {
@@ -33,33 +46,58 @@ const theme = {
     mediaQuery: 'only screen',
     container: {
       sm: 46, // rem
-      md: 61, // rem
-      lg: 60  // rem
+      md: 71, // rem
+      lg: 86  // rem
     },
     breakpoints: {
       xs: 0,  // em
       sm: 48, // em
-      md: 64, // em
-      lg: 75  // em
+      md: 74, // em
+      lg: 85  // em
     }
   }
 };
 
-export default function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Switch>
-        <Route exact path="/results" component={Results} />
-        <Route exact path="/quiz" component={Quiz} />
-        <Route exact path="/plans" component={Plans} />
-        <Route exact path="/benefits" component={Benefits} />
-        <Route exact path="/profile" component={SelectProfile} />
-        <Route exact path="/biography" component={Biography} />
-        <Route exact path="/register" component={Checkout} />
-        <Route exact path="/me" component={Checkout} />
-        <Route exact path="/" component={HomePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
-    </ThemeProvider>
-  );
+export class App extends React.PureComponent {
+
+  goTo = (url) => {
+    this.props.history.push(url);
+  }
+
+  render() {
+    return (
+      <AppWrapper>
+        <Startup></Startup>
+        <Header
+          button={true}
+          handleClick={this.handleClick}
+          goTo={this.goTo}
+          currentUrl={this.props.location.pathname}/>
+        <ThemeProvider theme={theme}>
+          <Switch>
+            <Route exact path="/results" component={Results} />
+            <Route exact path="/quiz" component={Quiz} />
+            <Route exact path="/quiz/:id" component={Quiz} />
+            <Route exact path="/appointment" component={Appointment} />
+            <Route exact path="/appointment/:id" component={Appointment} />
+            <Route exact path="/plans" component={Plans} />
+            <Route exact path="/checkout" component={Checkout} />
+            <Route exact path="/(benefits|me)" component={Benefits} />
+            <Route exact path="/therapy" component={SelectProfile} />
+            <Route exact path="/(biography|contact)" component={Biography} />
+            <Route exact path="/register" component={Checkout} />
+            <Route exact path="/" component={HomePage} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </ThemeProvider>
+      </AppWrapper>
+    )
+  }
 }
+
+const withConnect = connect();
+
+export default compose(
+  withRouter,
+  withConnect
+)(App);
